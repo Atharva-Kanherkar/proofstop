@@ -6,6 +6,7 @@
 - Exercise the real h11.Connection server API with synthetic HTTP bytes split across receive_data calls. Require RemoteProtocolError for invalid nonzero-chunk footers and preserve valid, partial, multi-chunk and pipelined message behavior.
 - Independently author acceptance and evaluation cases from the HTTP contract, before checking the upstream repaired file. Evaluation and reference code never enter generation or acceptance feedback.
 - Sandbox mounts runtime code and trusted input-only worker, without expected answers, case names, upstream metadata, task manifests, or suite files. Only the target module changes. No network or host-execution fallback.
+- Repository verification retains exact UTF-8 worker stdout for inspecting consumer outcomes; acceptance feedback still contains only case names and pass/fail.
 - Baseline and bounded repair support repository tasks. Existing task formats and online policy remain compatible. Capture exact prompts and target source; evaluation cannot resume generation.
 
 ## Unit Tests
