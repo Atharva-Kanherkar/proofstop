@@ -1,0 +1,122 @@
+[
+  {
+    "name": "negative-decimal-carry",
+    "input": [
+      -999999,
+      false,
+      false,
+      "%.1f"
+    ],
+    "expected": "-1.0 MB"
+  },
+  {
+    "name": "gnu-rounding-carry",
+    "input": [
+      1048575,
+      false,
+      true,
+      "%.1f"
+    ],
+    "expected": "1.0M"
+  },
+  {
+    "name": "next-decimal-carry",
+    "input": [
+      999999999,
+      false,
+      false,
+      "%.1f"
+    ],
+    "expected": "1.0 GB"
+  },
+  {
+    "name": "next-binary-carry",
+    "input": [
+      1073741823,
+      true,
+      false,
+      "%.1f"
+    ],
+    "expected": "1.0 GiB"
+  },
+  {
+    "name": "below-rounding-threshold",
+    "input": [
+      999940,
+      false,
+      false,
+      "%.1f"
+    ],
+    "expected": "999.9 kB"
+  },
+  {
+    "name": "custom-high-precision-no-carry",
+    "input": [
+      999999,
+      false,
+      false,
+      "%.3f"
+    ],
+    "expected": "999.999 kB"
+  },
+  {
+    "name": "custom-zero-precision-carry",
+    "input": [
+      999999,
+      false,
+      false,
+      "%.0f"
+    ],
+    "expected": "1 MB"
+  },
+  {
+    "name": "zero-bytes",
+    "input": [
+      0,
+      false,
+      false,
+      "%.1f"
+    ],
+    "expected": "0 Bytes"
+  },
+  {
+    "name": "negative-single-byte",
+    "input": [
+      -1,
+      false,
+      false,
+      "%.1f"
+    ],
+    "expected": "-1 Byte"
+  },
+  {
+    "name": "gnu-small-value",
+    "input": [
+      300,
+      false,
+      true,
+      "%.1f"
+    ],
+    "expected": "300B"
+  },
+  {
+    "name": "string-value",
+    "input": [
+      "999999",
+      false,
+      false,
+      "%.1f"
+    ],
+    "expected": "1.0 MB"
+  },
+  {
+    "name": "largest-unit-cap",
+    "input": [
+      30000000000000000000000000000000000,
+      false,
+      false,
+      "%.1f"
+    ],
+    "expected": "30000.0 QB"
+  }
+]
