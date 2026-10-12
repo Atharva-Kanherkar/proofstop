@@ -37,3 +37,15 @@ Live execution remains pending funding and provisioning.
 ## Manual checks
 
 Review the runbook, configuration, and README link. Check JSON and diff whitespace.
+
+## Sampling correction after the first live attempt
+
+- Preserve the original 4096-token truncated attempt unchanged.
+- Add optional `top_p` and `top_k` configuration. Existing configs without them
+  retain their request shape. Validate top-p in (0, 1] and top-k as -1 or positive.
+- Emit configured sampling fields in the saved and transmitted request bytes.
+- Pin the GPU config to Qwen recommended thinking sampling: temperature 0.6,
+  top-p 0.95, top-k 20. Keep seed 42 and the 4096-token budget unchanged.
+- Test absent-field compatibility, configured wire fields, and invalid values.
+- Rerun through the existing Rust runner into a new output directory. Treat this
+  as a separate sampling control rather than overwriting the initial experiment.
