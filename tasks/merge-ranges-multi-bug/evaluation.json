@@ -1,0 +1,10 @@
+[
+  {"name":"negative_nested", "input":[[-10,5],[-8,-2],[1,2]], "expected":[[-10,5]]},
+  {"name":"transitive", "input":[[7,9],[1,3],[4,6]], "expected":[[1,9]]},
+  {"name":"duplicates", "input":[[2,2],[2,2],[1,1]], "expected":[[1,2]]},
+  {"name":"nested_then_tail", "input":[[1,10],[3,5],[11,12]], "expected":[[1,12]]},
+  {"name":"gap", "input":[[1,2],[4,5]], "expected":[[1,2],[4,5]]},
+  {"name":"invalid", "input":[[5,3]], "error":"ValueError"},
+  {"name":"single", "input":[[42,42]], "expected":[[42,42]]},
+  {"name":"large_endpoint", "input":[[1,1000000000000000000],[3,4]], "expected":[[1,1000000000000000000]]}
+]

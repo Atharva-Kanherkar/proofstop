@@ -30,6 +30,9 @@ pub fn request(model: &str, prompt: &str, config: &Config) -> Vec<u8> {
     if let Some(k) = config.top_k {
         value["top_k"] = json!(k);
     }
+    if let Some(enabled) = config.enable_thinking {
+        value["chat_template_kwargs"] = json!({"enable_thinking":enabled});
+    }
     serde_json::to_vec(&value).expect("validated configuration")
 }
 
@@ -131,6 +134,7 @@ mod tests {
         let value: Value = serde_json::from_slice(&request("m", "p", &config)).unwrap();
         assert!(value.get("top_p").is_none());
         assert!(value.get("top_k").is_none());
+        assert!(value.get("chat_template_kwargs").is_none());
     }
     #[test]
     fn finish_reason_and_usage_are_not_guessed() {

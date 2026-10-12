@@ -74,7 +74,12 @@ pub async fn baseline(
     };
     let mut summary = Summary {
         schema_version: 1,
-        policy: "full_reasoning_baseline".into(),
+        policy: if config.enable_thinking == Some(false) {
+            "nonthinking_baseline"
+        } else {
+            "full_reasoning_baseline"
+        }
+        .into(),
         evidence_class: evidence_class.into(),
         outcome: "failed".into(),
         task_id: task.manifest.id.clone(),

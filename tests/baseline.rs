@@ -77,6 +77,7 @@ async fn failed_http_request_is_captured_and_cannot_overwrite_a_run() {
     let mut sampling = config();
     sampling.top_p = Some(0.95);
     sampling.top_k = Some(20);
+    sampling.enable_thinking = Some(false);
     let result = run::baseline(
         &task(),
         &sampling,
@@ -88,6 +89,7 @@ async fn failed_http_request_is_captured_and_cannot_overwrite_a_run() {
     .await
     .unwrap();
     assert_eq!(result.outcome, "failed");
+    assert_eq!(result.policy, "nonthinking_baseline");
     assert!(result.allocated_gpu_seconds.is_none());
     assert_eq!(fs::read(output.join("response.json")).unwrap(), body);
     let request = capture.await.unwrap();
@@ -95,6 +97,7 @@ async fn failed_http_request_is_captured_and_cannot_overwrite_a_run() {
     assert_eq!(request["model"], "fixture-model");
     assert_eq!(request["top_p"], 0.95);
     assert_eq!(request["top_k"], 20);
+    assert_eq!(request["chat_template_kwargs"]["enable_thinking"], false);
     assert_eq!(
         serde_json::from_slice::<Value>(&fs::read(output.join("request.json")).unwrap()).unwrap(),
         request

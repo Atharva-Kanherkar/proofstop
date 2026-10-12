@@ -45,7 +45,8 @@ impl Task {
         let manifest: Manifest = serde_json::from_slice(&fs::read(root.join("manifest.json"))?)?;
         ensure!(manifest.schema_version == 1, "unsupported task schema");
         ensure!(
-            manifest.id == "merge-ranges" && manifest.revision == "synthetic-v1",
+            manifest.id == "merge-ranges"
+                && ["synthetic-v1", "synthetic-v2"].contains(&manifest.revision.as_str()),
             "unsupported task identity"
         );
         let required = [
@@ -131,6 +132,8 @@ pub struct Config {
     pub top_p: Option<f64>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub top_k: Option<i32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub enable_thinking: Option<bool>,
 }
 
 impl Config {
