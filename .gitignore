@@ -19,6 +19,7 @@ models/
 *.safetensors
 
 # Local tooling
+/target/
 .DS_Store
 .idea/
 .vscode/

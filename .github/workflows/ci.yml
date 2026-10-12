@@ -1,0 +1,31 @@
+name: Rust and isolated verifier
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Install pinned Rust toolchain
+        run: rustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy
+      - name: Formatting
+        run: cargo fmt --check
+      - name: Lint
+        run: cargo clippy --locked --all-targets -- -D warnings
+      - name: Unit and HTTP tests
+        run: cargo test --locked --all-targets
+      - name: Pull pinned verifier image
+        run: |
+          image=$(python3 -c 'import json; print(json.load(open("configs/local.json"))["image"])')
+          docker pull "$image"
+      - name: Real Docker integration tests
+        run: cargo test --locked --test baseline -- --ignored --test-threads=1
