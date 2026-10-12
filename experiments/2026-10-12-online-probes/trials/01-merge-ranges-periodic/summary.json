@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "policy": "periodic_probe",
+  "evidence_class": "unclassified",
+  "outcome": "passed",
+  "task_id": "merge-ranges",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 15807,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 1139,
+  "completion_tokens": 254,
+  "acceptance": {
+    "cases": 4,
+    "container_name": "proofstop-9ff5780d-7e91-452f-9cb4-a249ed3edb83",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 313
+  },
+  "evaluation": {
+    "cases": 8,
+    "container_name": "proofstop-421754c5-6e9e-4f55-ba42-e7a6fd82a600",
+    "passed": 8,
+    "reason": "8 of 8 checks passed",
+    "verdict": "passed",
+    "wall_ms": 195
+  },
+  "error": null
+}

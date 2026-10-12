@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "policy": "periodic_probe",
+  "evidence_class": "unclassified",
+  "outcome": "failed",
+  "task_id": "merge-ranges",
+  "task_revision": "synthetic-v2",
+  "wall_ms": 248002,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 81880,
+  "completion_tokens": 4682,
+  "acceptance": {
+    "cases": 4,
+    "container_name": "proofstop-746f9e4a-de5a-4948-a726-ed3bbf38e6f9",
+    "passed": 2,
+    "reason": "2 of 4 checks passed",
+    "verdict": "failed",
+    "wall_ms": 182
+  },
+  "evaluation": null,
+  "error": "main budget exhausted without accepted final answer"
+}

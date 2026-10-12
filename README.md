@@ -18,6 +18,10 @@ recorded two truncated thinking attempts and a non-thinking control that passed
 all 12 fixture checks in 126 output tokens. This is development evidence, with
 no demonstrated early-exit or GPU-efficiency benefit.
 
+The [online comparison](experiments/2026-10-12-online-probes/README.md) now
+verifies a stop after 128 main tokens and a passing 126-token probe. Fixed probing
+was slower than direct answering and added work on the multi-bug variant.
+
 ## Get started
 
 Prerequisites: Rust 1.96.0 and a running Docker daemon. The toolchain,
@@ -217,8 +221,9 @@ another person to repeat the experiment.
 **Progress:** the single-request baseline, isolated verifier, and artifact ledger
 exist. A live GPU fixture run is recorded, including failures and a non-thinking
 control. Exact-token segmented continuation and a no-probe control now exist;
-the first online comparison is being run. Measured GPU accounting and held-out
-quality evaluation remain pending.
+the [first online comparison](experiments/2026-10-12-online-probes/README.md)
+verified stopping and branch isolation but did not beat direct non-thinking.
+Measured GPU accounting and held-out quality evaluation remain pending.
 
 Run unmodified reasoning to natural completion within a fixed maximum budget.
 Save token-level output and timing events for synthetic or licensed workloads.
@@ -232,6 +237,10 @@ any effect to early stopping.
 for all requests, failures, and compute stages.
 
 ### Milestone 2: Implement bounded periodic probing
+
+**Progress:** serialized exact-token probes, acceptance-driven stopping, branch
+isolation tests, and the first live comparison exist. Fixed probing added work
+on the multi-bug variant; adaptive scheduling and held-out validation remain.
 
 At configured checkpoints, generate a bounded candidate, execute acceptance
 checks, and stop the parent only after acceptance. Continue after rejection or an

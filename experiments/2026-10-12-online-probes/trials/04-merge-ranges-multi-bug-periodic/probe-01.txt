@@ -1,0 +1,30 @@
+<think>
+Okay, I need to fix the merge_ranges function in ranges.py. Let me look at the problem again. The current code sorts the ranges and then merges overlapping ones. But the examples show that when ranges are nested, like (1,10) and (2,3), the merged result should be (1,10). The current code does that, right? Wait, let me check.
+
+The existing code sorts the ranges. So for the nested example, after sorting, the first range is (1,10), then (2,3). Then, in the loop, the first element is added to
+</think>
+
+```python
+def merge_ranges(ranges):
+    """Merge overlapping or adjacent inclusive integer ranges without mutation."""
+    if not ranges:
+        return []
+    
+    # Validate input ranges
+    for start, end in ranges:
+        if start > end:
+            raise ValueError("Start exceeds end")
+    
+    # Sort ranges by start time
+    ranges.sort()
+    merged = []
+    
+    for start, end in ranges:
+        if merged and start <= merged[-1][1]:
+            # Overlapping or adjacent, merge them
+            merged[-1] = (merged[-1][0], max(merged[-1][1], end))
+        else:
+            merged.append((start, end))
+    
+    return merged
+```<|im_end|>

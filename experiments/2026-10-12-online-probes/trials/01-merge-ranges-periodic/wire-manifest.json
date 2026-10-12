@@ -1,0 +1,18 @@
+{
+  "archive": "wire.tar.gz",
+  "sha256": "e6df3e7e3e4e32675377e510a23f3069e695eabb01ceb9d0637664121c0ac4d3",
+  "files": {
+    "001-tokenize-main.request.json": "eb632fd5af062823b786812ec8229c64ab48550a953fa7bcc945cef263606c5a",
+    "001-tokenize-main.response.json": "c3af231311884be4e8c02f2863688fc52d467ff0b71d2a135af52f8e62a356d7",
+    "002-tokenize-probe-suffix.request.json": "cc44dcd02089531468854b0a297e4c81f07db54d6dee08044a469d2b43521489",
+    "002-tokenize-probe-suffix.response.json": "d418931c41051f28bdffaa42eea44d8c3f6b4305d5e5fe5cc97af330714ed12b",
+    "003-main.request.json": "2986d05367a9915df9dcd7c04408a15f5b02ee4fb5f050d28f701f9f1af42542",
+    "003-main.response.json": "5cf560446d51f82319e2580260cad13c75d5d6154f53bd0f66f1d6de80fe6893",
+    "004-detokenize.request.json": "1676f2c6c881207ecdad9e42515cabca3d2e5302bf14d47f6aaa77ef9c3744fb",
+    "004-detokenize.response.json": "7a64648e478ccf6300e6a397cefd5e35fa935f4041b235a88c1a54bf30a027b5",
+    "005-probe.request.json": "d6d2ecadc08d9375fa6ccb47edb3da3c331d0a448756e111290e3293172855e9",
+    "005-probe.response.json": "dfaf56cdc65e452644acf3ac1d1f07f255932aaf8107d79cc770492c14115577",
+    "006-detokenize.request.json": "5b21612909ffd9d2bc7747d98493570be4848dae0d5f3fd961e08e18c5ad2379",
+    "006-detokenize.response.json": "c762e75639ac055529fe99fcce9deaa3246a9e7e5dd74ecfecd04e9e44f79ea8"
+  }
+}

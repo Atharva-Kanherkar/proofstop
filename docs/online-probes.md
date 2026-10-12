@@ -54,6 +54,9 @@ counting only the shortened main reasoning trace.
 ## Run it
 
 First serve the [pinned GPU stack](gpu-baseline.md), then connect through SSH.
+To reproduce this comparison, add `--no-enable-prefix-caching` to the server
+command. The study records the complete server arguments and randomized order;
+production cache settings have not been benchmarked here.
 From the repository root, with Docker and its pinned image ready:
 
 ```sh
@@ -97,3 +100,12 @@ quality generalization or savings against the strongest baseline.
 
 Protocol source:
 [vLLM 0.10.2](https://github.com/vllm-project/vllm/blob/v0.10.2/vllm/entrypoints/openai/protocol.py).
+
+## First live result
+
+The [eight-trial comparison](../experiments/2026-10-12-online-probes/README.md)
+verified an early stop on the original fixture: 128 main tokens plus 126 probe
+tokens, with all 12 checks passing. Direct non-thinking was faster and used fewer
+tokens. Every policy failed the multi-bug variant; periodic probes added work.
+The fixed controller is a tested research primitive, with no demonstrated
+advantage over the strongest baseline on this development comparison.

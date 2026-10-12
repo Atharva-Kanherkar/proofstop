@@ -1,0 +1,56 @@
+{
+  "source_commit": "011f5cf249a3dee5d19bbc8a3538ac260456e9b4",
+  "declared_at": "2026-10-12T14:33:02.718325+00:00",
+  "model": "Qwen/Qwen3-8B",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "vllm": "0.10.2",
+  "main_budget": 4096,
+  "segment_tokens": 128,
+  "probe_tokens": 1024,
+  "max_probes": 4,
+  "seed": 42,
+  "prefix_caching": false,
+  "maximum_session_hours": 4,
+  "total_budget_ceiling_usd": 25,
+  "order": [
+    {
+      "task": "merge-ranges",
+      "policy": "periodic"
+    },
+    {
+      "task": "merge-ranges-multi-bug",
+      "policy": "thinking"
+    },
+    {
+      "task": "merge-ranges-multi-bug",
+      "policy": "segmented"
+    },
+    {
+      "task": "merge-ranges-multi-bug",
+      "policy": "periodic"
+    },
+    {
+      "task": "merge-ranges",
+      "policy": "segmented"
+    },
+    {
+      "task": "merge-ranges-multi-bug",
+      "policy": "nonthinking"
+    },
+    {
+      "task": "merge-ranges",
+      "policy": "thinking"
+    },
+    {
+      "task": "merge-ranges",
+      "policy": "nonthinking"
+    }
+  ],
+  "limitations": [
+    "Two related public development variants; not held out",
+    "One seed and one run per policy per variant",
+    "Per-segment seed reset; no RNG or KV fork",
+    "No direct GPU-seconds metric"
+  ],
+  "pre_generation_refinement": "Exclude draft thinking fences from final-answer parsing; generation settings unchanged"
+}
