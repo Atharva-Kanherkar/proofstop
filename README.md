@@ -11,6 +11,11 @@ candidates in isolated Docker containers, and records a single model request and
 its verification outcomes. Early-exit policies, token checkpoints, and GPU
 efficiency measurements are not implemented yet.
 
+The [first live A40 experiment](experiments/2026-10-12-qwen3-8b/README.md)
+recorded two truncated thinking attempts and a non-thinking control that passed
+all 12 fixture checks in 126 output tokens. This is development evidence, with
+no demonstrated early-exit or GPU-efficiency benefit.
+
 ## Get started
 
 Prerequisites: Rust 1.96.0 and a running Docker daemon. The toolchain,
@@ -208,8 +213,9 @@ another person to repeat the experiment.
 ### Milestone 1: Establish the baseline and accounting
 
 **Progress:** the single-request baseline, isolated verifier, and artifact ledger
-exist. Live GPU execution, token-level traces, and the segmented continuation
-control remain pending.
+exist. A live GPU fixture run is recorded, including failures and a non-thinking
+control. Token-level traces, measured GPU accounting, and the segmented
+continuation control remain pending.
 
 Run unmodified reasoning to natural completion within a fixed maximum budget.
 Save token-level output and timing events for synthetic or licensed workloads.
