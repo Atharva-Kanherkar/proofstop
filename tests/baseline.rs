@@ -164,6 +164,29 @@ async fn real_docker_distinguishes_bug_reference_and_overfit() {
 
 #[tokio::test]
 #[ignore = "requires real Docker and the pinned Python image"]
+async fn candidate_faults_are_failures_not_harness_errors() {
+    let task = task();
+    let config = config();
+    for code in [
+        "def merge_ranges(ranges)\n    return []\n",
+        "def merge_ranges(ranges):\n    return {1}\n",
+        "def merge_ranges(ranges):\n    raise SystemExit(0)\n",
+        "def merge_ranges(ranges):\n    return float('nan')\n",
+        "raise ValueError('broken at import')\n",
+    ] {
+        let result = sandbox::verify(code, task.cases("evaluation").unwrap(), &config)
+            .await
+            .unwrap();
+        assert!(
+            matches!(result.verdict, Verdict::Failed),
+            "{code:?} {result:?}"
+        );
+        assert_eq!(result.passed, 0, "{code:?} {result:?}");
+    }
+}
+
+#[tokio::test]
+#[ignore = "requires real Docker and the pinned Python image"]
 async fn verifier_timeout_and_noise_fail_closed_and_remove_containers() {
     let task = task();
     let mut config = config();

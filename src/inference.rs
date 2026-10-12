@@ -88,8 +88,11 @@ pub fn parse(body: &[u8]) -> Result<Completion> {
         choice["finish_reason"] == "stop",
         "completion did not finish normally"
     );
+    // vLLM serializes `tool_calls: []` on every non-streaming message, so only
+    // a populated list is a real tool call.
+    let tool_calls = &choice["message"]["tool_calls"];
     ensure!(
-        choice["message"]["tool_calls"].is_null(),
+        tool_calls.is_null() || tool_calls.as_array().is_some_and(Vec::is_empty),
         "tool calls are unsupported"
     );
     let text = choice["message"]["content"]
@@ -124,6 +127,17 @@ mod tests {
         value["choices"][0]["finish_reason"] = "length".into();
         assert!(parse(&serde_json::to_vec(&value).unwrap()).is_err());
         assert!(parse(br#"{"choices":[]}"#).is_err());
+    }
+
+    #[test]
+    fn empty_tool_calls_list_is_not_a_tool_call() {
+        let mut value = json!({"model":"test","choices":[{"finish_reason":"stop","message":{"role":"assistant","content":"```python\nx=1\n```","tool_calls":[]}}]});
+        assert!(parse(&serde_json::to_vec(&value).unwrap()).is_ok());
+        value["choices"][0]["message"]["tool_calls"] =
+            json!([{"id":"call_1","type":"function","function":{"name":"f","arguments":"{}"}}]);
+        assert!(parse(&serde_json::to_vec(&value).unwrap()).is_err());
+        value["choices"][0]["message"]["tool_calls"] = json!("x");
+        assert!(parse(&serde_json::to_vec(&value).unwrap()).is_err());
     }
 
     #[test]

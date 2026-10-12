@@ -34,6 +34,11 @@
   usage as unknown.
 - Verifier distinguishes passed, failed, and inconclusive; malformed or extra
   output, timeouts, and process errors never become acceptance.
+- Candidate faults (syntax errors, import-time exceptions, SystemExit, and
+  unserializable results) score as failed, not inconclusive. Only harness and
+  Docker faults are inconclusive.
+- Inference parsing accepts the vLLM response shape, which always carries an
+  empty `tool_calls` list, and rejects populated tool calls.
 - Resource limits, image digest validation, and read-only Docker arguments are
   tested at their configuration boundary.
 

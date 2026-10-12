@@ -285,5 +285,27 @@ mod tests {
             score_output(br#"[{"result": [], "input_after": [[1,2]]}]"#, &cases).unwrap(),
             0
         );
+        let error_case = vec![Case {
+            name: "invalid".into(),
+            input: serde_json::json!([[5, 3]]),
+            expected: None,
+            error: Some("ValueError".into()),
+        }];
+        assert_eq!(
+            score_output(
+                br#"[{"error": "ValueError", "input_after": [[5,3]]}]"#,
+                &error_case
+            )
+            .unwrap(),
+            1
+        );
+        assert_eq!(
+            score_output(
+                br#"[{"error": "CandidateLoadError", "detail": "ValueError", "input_after": [[5,3]]}]"#,
+                &error_case
+            )
+            .unwrap(),
+            0
+        );
     }
 }

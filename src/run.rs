@@ -107,8 +107,6 @@ pub async fn baseline(
         summary.completion_tokens = envelope["usage"]["completion_tokens"].as_u64();
         ledger.event("provider_usage_reported", json!({"usage":envelope.get("usage")}))?;
         let completion = inference::parse(&wire.body)?;
-        summary.prompt_tokens = completion.prompt_tokens;
-        summary.completion_tokens = completion.completion_tokens;
         ledger.event("completion_parsed", json!({"serving_model":completion.serving_model,"finish_reason":completion.finish_reason,"prompt_tokens":completion.prompt_tokens,"completion_tokens":completion.completion_tokens}))?;
         let source = candidate::extract(&completion.text)?;
         fs::write(output.join("candidate.py"), &source)?;

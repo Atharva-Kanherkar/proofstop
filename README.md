@@ -130,6 +130,10 @@ It records reported token counts, including truncated completions, and leaves
 unobserved GPU measurements and model/backend revisions unknown. Client wall
 time is not reported as allocated GPU time.
 
+A candidate that fails to import, raises `SystemExit`, or returns a value that
+cannot be serialized is scored as failed. Only harness faults such as timeouts,
+Docker errors, and malformed worker output are inconclusive.
+
 The baseline transport has a 1 MiB response-body limit. Transport failures may
 have no captured response; their failed attempt remains in the ledger. The Python
 worker is a finite functional checker, not an adversarially sound proof system.
