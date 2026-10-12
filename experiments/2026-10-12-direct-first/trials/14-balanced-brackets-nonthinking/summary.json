@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "policy": "nonthinking_baseline",
+  "evidence_class": "unclassified",
+  "outcome": "passed",
+  "task_id": "balanced-brackets",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 3889,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 272,
+  "completion_tokens": 75,
+  "acceptance": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-71a0d4a2-30ad-4e40-91fa-4da2109af55f",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 190
+  },
+  "evaluation": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-77a18fe1-fe58-4d09-9780-f23eb27c1c92",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 206
+  },
+  "error": null
+}

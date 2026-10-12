@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "policy": "nonthinking_baseline",
+  "evidence_class": "unclassified",
+  "outcome": "failed_checks",
+  "task_id": "binary-search",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 8400,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 348,
+  "completion_tokens": 91,
+  "acceptance": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      false,
+      true
+    ],
+    "container_name": "proofstop-0b221852-1247-4021-b0ca-fc2db862ef1b",
+    "passed": 3,
+    "reason": "3 of 4 checks passed",
+    "verdict": "failed",
+    "wall_ms": 356
+  },
+  "evaluation": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      false,
+      true
+    ],
+    "container_name": "proofstop-6f31f5fe-a02a-4283-856a-f328a6e49515",
+    "passed": 3,
+    "reason": "3 of 4 checks passed",
+    "verdict": "failed",
+    "wall_ms": 345
+  },
+  "error": null
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "name": "balanced-brackets-acceptance-1",
+    "input": [
+      "(",
+      "[",
+      ")",
+      "]"
+    ],
+    "expected": false
+  },
+  {
+    "name": "balanced-brackets-acceptance-2",
+    "input": [
+      "(",
+      "[",
+      "]",
+      ")"
+    ],
+    "expected": true
+  },
+  {
+    "name": "balanced-brackets-acceptance-3",
+    "input": [],
+    "expected": true
+  },
+  {
+    "name": "balanced-brackets-acceptance-4",
+    "input": [
+      ")",
+      "("
+    ],
+    "expected": false
+  }
+]

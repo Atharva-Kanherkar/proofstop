@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "policy": "direct_first_one_repair",
+  "evidence_class": "unclassified",
+  "outcome": "passed",
+  "task_id": "balanced-brackets",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 4344,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 272,
+  "completion_tokens": 75,
+  "acceptance": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-57d1ec5c-dc8a-450c-b2b8-06dfe30ac7ea",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 282
+  },
+  "evaluation": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-902c0d7c-5673-4d35-84d2-0ddc0e624d5f",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 330
+  },
+  "error": null
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "policy": "nonthinking_baseline",
+  "evidence_class": "unclassified",
+  "outcome": "passed",
+  "task_id": "run-length",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 4772,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 370,
+  "completion_tokens": 89,
+  "acceptance": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-b363aa0e-e02a-4a91-a272-bf5137c58f20",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 160
+  },
+  "evaluation": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-f6efee98-570f-42ae-a302-28e33a8b02ad",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 150
+  },
+  "error": null
+}

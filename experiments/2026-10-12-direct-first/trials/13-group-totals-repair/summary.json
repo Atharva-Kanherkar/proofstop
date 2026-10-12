@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "policy": "direct_first_one_repair",
+  "evidence_class": "unclassified",
+  "outcome": "passed",
+  "task_id": "group-totals",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 3279,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 371,
+  "completion_tokens": 52,
+  "acceptance": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-b268e03e-73b3-444b-9f97-d94f3322cb5f",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 222
+  },
+  "evaluation": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-c4f2e1d5-04e7-4c62-848c-f5e7546d8d15",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 267
+  },
+  "error": null
+}

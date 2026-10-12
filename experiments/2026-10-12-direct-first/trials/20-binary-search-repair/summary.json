@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "policy": "direct_first_one_repair",
+  "evidence_class": "unclassified",
+  "outcome": "passed",
+  "task_id": "binary-search",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 52050,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 911,
+  "completion_tokens": 1563,
+  "acceptance": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-9e5e902f-f1b3-4a53-af5d-02bfe6c328db",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 466
+  },
+  "evaluation": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-9bcbec6d-bf8a-4bc6-b699-61a1a8a29c40",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 293
+  },
+  "error": null
+}

@@ -1,0 +1,55 @@
+[
+  {
+    "name": "chunk-list-acceptance-1",
+    "input": [
+      [
+        1,
+        2,
+        3
+      ],
+      2
+    ],
+    "expected": [
+      [
+        1,
+        2
+      ],
+      [
+        3
+      ]
+    ]
+  },
+  {
+    "name": "chunk-list-acceptance-2",
+    "input": [
+      [],
+      2
+    ],
+    "expected": []
+  },
+  {
+    "name": "chunk-list-acceptance-3",
+    "input": [
+      [
+        1
+      ],
+      1
+    ],
+    "expected": [
+      [
+        1
+      ]
+    ]
+  },
+  {
+    "name": "chunk-list-acceptance-4",
+    "input": [
+      [
+        1,
+        2
+      ],
+      0
+    ],
+    "error": "ValueError"
+  }
+]

@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "classification": "public_synthetic_development",
+  "source_commit": "70ce3c76638164f42a6df798993cefe0117546da",
+  "set": {
+    "schema_version": 1,
+    "classification": "public_synthetic_development",
+    "tasks": [
+      {
+        "path": "tasks/dev/binary-search",
+        "manifest_sha256": "ab7a9d2a355f92ed639abd05e3ecba41eef6e57104cd358aaf6d45bd3f75f2b6"
+      },
+      {
+        "path": "tasks/dev/chunk-list",
+        "manifest_sha256": "bf66ed4dea18167ddfee4cfa9526fe4d6e9e502ad990b628d19a3d1a92eef748"
+      },
+      {
+        "path": "tasks/dev/flatten-once",
+        "manifest_sha256": "6c56d97e561421f54c4fd455f8fca6c085e8d4dab7bba328eca0d0e868c02fe3"
+      },
+      {
+        "path": "tasks/dev/run-length",
+        "manifest_sha256": "92bbf1158f482671e53349239a080b72195ece4e74c968c74692f213ce0c2281"
+      },
+      {
+        "path": "tasks/dev/moving-average",
+        "manifest_sha256": "1306cb34371563ceb2502f24d563fcc92dabeaa8236fe4dd45d3cebfdd4a9dae"
+      },
+      {
+        "path": "tasks/dev/stable-difference",
+        "manifest_sha256": "d0002f21847187df68e7120f2501f14f5144b939cb0f79177ae83f286f91e7fc"
+      },
+      {
+        "path": "tasks/dev/rotate-list",
+        "manifest_sha256": "c400b56f5c3080e16b197689d5d7d209eaf41654f934cb9746d2bb3c544c15e7"
+      },
+      {
+        "path": "tasks/dev/balanced-brackets",
+        "manifest_sha256": "bd0f9289b4cd090bcbc85ab89baefa8e577e7e974cc495f9766304cf7a611517"
+      },
+      {
+        "path": "tasks/dev/dependency-order",
+        "manifest_sha256": "d1242e377002474a6d6937b3d5d72096bfac137d14ca0d15f89d20b06b3018f7"
+      },
+      {
+        "path": "tasks/dev/group-totals",
+        "manifest_sha256": "1d0b2f826086f7b238ca296ddc2a2c8621018fc16a06086614485498f7b92430"
+      }
+    ]
+  },
+  "shuffle_seed": 42,
+  "model": "Qwen/Qwen3-8B",
+  "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "engine": "vllm==0.10.2",
+  "prefix_caching": false,
+  "max_tokens_per_request": 4096,
+  "max_repairs": 1,
+  "policies": [
+    "nonthinking",
+    "thinking",
+    "repair"
+  ],
+  "trial_repetitions": 1,
+  "order": [
+    {
+      "task": "rotate-list",
+      "policy": "thinking"
+    },
+    {
+      "task": "moving-average",
+      "policy": "repair"
+    },
+    {
+      "task": "run-length",
+      "policy": "thinking"
+    },
+    {
+      "task": "dependency-order",
+      "policy": "repair"
+    },
+    {
+      "task": "balanced-brackets",
+      "policy": "thinking"
+    },
+    {
+      "task": "flatten-once",
+      "policy": "nonthinking"
+    },
+    {
+      "task": "chunk-list",
+      "policy": "repair"
+    },
+    {
+      "task": "moving-average",
+      "policy": "nonthinking"
+    },
+    {
+      "task": "run-length",
+      "policy": "repair"
+    },
+    {
+      "task": "stable-difference",
+      "policy": "nonthinking"
+    },
+    {
+      "task": "run-length",
+      "policy": "nonthinking"
+    },
+    {
+      "task": "dependency-order",
+      "policy": "thinking"
+    },
+    {
+      "task": "group-totals",
+      "policy": "repair"
+    },
+    {
+      "task": "balanced-brackets",
+      "policy": "nonthinking"
+    },
+    {
+      "task": "stable-difference",
+      "policy": "thinking"
+    },
+    {
+      "task": "group-totals",
+      "policy": "nonthinking"
+    },
+    {
+      "task": "binary-search",
+      "policy": "thinking"
+    },
+    {
+      "task": "moving-average",
+      "policy": "thinking"
+    },
+    {
+      "task": "rotate-list",
+      "policy": "nonthinking"
+    },
+    {
+      "task": "binary-search",
+      "policy": "repair"
+    },
+    {
+      "task": "stable-difference",
+      "policy": "repair"
+    },
+    {
+      "task": "group-totals",
+      "policy": "thinking"
+    },
+    {
+      "task": "chunk-list",
+      "policy": "thinking"
+    },
+    {
+      "task": "dependency-order",
+      "policy": "nonthinking"
+    },
+    {
+      "task": "flatten-once",
+      "policy": "thinking"
+    },
+    {
+      "task": "flatten-once",
+      "policy": "repair"
+    },
+    {
+      "task": "balanced-brackets",
+      "policy": "repair"
+    },
+    {
+      "task": "binary-search",
+      "policy": "nonthinking"
+    },
+    {
+      "task": "chunk-list",
+      "policy": "nonthinking"
+    },
+    {
+      "task": "rotate-list",
+      "policy": "repair"
+    }
+  ],
+  "pretrial_plan_update": "Added driver and documentation; generation settings, task set and order unchanged before first trial."
+}

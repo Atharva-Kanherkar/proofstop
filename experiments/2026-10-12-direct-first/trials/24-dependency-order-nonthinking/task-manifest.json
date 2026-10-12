@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "id": "dependency-order",
+  "revision": "synthetic-v1",
+  "files": {
+    "acceptance.json": "9665fa2cef768fd7dee0d993ff316ea2b9b8d2bbe0731816439a2402a8f5fbea",
+    "evaluation.json": "fa28aaf1bce760c6399062dd6486458fb1d75fce90bf782d64d49d617d07fee0",
+    "repo/solution.py": "6f3493cacf04581f0da66466ecbfc2a5d99d8b4971b2791bb6de8db57061b723",
+    "spec.md": "1bd7e37e8056ca1bb3cf71acd099cda5abcfc048418260f0f902360c60384f0f"
+  }
+}

@@ -1,0 +1,45 @@
+[
+  {
+    "name": "balanced-brackets-evaluation-1",
+    "input": [
+      "{",
+      "a",
+      "[",
+      "b",
+      "(",
+      "c",
+      ")",
+      "]",
+      "}"
+    ],
+    "expected": true
+  },
+  {
+    "name": "balanced-brackets-evaluation-2",
+    "input": [
+      "(",
+      "(",
+      "(",
+      ")",
+      ")"
+    ],
+    "expected": false
+  },
+  {
+    "name": "balanced-brackets-evaluation-3",
+    "input": [
+      "a",
+      "b",
+      "c"
+    ],
+    "expected": true
+  },
+  {
+    "name": "balanced-brackets-evaluation-4",
+    "input": [
+      "}",
+      "{"
+    ],
+    "expected": false
+  }
+]

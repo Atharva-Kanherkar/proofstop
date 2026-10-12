@@ -1,0 +1,2 @@
+value is [nodes, edges]. nodes is a unique list of strings; each edge [before, after] uses listed nodes. Return a topological ordering, always choosing the lexicographically smallest currently ready node. Duplicate edges have no additional effect. Raise ValueError on a cycle.
+Implement solve(value), taking one JSON array argument, without mutating that argument. Return only the complete replacement file in exactly one fenced python block.

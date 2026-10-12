@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "id": "flatten-once",
+  "revision": "synthetic-v1",
+  "files": {
+    "acceptance.json": "3bdced9262bb02ebf92e14fd0845fcd6484cdcac27d2af90e4838f5544aac7be",
+    "evaluation.json": "b565c7a55e36cc72091392f4a1acd0f057a1b35c9c6c8ec4245a4160dfa46b2e",
+    "repo/solution.py": "645ee0fd6b652240ce86606bb935e02ea22b43eae05cf31f27bbf94430a46af6",
+    "spec.md": "78918887bd473bab3d0ac0ee17aff7f037a7e07404f8a2a8bf5c737dde8d93ad"
+  }
+}

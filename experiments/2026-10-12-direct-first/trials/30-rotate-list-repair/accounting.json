@@ -1,0 +1,15 @@
+{
+  "allocated_gpu_seconds": null,
+  "attempts": [
+    {
+      "completion_tokens": 48,
+      "http_status": 200,
+      "prompt_tokens": 323,
+      "stage": "direct",
+      "wall_ms": 2347
+    }
+  ],
+  "completion_tokens": 48,
+  "generation_requests": 1,
+  "prompt_tokens": 323
+}

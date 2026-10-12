@@ -1,0 +1,55 @@
+[
+  {
+    "name": "stable-difference-acceptance-1",
+    "input": [
+      [
+        "b",
+        "a",
+        "b"
+      ],
+      []
+    ],
+    "expected": [
+      "b",
+      "a"
+    ]
+  },
+  {
+    "name": "stable-difference-acceptance-2",
+    "input": [
+      [],
+      [
+        "x"
+      ]
+    ],
+    "expected": []
+  },
+  {
+    "name": "stable-difference-acceptance-3",
+    "input": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "a"
+      ]
+    ],
+    "expected": [
+      "b"
+    ]
+  },
+  {
+    "name": "stable-difference-acceptance-4",
+    "input": [
+      [
+        "a",
+        "a"
+      ],
+      []
+    ],
+    "expected": [
+      "a"
+    ]
+  }
+]

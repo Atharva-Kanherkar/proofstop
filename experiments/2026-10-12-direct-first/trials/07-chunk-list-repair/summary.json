@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "policy": "direct_first_one_repair",
+  "evidence_class": "unclassified",
+  "outcome": "passed",
+  "task_id": "chunk-list",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 3111,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 332,
+  "completion_tokens": 48,
+  "acceptance": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-d1dcc91e-bdc5-4f88-ae04-7172f5d32567",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 204
+  },
+  "evaluation": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-3837f771-9c63-404a-a635-44ec98fed692",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 203
+  },
+  "error": null
+}

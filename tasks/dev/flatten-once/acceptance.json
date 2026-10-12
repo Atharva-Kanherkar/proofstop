@@ -1,0 +1,52 @@
+[
+  {
+    "name": "flatten-once-acceptance-1",
+    "input": [
+      1,
+      [
+        2,
+        [
+          3
+        ]
+      ]
+    ],
+    "expected": [
+      1,
+      2,
+      [
+        3
+      ]
+    ]
+  },
+  {
+    "name": "flatten-once-acceptance-2",
+    "input": [],
+    "expected": []
+  },
+  {
+    "name": "flatten-once-acceptance-3",
+    "input": [
+      [
+        1,
+        2
+      ],
+      3
+    ],
+    "expected": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "name": "flatten-once-acceptance-4",
+    "input": [
+      [
+        []
+      ]
+    ],
+    "expected": [
+      []
+    ]
+  }
+]

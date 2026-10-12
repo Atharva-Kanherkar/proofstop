@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "id": "rotate-list",
+  "revision": "synthetic-v1",
+  "files": {
+    "acceptance.json": "c5420cfa7309044998d0c551c21528dba55c610fa7d7c05f76a790078eca31eb",
+    "evaluation.json": "72ce5cea435a4efead95d0ca877c6ffe1aed4971e5b1755bb9e7f56a6ce9801f",
+    "repo/solution.py": "b9abcb51a6ea6a6851fce39ee38c290ff22213491a807905ff5d19d7903113b6",
+    "spec.md": "63c576a3fd8a66872a4299cabf147bf0818e34041b3d6ecd75cb8a94cba3b14c"
+  }
+}

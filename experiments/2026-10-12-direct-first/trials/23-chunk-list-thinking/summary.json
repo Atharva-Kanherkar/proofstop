@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "policy": "full_reasoning_baseline",
+  "evidence_class": "unclassified",
+  "outcome": "failed_checks",
+  "task_id": "chunk-list",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 66157,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 328,
+  "completion_tokens": 2049,
+  "acceptance": {
+    "cases": 4,
+    "checks": [
+      false,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-d0b10525-387f-4e97-88fb-7fd2fb0d74c7",
+    "passed": 3,
+    "reason": "3 of 4 checks passed",
+    "verdict": "failed",
+    "wall_ms": 348
+  },
+  "evaluation": {
+    "cases": 4,
+    "checks": [
+      false,
+      false,
+      true,
+      true
+    ],
+    "container_name": "proofstop-3c8b0411-eba4-4c0c-8d07-2ef0050c53af",
+    "passed": 2,
+    "reason": "2 of 4 checks passed",
+    "verdict": "failed",
+    "wall_ms": 431
+  },
+  "error": null
+}

@@ -1,0 +1,20 @@
+{
+  "pod_id": "0q4vsro05rk51c",
+  "allocated_at_utc": "2026-10-12T15:37:39.797Z",
+  "deadline_utc": "2026-10-12T17:37:39.797Z",
+  "rate_usd_per_hour": 0.59,
+  "guard": "agent-enforced deadline; not automatic platform termination",
+  "cloud": "SECURE",
+  "data_center": "EU-SE-1",
+  "disk_gb": 80,
+  "mounts": {},
+  "image": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",
+  "ssh_verified_fingerprint": "SHA256:4PDfNhNfmYr2O2t7s5Tz2msPE3tBeAyjws+/2tOc3iA",
+  "cleanup_confirmed_utc": "2026-10-12T16:03:54Z",
+  "cleanup_verified": "delete returned 204; subsequent list-pods returned empty",
+  "allocated_seconds_upper_bound": 1574.203,
+  "gpu_cost_usd_estimate": 0.25799438055555557,
+  "excludes": "storage and tax; actual finalized billing unavailable at publication",
+  "summed_trial_allocation_seconds": 1129.8851034641266,
+  "setup_cleanup_and_intertrial_seconds": 444.3178965358734
+}

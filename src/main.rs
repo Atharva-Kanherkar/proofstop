@@ -1,7 +1,7 @@
 use anyhow::{Result, ensure};
 use clap::{Parser, Subcommand, ValueEnum};
 use proofstop::{
-    online, run, sandbox,
+    online, repair, run, sandbox,
     task::{Config, Task},
 };
 use std::{fs, path::PathBuf};
@@ -30,6 +30,23 @@ enum Evidence {
 
 #[derive(Subcommand)]
 enum Commands {
+    /// Cheap direct answer, then at most one reasoning-enabled acceptance-feedback repair.
+    Repair {
+        #[arg(long, default_value = "tasks/merge-ranges")]
+        task: PathBuf,
+        #[arg(long, default_value = "configs/gpu-nonthinking.json")]
+        direct_config: PathBuf,
+        #[arg(long, default_value = "configs/gpu-thinking.json")]
+        repair_config: PathBuf,
+        #[arg(long, default_value = "http://127.0.0.1:8000/v1")]
+        endpoint: String,
+        #[arg(long)]
+        model: String,
+        #[arg(long)]
+        output: PathBuf,
+        #[arg(long, value_enum, default_value = "unclassified")]
+        evidence_class: Evidence,
+    },
     /// Experimental Qwen3/vLLM token-prefix continuation with optional probes.
     Online {
         #[arg(long, default_value = "tasks/merge-ranges")]
@@ -89,6 +106,32 @@ enum Commands {
 #[tokio::main]
 async fn main() -> Result<()> {
     match Cli::parse().command {
+        Commands::Repair {
+            task,
+            direct_config,
+            repair_config,
+            endpoint,
+            model,
+            output,
+            evidence_class,
+        } => {
+            let task = Task::load(&task)?;
+            let direct = Config::load(&direct_config)?;
+            let thinking = Config::load(&repair_config)?;
+            let evidence = match evidence_class {
+                Evidence::Unclassified => "unclassified",
+                Evidence::HarnessValidation => "harness_validation",
+            };
+            let summary = repair::run(
+                &task, &direct, &thinking, &endpoint, &model, &output, evidence,
+            )
+            .await?;
+            println!("{}", serde_json::to_string_pretty(&summary)?);
+            ensure!(
+                summary.outcome == "passed",
+                "repair run did not pass; inspect artifacts"
+            );
+        }
         Commands::Online {
             task,
             config,
@@ -147,7 +190,9 @@ async fn main() -> Result<()> {
             };
             let mut passed = true;
             for suite in suites {
-                let result = sandbox::verify(&code, task.cases(suite)?, &config).await?;
+                let result =
+                    sandbox::verify_function(&code, task.cases(suite)?, &config, task.entrypoint())
+                        .await?;
                 passed &= matches!(result.verdict, sandbox::Verdict::Passed);
                 println!(
                     "{}",

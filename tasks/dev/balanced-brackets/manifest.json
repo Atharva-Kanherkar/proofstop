@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "id": "balanced-brackets",
+  "revision": "synthetic-v1",
+  "files": {
+    "repo/solution.py": "8222139eef58e4feeb2553945d5688d5f7bccb998d4364c3dd32ecb1c5e9eb3c",
+    "spec.md": "30939478064a6038a2b4a1f1b637baf147d49e5d83f8a7a05a34501799cd39dc",
+    "acceptance.json": "958b456b6b1f472c1667d6a2f9f276c9c6637aa482eb6b4602ae7f223ba4bdea",
+    "evaluation.json": "afbf59ca5af2f19f5abf11f35a6e3a49cdc0adcb7c5b6543c6b7a93120414f36"
+  }
+}

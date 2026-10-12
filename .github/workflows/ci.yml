@@ -17,6 +17,8 @@ jobs:
           persist-credentials: false
       - name: Install pinned Rust toolchain
         run: rustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy
+      - name: Screen capture and report checks
+        run: python3 -B -m unittest discover -s tests -p 'test_screen_driver.py'
       - name: Formatting
         run: cargo fmt --check
       - name: Lint

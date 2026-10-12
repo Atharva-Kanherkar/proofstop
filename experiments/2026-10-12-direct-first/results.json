@@ -1,0 +1,2288 @@
+[
+  {
+    "task": "rotate-list",
+    "policy": "thinking",
+    "label": "01-rotate-list-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/rotate-list",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/01-rotate-list-thinking",
+      "--config",
+      "configs/gpu-thinking.json"
+    ],
+    "started_unix": 1791819843.733241,
+    "ended_unix": 1791819975.966479,
+    "allocated_trial_seconds": 134.4900131225586,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed",
+      "task_id": "rotate-list",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 131538,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 319,
+      "completion_tokens": 4096,
+      "acceptance": null,
+      "evaluation": null,
+      "error": "completion did not finish normally"
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 128.58801549999043,
+      "request_prefill_time_seconds_sum": 0.06725756800733507,
+      "request_decode_time_seconds_sum": 128.5207579319831,
+      "generation_tokens_total": 4096.0,
+      "prompt_tokens_total": 319.0
+    }
+  },
+  {
+    "task": "moving-average",
+    "policy": "repair",
+    "label": "02-moving-average-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/dev/moving-average",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/02-moving-average-repair"
+    ],
+    "started_unix": 1791819978.094365,
+    "ended_unix": 1791819983.078133,
+    "allocated_trial_seconds": 6.7967610359191895,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "moving-average",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 4406,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 318,
+      "completion_tokens": 92,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-2c30fec1-1413-4b9f-975a-858983018a43",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 218
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-a0fabedc-2fa1-4f6d-b9a3-888bcb347344",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 154
+      },
+      "error": null
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 92,
+          "http_status": 200,
+          "prompt_tokens": 318,
+          "stage": "direct",
+          "wall_ms": 3399
+        }
+      ],
+      "completion_tokens": 92,
+      "generation_requests": 1,
+      "prompt_tokens": 318
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 2.86587454599794,
+      "request_prefill_time_seconds_sum": 0.06594102003145963,
+      "request_decode_time_seconds_sum": 2.7999335259664804,
+      "generation_tokens_total": 92.0,
+      "prompt_tokens_total": 318.0
+    }
+  },
+  {
+    "task": "run-length",
+    "policy": "thinking",
+    "label": "03-run-length-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/run-length",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/03-run-length-thinking",
+      "--config",
+      "configs/gpu-thinking.json"
+    ],
+    "started_unix": 1791819984.647218,
+    "ended_unix": 1791820058.620307,
+    "allocated_trial_seconds": 75.37615704536438,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "run-length",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 73540,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 366,
+      "completion_tokens": 2307,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-4f21d7ca-5806-4f4a-8fda-3640c93d2fa9",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 174
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-661e65ed-2b5e-4cdd-8139-8c489772d87c",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 154
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 72.02835785603384,
+      "request_prefill_time_seconds_sum": 0.0693578360369429,
+      "request_decode_time_seconds_sum": 71.95900001999689,
+      "generation_tokens_total": 2307.0,
+      "prompt_tokens_total": 366.0
+    }
+  },
+  {
+    "task": "dependency-order",
+    "policy": "repair",
+    "label": "04-dependency-order-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/dev/dependency-order",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/04-dependency-order-repair"
+    ],
+    "started_unix": 1791820060.31902,
+    "ended_unix": 1791820068.7718148,
+    "allocated_trial_seconds": 10.151468992233276,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "dependency-order",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 7990,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 360,
+      "completion_tokens": 209,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-2885435a-d4a8-4aba-8519-b37382df1c1b",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 180
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-cef0cfa0-636b-4e93-88ce-946d4bc690e4",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 159
+      },
+      "error": null
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 209,
+          "http_status": 200,
+          "prompt_tokens": 360,
+          "stage": "direct",
+          "wall_ms": 7017
+        }
+      ],
+      "completion_tokens": 209,
+      "generation_requests": 1,
+      "prompt_tokens": 360
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 6.48073079198366,
+      "request_prefill_time_seconds_sum": 0.06822879600804299,
+      "request_decode_time_seconds_sum": 6.412501995975617,
+      "generation_tokens_total": 209.0,
+      "prompt_tokens_total": 360.0
+    }
+  },
+  {
+    "task": "balanced-brackets",
+    "policy": "thinking",
+    "label": "05-balanced-brackets-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/balanced-brackets",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/05-balanced-brackets-thinking",
+      "--config",
+      "configs/gpu-thinking.json"
+    ],
+    "started_unix": 1791820070.260258,
+    "ended_unix": 1791820128.868801,
+    "allocated_trial_seconds": 60.091530084609985,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "balanced-brackets",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 58197,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 268,
+      "completion_tokens": 1830,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-3f38f372-e93b-48d7-b6fc-2359f04834d7",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 175
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-e4e02aea-df8f-4244-8d3b-a63ecd94eb72",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 216
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 56.61880241200561,
+      "request_prefill_time_seconds_sum": 0.06315819401061162,
+      "request_decode_time_seconds_sum": 56.555644217994995,
+      "generation_tokens_total": 1830.0,
+      "prompt_tokens_total": 268.0
+    }
+  },
+  {
+    "task": "flatten-once",
+    "policy": "nonthinking",
+    "label": "06-flatten-once-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/flatten-once",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/06-flatten-once-nonthinking",
+      "--config",
+      "configs/gpu-nonthinking.json"
+    ],
+    "started_unix": 1791820130.2708218,
+    "ended_unix": 1791820133.9413629,
+    "allocated_trial_seconds": 5.070055723190308,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed_checks",
+      "task_id": "flatten-once",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 3242,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 314,
+      "completion_tokens": 43,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "container_name": "proofstop-3efc1c6a-7026-401e-ac91-68c8bfd0a379",
+        "passed": 2,
+        "reason": "2 of 4 checks passed",
+        "verdict": "failed",
+        "wall_ms": 176
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "container_name": "proofstop-dc735c34-c3f6-4271-ae1d-d1e8f31f00a1",
+        "passed": 2,
+        "reason": "2 of 4 checks passed",
+        "verdict": "failed",
+        "wall_ms": 160
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 1.3584016019594856,
+      "request_prefill_time_seconds_sum": 0.06579720298759639,
+      "request_decode_time_seconds_sum": 1.2926043989718892,
+      "generation_tokens_total": 43.0,
+      "prompt_tokens_total": 314.0
+    }
+  },
+  {
+    "task": "chunk-list",
+    "policy": "repair",
+    "label": "07-chunk-list-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/dev/chunk-list",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/07-chunk-list-repair"
+    ],
+    "started_unix": 1791820135.3769999,
+    "ended_unix": 1791820139.148422,
+    "allocated_trial_seconds": 5.210714101791382,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "chunk-list",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 3111,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 332,
+      "completion_tokens": 48,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-d1dcc91e-bdc5-4f88-ae04-7172f5d32567",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 204
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-3837f771-9c63-404a-a635-44ec98fed692",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 203
+      },
+      "error": null
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 48,
+          "http_status": 200,
+          "prompt_tokens": 332,
+          "stage": "direct",
+          "wall_ms": 2060
+        }
+      ],
+      "completion_tokens": 48,
+      "generation_requests": 1,
+      "prompt_tokens": 332
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 1.5343185809906572,
+      "request_prefill_time_seconds_sum": 0.06626656104344875,
+      "request_decode_time_seconds_sum": 1.4680520199472085,
+      "generation_tokens_total": 48.0,
+      "prompt_tokens_total": 332.0
+    }
+  },
+  {
+    "task": "moving-average",
+    "policy": "nonthinking",
+    "label": "08-moving-average-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/moving-average",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/08-moving-average-nonthinking",
+      "--config",
+      "configs/gpu-nonthinking.json"
+    ],
+    "started_unix": 1791820140.549553,
+    "ended_unix": 1791820145.882217,
+    "allocated_trial_seconds": 6.905748128890991,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "moving-average",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 4837,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 318,
+      "completion_tokens": 92,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-ee70d094-da9a-4c18-bd76-15912f4047f3",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 181
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-c5822831-b607-401a-97d2-e2824365ee40",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 205
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 2.907665584993083,
+      "request_prefill_time_seconds_sum": 0.06609876296715811,
+      "request_decode_time_seconds_sum": 2.841566822025925,
+      "generation_tokens_total": 92.0,
+      "prompt_tokens_total": 318.0
+    }
+  },
+  {
+    "task": "run-length",
+    "policy": "repair",
+    "label": "09-run-length-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/dev/run-length",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/09-run-length-repair"
+    ],
+    "started_unix": 1791820147.708114,
+    "ended_unix": 1791820152.695445,
+    "allocated_trial_seconds": 6.627915859222412,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "run-length",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 4357,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 370,
+      "completion_tokens": 89,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-65b6af13-5c60-4283-b73d-20679f7ff7cf",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 159
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-74d490c3-f819-4eec-bfb4-65f3f4d1df13",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 148
+      },
+      "error": null
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 89,
+          "http_status": 200,
+          "prompt_tokens": 370,
+          "stage": "direct",
+          "wall_ms": 3403
+        }
+      ],
+      "completion_tokens": 89,
+      "generation_requests": 1,
+      "prompt_tokens": 370
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 2.833974456996657,
+      "request_prefill_time_seconds_sum": 0.06587849301286042,
+      "request_decode_time_seconds_sum": 2.7680959639837965,
+      "generation_tokens_total": 89.0,
+      "prompt_tokens_total": 370.0
+    }
+  },
+  {
+    "task": "stable-difference",
+    "policy": "nonthinking",
+    "label": "10-stable-difference-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/stable-difference",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/10-stable-difference-nonthinking",
+      "--config",
+      "configs/gpu-nonthinking.json"
+    ],
+    "started_unix": 1791820154.168633,
+    "ended_unix": 1791820158.120123,
+    "allocated_trial_seconds": 5.6056969165802,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "stable-difference",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 3485,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 307,
+      "completion_tokens": 59,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-2602e8ba-769d-4c36-8db1-a554f6b1a3b8",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 184
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-93dd003a-1b62-481d-8025-97080f9eeb3a",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 166
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 1.8801698210299946,
+      "request_prefill_time_seconds_sum": 0.06517934700241312,
+      "request_decode_time_seconds_sum": 1.8149904740275815,
+      "generation_tokens_total": 59.0,
+      "prompt_tokens_total": 307.0
+    }
+  },
+  {
+    "task": "run-length",
+    "policy": "nonthinking",
+    "label": "11-run-length-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/run-length",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/11-run-length-nonthinking",
+      "--config",
+      "configs/gpu-nonthinking.json"
+    ],
+    "started_unix": 1791820159.9613729,
+    "ended_unix": 1791820165.138022,
+    "allocated_trial_seconds": 7.082253932952881,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "run-length",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 4772,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 370,
+      "completion_tokens": 89,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-b363aa0e-e02a-4a91-a272-bf5137c58f20",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 160
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-f6efee98-570f-42ae-a302-28e33a8b02ad",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 150
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 2.823632206011098,
+      "request_prefill_time_seconds_sum": 0.06624432996613905,
+      "request_decode_time_seconds_sum": 2.757387876044959,
+      "generation_tokens_total": 89.0,
+      "prompt_tokens_total": 370.0
+    }
+  },
+  {
+    "task": "dependency-order",
+    "policy": "thinking",
+    "label": "12-dependency-order-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/dependency-order",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/12-dependency-order-thinking",
+      "--config",
+      "configs/gpu-thinking.json"
+    ],
+    "started_unix": 1791820166.7712991,
+    "ended_unix": 1791820297.1779242,
+    "allocated_trial_seconds": 132.19161295890808,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed",
+      "task_id": "dependency-order",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 129905,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 356,
+      "completion_tokens": 4096,
+      "acceptance": null,
+      "evaluation": null,
+      "error": "completion did not finish normally"
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 128.63827550999122,
+      "request_prefill_time_seconds_sum": 0.06855660997098312,
+      "request_decode_time_seconds_sum": 128.56971890002023,
+      "generation_tokens_total": 4096.0,
+      "prompt_tokens_total": 356.0
+    }
+  },
+  {
+    "task": "group-totals",
+    "policy": "repair",
+    "label": "13-group-totals-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/dev/group-totals",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/13-group-totals-repair"
+    ],
+    "started_unix": 1791820299.2239249,
+    "ended_unix": 1791820302.9386618,
+    "allocated_trial_seconds": 5.545712232589722,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "group-totals",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 3279,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 371,
+      "completion_tokens": 52,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-b268e03e-73b3-444b-9f97-d94f3322cb5f",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 222
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-c4f2e1d5-04e7-4c62-848c-f5e7546d8d15",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 267
+      },
+      "error": null
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 52,
+          "http_status": 200,
+          "prompt_tokens": 371,
+          "stage": "direct",
+          "wall_ms": 2162
+        }
+      ],
+      "completion_tokens": 52,
+      "generation_requests": 1,
+      "prompt_tokens": 371
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 1.6331908809952438,
+      "request_prefill_time_seconds_sum": 0.06648830597987399,
+      "request_decode_time_seconds_sum": 1.5667025750153698,
+      "generation_tokens_total": 52.0,
+      "prompt_tokens_total": 371.0
+    }
+  },
+  {
+    "task": "balanced-brackets",
+    "policy": "nonthinking",
+    "label": "14-balanced-brackets-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/balanced-brackets",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/14-balanced-brackets-nonthinking",
+      "--config",
+      "configs/gpu-nonthinking.json"
+    ],
+    "started_unix": 1791820304.514761,
+    "ended_unix": 1791820308.848518,
+    "allocated_trial_seconds": 5.902529954910278,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "balanced-brackets",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 3889,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 272,
+      "completion_tokens": 75,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-71a0d4a2-30ad-4e40-91fa-4da2109af55f",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 190
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-77a18fe1-fe58-4d09-9780-f23eb27c1c92",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 206
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 2.328931961033959,
+      "request_prefill_time_seconds_sum": 0.06261123600415885,
+      "request_decode_time_seconds_sum": 2.2663207250298,
+      "generation_tokens_total": 75.0,
+      "prompt_tokens_total": 272.0
+    }
+  },
+  {
+    "task": "stable-difference",
+    "policy": "thinking",
+    "label": "15-stable-difference-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/stable-difference",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/15-stable-difference-thinking",
+      "--config",
+      "configs/gpu-thinking.json"
+    ],
+    "started_unix": 1791820310.687762,
+    "ended_unix": 1791820355.032319,
+    "allocated_trial_seconds": 46.186463832855225,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "stable-difference",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 43900,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 303,
+      "completion_tokens": 1343,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-47d1649e-599e-4953-98dc-3798691fbce0",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 294
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-9cdab6f0-b841-42f8-a218-3c065bfbe493",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 243
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 41.65169822901953,
+      "request_prefill_time_seconds_sum": 0.06457477202638984,
+      "request_decode_time_seconds_sum": 41.58712345699314,
+      "generation_tokens_total": 1343.0,
+      "prompt_tokens_total": 303.0
+    }
+  },
+  {
+    "task": "group-totals",
+    "policy": "nonthinking",
+    "label": "16-group-totals-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/group-totals",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/16-group-totals-nonthinking",
+      "--config",
+      "configs/gpu-nonthinking.json"
+    ],
+    "started_unix": 1791820356.615307,
+    "ended_unix": 1791820360.650037,
+    "allocated_trial_seconds": 5.620481014251709,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "group-totals",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 3512,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 371,
+      "completion_tokens": 52,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-c21e57ae-bb1c-4e24-8878-a64f5815b315",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 185
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-4c7ddf0d-a4d1-4689-ba38-c4f966332dc6",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 209
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 1.6555165470344946,
+      "request_prefill_time_seconds_sum": 0.06573654501698911,
+      "request_decode_time_seconds_sum": 1.5897800020175055,
+      "generation_tokens_total": 52.0,
+      "prompt_tokens_total": 371.0
+    }
+  },
+  {
+    "task": "binary-search",
+    "policy": "thinking",
+    "label": "17-binary-search-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/binary-search",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/17-binary-search-thinking",
+      "--config",
+      "configs/gpu-thinking.json"
+    ],
+    "started_unix": 1791820362.491839,
+    "ended_unix": 1791820428.716387,
+    "allocated_trial_seconds": 68.06825089454651,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "binary-search",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 65706,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 344,
+      "completion_tokens": 2049,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-45ab755a-4a75-40e7-b736-6004eb6b759a",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 312
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-12a932fa-4979-465f-834d-e85347bb3d05",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 251
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 63.773672080016695,
+      "request_prefill_time_seconds_sum": 0.06750771799124777,
+      "request_decode_time_seconds_sum": 63.70616436202545,
+      "generation_tokens_total": 2049.0,
+      "prompt_tokens_total": 344.0
+    }
+  },
+  {
+    "task": "moving-average",
+    "policy": "thinking",
+    "label": "18-moving-average-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/moving-average",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/18-moving-average-thinking",
+      "--config",
+      "configs/gpu-thinking.json"
+    ],
+    "started_unix": 1791820430.32481,
+    "ended_unix": 1791820562.0377338,
+    "allocated_trial_seconds": 133.5836079120636,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed",
+      "task_id": "moving-average",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 131159,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 314,
+      "completion_tokens": 4096,
+      "acceptance": null,
+      "evaluation": null,
+      "error": "completion did not finish normally"
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 129.77361785399262,
+      "request_prefill_time_seconds_sum": 0.06543902400881052,
+      "request_decode_time_seconds_sum": 129.7081788299838,
+      "generation_tokens_total": 4096.0,
+      "prompt_tokens_total": 314.0
+    }
+  },
+  {
+    "task": "rotate-list",
+    "policy": "nonthinking",
+    "label": "19-rotate-list-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/rotate-list",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/19-rotate-list-nonthinking",
+      "--config",
+      "configs/gpu-nonthinking.json"
+    ],
+    "started_unix": 1791820564.164824,
+    "ended_unix": 1791820569.030737,
+    "allocated_trial_seconds": 6.74723482131958,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "rotate-list",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 3890,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 323,
+      "completion_tokens": 48,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-296dd693-52ee-4beb-bc04-83f018811dff",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 363
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-a8525b19-4c27-4566-a6cb-027c41c55004",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 249
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 1.5132562610087916,
+      "request_prefill_time_seconds_sum": 0.06678436900256202,
+      "request_decode_time_seconds_sum": 1.4464718920062296,
+      "generation_tokens_total": 48.0,
+      "prompt_tokens_total": 323.0
+    }
+  },
+  {
+    "task": "binary-search",
+    "policy": "repair",
+    "label": "20-binary-search-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/dev/binary-search",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/20-binary-search-repair"
+    ],
+    "started_unix": 1791820570.915988,
+    "ended_unix": 1791820623.582239,
+    "allocated_trial_seconds": 54.537734031677246,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "binary-search",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 52050,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 911,
+      "completion_tokens": 1563,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-9e5e902f-f1b3-4a53-af5d-02bfe6c328db",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 466
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-9bcbec6d-bf8a-4bc6-b699-61a1a8a29c40",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 293
+      },
+      "error": null
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 91,
+          "http_status": 200,
+          "prompt_tokens": 348,
+          "stage": "direct",
+          "wall_ms": 3670
+        },
+        {
+          "completion_tokens": 1472,
+          "http_status": 200,
+          "prompt_tokens": 563,
+          "stage": "repair",
+          "wall_ms": 46658
+        }
+      ],
+      "completion_tokens": 1563,
+      "generation_requests": 2,
+      "prompt_tokens": 911
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 48.91007598803844,
+      "request_prefill_time_seconds_sum": 0.1650040450040251,
+      "request_decode_time_seconds_sum": 48.74507194303442,
+      "generation_tokens_total": 1563.0,
+      "prompt_tokens_total": 911.0
+    }
+  },
+  {
+    "task": "stable-difference",
+    "policy": "repair",
+    "label": "21-stable-difference-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/dev/stable-difference",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/21-stable-difference-repair"
+    ],
+    "started_unix": 1791820625.5035572,
+    "ended_unix": 1791820633.057962,
+    "allocated_trial_seconds": 9.468242883682251,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "stable-difference",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 6601,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 307,
+      "completion_tokens": 59,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-30226d20-4511-4fe6-9168-c85bb7b725ad",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 382
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-1c97bbaa-c421-403f-af8e-e1ac0cef83da",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 628
+      },
+      "error": null
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 59,
+          "http_status": 200,
+          "prompt_tokens": 307,
+          "stage": "direct",
+          "wall_ms": 2387
+        }
+      ],
+      "completion_tokens": 59,
+      "generation_requests": 1,
+      "prompt_tokens": 307
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 1.8470199319999665,
+      "request_prefill_time_seconds_sum": 0.06547359400428832,
+      "request_decode_time_seconds_sum": 1.7815463379956782,
+      "generation_tokens_total": 59.0,
+      "prompt_tokens_total": 307.0
+    }
+  },
+  {
+    "task": "group-totals",
+    "policy": "thinking",
+    "label": "22-group-totals-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/group-totals",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/22-group-totals-thinking",
+      "--config",
+      "configs/gpu-thinking.json"
+    ],
+    "started_unix": 1791820634.926448,
+    "ended_unix": 1791820703.056437,
+    "allocated_trial_seconds": 70.00062894821167,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "group-totals",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 67373,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 367,
+      "completion_tokens": 1963,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-112df756-16e2-4312-98be-38f52a1c5f37",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 321
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-80665086-90da-489f-b929-61d86a80b30e",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 273
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 61.74258624797221,
+      "request_prefill_time_seconds_sum": 0.0677000560099259,
+      "request_decode_time_seconds_sum": 61.67488619196229,
+      "generation_tokens_total": 1963.0,
+      "prompt_tokens_total": 367.0
+    }
+  },
+  {
+    "task": "chunk-list",
+    "policy": "thinking",
+    "label": "23-chunk-list-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/chunk-list",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/23-chunk-list-thinking",
+      "--config",
+      "configs/gpu-thinking.json"
+    ],
+    "started_unix": 1791820704.9296,
+    "ended_unix": 1791820771.707242,
+    "allocated_trial_seconds": 68.65108561515808,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed_checks",
+      "task_id": "chunk-list",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 66157,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 328,
+      "completion_tokens": 2049,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-d0b10525-387f-4e97-88fb-7fd2fb0d74c7",
+        "passed": 3,
+        "reason": "3 of 4 checks passed",
+        "verdict": "failed",
+        "wall_ms": 348
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "container_name": "proofstop-3c8b0411-eba4-4c0c-8d07-2ef0050c53af",
+        "passed": 2,
+        "reason": "2 of 4 checks passed",
+        "verdict": "failed",
+        "wall_ms": 431
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 64.02280960301869,
+      "request_prefill_time_seconds_sum": 0.06688585603842512,
+      "request_decode_time_seconds_sum": 63.95592374698026,
+      "generation_tokens_total": 2049.0,
+      "prompt_tokens_total": 328.0
+    }
+  },
+  {
+    "task": "dependency-order",
+    "policy": "nonthinking",
+    "label": "24-dependency-order-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/dependency-order",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/24-dependency-order-nonthinking",
+      "--config",
+      "configs/gpu-nonthinking.json"
+    ],
+    "started_unix": 1791820773.5832791,
+    "ended_unix": 1791820786.256186,
+    "allocated_trial_seconds": 14.557935237884521,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "dependency-order",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 11763,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 360,
+      "completion_tokens": 209,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-1b604154-7365-4757-b7d0-ba49b77f8351",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 405
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-3f9a97f0-9d34-45fc-b661-52fc90a295c9",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 551
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 6.534918701974675,
+      "request_prefill_time_seconds_sum": 0.06823789200279862,
+      "request_decode_time_seconds_sum": 6.466680809971876,
+      "generation_tokens_total": 209.0,
+      "prompt_tokens_total": 360.0
+    }
+  },
+  {
+    "task": "flatten-once",
+    "policy": "thinking",
+    "label": "25-flatten-once-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/flatten-once",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/25-flatten-once-thinking",
+      "--config",
+      "configs/gpu-thinking.json"
+    ],
+    "started_unix": 1791820788.138932,
+    "ended_unix": 1791820867.1820412,
+    "allocated_trial_seconds": 80.9048490524292,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "flatten-once",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 78277,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 310,
+      "completion_tokens": 2315,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-325e9977-2c41-4a14-9b62-ab88bf820cc5",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 335
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-fa3f759c-b8f2-493d-95c1-f53d964587ad",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 236
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 72.75547118700342,
+      "request_prefill_time_seconds_sum": 0.0647597869974561,
+      "request_decode_time_seconds_sum": 72.69071140000597,
+      "generation_tokens_total": 2315.0,
+      "prompt_tokens_total": 310.0
+    }
+  },
+  {
+    "task": "flatten-once",
+    "policy": "repair",
+    "label": "26-flatten-once-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/dev/flatten-once",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/26-flatten-once-repair"
+    ],
+    "started_unix": 1791820869.0537212,
+    "ended_unix": 1791820931.9405708,
+    "allocated_trial_seconds": 64.75451612472534,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "flatten-once",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 62046,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 799,
+      "completion_tokens": 1881,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-ec327195-2155-45a1-b4cd-6e4f6e1ceaf5",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 269
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-ca8933b6-369f-461f-b214-15808074b11c",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 256
+      },
+      "error": null
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 43,
+          "http_status": 200,
+          "prompt_tokens": 314,
+          "stage": "direct",
+          "wall_ms": 1913
+        },
+        {
+          "completion_tokens": 1838,
+          "http_status": 200,
+          "prompt_tokens": 485,
+          "stage": "repair",
+          "wall_ms": 58386
+        }
+      ],
+      "completion_tokens": 1881,
+      "generation_requests": 2,
+      "prompt_tokens": 799
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 59.180342437990475,
+      "request_prefill_time_seconds_sum": 0.14770551800029352,
+      "request_decode_time_seconds_sum": 59.03263691999018,
+      "generation_tokens_total": 1881.0,
+      "prompt_tokens_total": 799.0
+    }
+  },
+  {
+    "task": "balanced-brackets",
+    "policy": "repair",
+    "label": "27-balanced-brackets-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/dev/balanced-brackets",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/27-balanced-brackets-repair"
+    ],
+    "started_unix": 1791820933.792863,
+    "ended_unix": 1791820938.929286,
+    "allocated_trial_seconds": 6.98564600944519,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "balanced-brackets",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 4344,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 272,
+      "completion_tokens": 75,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-57d1ec5c-dc8a-450c-b2b8-06dfe30ac7ea",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 282
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-902c0d7c-5673-4d35-84d2-0ddc0e624d5f",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 330
+      },
+      "error": null
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 75,
+          "http_status": 200,
+          "prompt_tokens": 272,
+          "stage": "direct",
+          "wall_ms": 2909
+        }
+      ],
+      "completion_tokens": 75,
+      "generation_requests": 1,
+      "prompt_tokens": 272
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 2.370509441010654,
+      "request_prefill_time_seconds_sum": 0.06427892198553309,
+      "request_decode_time_seconds_sum": 2.306230519025121,
+      "generation_tokens_total": 75.0,
+      "prompt_tokens_total": 272.0
+    }
+  },
+  {
+    "task": "binary-search",
+    "policy": "nonthinking",
+    "label": "28-binary-search-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/binary-search",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/28-binary-search-nonthinking",
+      "--config",
+      "configs/gpu-nonthinking.json"
+    ],
+    "started_unix": 1791820940.78389,
+    "ended_unix": 1791820950.137307,
+    "allocated_trial_seconds": 11.215589046478271,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed_checks",
+      "task_id": "binary-search",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 8400,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 348,
+      "completion_tokens": 91,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "container_name": "proofstop-0b221852-1247-4021-b0ca-fc2db862ef1b",
+        "passed": 3,
+        "reason": "3 of 4 checks passed",
+        "verdict": "failed",
+        "wall_ms": 356
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "container_name": "proofstop-6f31f5fe-a02a-4283-856a-f328a6e49515",
+        "passed": 3,
+        "reason": "3 of 4 checks passed",
+        "verdict": "failed",
+        "wall_ms": 345
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 2.832343880960252,
+      "request_prefill_time_seconds_sum": 0.06838437297847122,
+      "request_decode_time_seconds_sum": 2.763959507981781,
+      "generation_tokens_total": 91.0,
+      "prompt_tokens_total": 348.0
+    }
+  },
+  {
+    "task": "chunk-list",
+    "policy": "nonthinking",
+    "label": "29-chunk-list-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/dev/chunk-list",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/29-chunk-list-nonthinking",
+      "--config",
+      "configs/gpu-nonthinking.json"
+    ],
+    "started_unix": 1791820952.023602,
+    "ended_unix": 1791820960.658607,
+    "allocated_trial_seconds": 10.523329019546509,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "chunk-list",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 7113,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 332,
+      "completion_tokens": 48,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-27c292c0-2f4b-4cb8-8a90-987ee2c89acf",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 343
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-2fad580b-a2b5-40fa-948b-dce192dbec57",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 359
+      },
+      "error": null
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 1.5310520920320414,
+      "request_prefill_time_seconds_sum": 0.06880386604461819,
+      "request_decode_time_seconds_sum": 1.4622482259874232,
+      "generation_tokens_total": 48.0,
+      "prompt_tokens_total": 332.0
+    }
+  },
+  {
+    "task": "rotate-list",
+    "policy": "repair",
+    "label": "30-rotate-list-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/dev/rotate-list",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "runs/repair-session-001/trials/30-rotate-list-repair"
+    ],
+    "started_unix": 1791820962.5293949,
+    "ended_unix": 1791820971.700035,
+    "allocated_trial_seconds": 11.031338930130005,
+    "exit_code": 0,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "passed",
+      "task_id": "rotate-list",
+      "task_revision": "synthetic-v1",
+      "wall_ms": 7654,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 323,
+      "completion_tokens": 48,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-accd7826-d4c3-45e8-8287-ff982dcebd6c",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 258
+      },
+      "evaluation": {
+        "cases": 4,
+        "checks": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "container_name": "proofstop-04172749-bbbd-434f-b12a-0e0e4a1716fc",
+        "passed": 4,
+        "reason": "4 of 4 checks passed",
+        "verdict": "passed",
+        "wall_ms": 313
+      },
+      "error": null
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 48,
+          "http_status": 200,
+          "prompt_tokens": 323,
+          "stage": "direct",
+          "wall_ms": 2347
+        }
+      ],
+      "completion_tokens": 48,
+      "generation_requests": 1,
+      "prompt_tokens": 323
+    },
+    "engine_counters": {
+      "request_inference_time_seconds_sum": 1.5372327060322277,
+      "request_prefill_time_seconds_sum": 0.06572943303035572,
+      "request_decode_time_seconds_sum": 1.471503273001872,
+      "generation_tokens_total": 48.0,
+      "prompt_tokens_total": 323.0
+    }
+  }
+]

@@ -233,7 +233,9 @@ async fn score(
         "candidate_frozen",
         json!({"label":label,"sha256":hash(source.as_bytes())}),
     )?;
-    let acceptance = sandbox::verify(source, task.cases("acceptance")?, config).await?;
+    let acceptance =
+        sandbox::verify_function(source, task.cases("acceptance")?, config, task.entrypoint())
+            .await?;
     recorder.event(
         "acceptance_finished",
         json!({"label":label,"verification":acceptance}),
@@ -252,7 +254,9 @@ async fn score(
     fs::write(recorder.root.join("candidate.py"), source)?;
     summary.acceptance = Some(serde_json::to_value(&acceptance)?);
     recorder.event("generation_stopped_on_acceptance", json!({"label":label}))?;
-    let evaluation = sandbox::verify(source, task.cases("evaluation")?, config).await?;
+    let evaluation =
+        sandbox::verify_function(source, task.cases("evaluation")?, config, task.entrypoint())
+            .await?;
     recorder.event("evaluation_finished", serde_json::to_value(&evaluation)?)?;
     summary.evaluation = Some(serde_json::to_value(&evaluation)?);
     summary.outcome = match evaluation.verdict {

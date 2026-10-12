@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "id": "group-totals",
+  "revision": "synthetic-v1",
+  "files": {
+    "acceptance.json": "b78b32929e6519675027a287a501476394dd8e60e686239dbd0337387431eee6",
+    "evaluation.json": "77a83e650350614e91008266ccdfa1bdf111db9a0da72dd1c36b0bc4d3978dd7",
+    "repo/solution.py": "e432733ff467e1e15d90bd3a745a67099c5e6cb55de3a87727906ca7a2bb6ee1",
+    "spec.md": "19a2eb72f8fbea30863d22b57f4ff9ddae85ec8c58ff65b24c7f7b5f520641e3"
+  }
+}

@@ -1,0 +1,88 @@
+[
+  {
+    "name": "dependency-order-evaluation-1",
+    "input": [
+      [
+        "a"
+      ],
+      [
+        [
+          "a",
+          "a"
+        ]
+      ]
+    ],
+    "error": "ValueError"
+  },
+  {
+    "name": "dependency-order-evaluation-2",
+    "input": [
+      [
+        "a",
+        "b",
+        "c"
+      ],
+      [
+        [
+          "c",
+          "b"
+        ],
+        [
+          "c",
+          "b"
+        ],
+        [
+          "b",
+          "a"
+        ]
+      ]
+    ],
+    "expected": [
+      "c",
+      "b",
+      "a"
+    ]
+  },
+  {
+    "name": "dependency-order-evaluation-3",
+    "input": [
+      [
+        "a",
+        "b",
+        "c"
+      ],
+      [
+        [
+          "a",
+          "c"
+        ]
+      ]
+    ],
+    "expected": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "name": "dependency-order-evaluation-4",
+    "input": [
+      [
+        "a",
+        "b",
+        "c"
+      ],
+      [
+        [
+          "b",
+          "a"
+        ]
+      ]
+    ],
+    "expected": [
+      "b",
+      "a",
+      "c"
+    ]
+  }
+]

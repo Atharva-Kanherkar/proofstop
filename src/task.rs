@@ -43,18 +43,34 @@ pub fn hash(bytes: &[u8]) -> String {
 impl Task {
     pub fn load(root: &Path) -> Result<Self> {
         let manifest: Manifest = serde_json::from_slice(&fs::read(root.join("manifest.json"))?)?;
-        ensure!(manifest.schema_version == 1, "unsupported task schema");
-        ensure!(
-            manifest.id == "merge-ranges"
-                && ["synthetic-v1", "synthetic-v2"].contains(&manifest.revision.as_str()),
-            "unsupported task identity"
-        );
-        let required = [
-            "repo/ranges.py",
-            "spec.md",
-            "acceptance.json",
-            "evaluation.json",
-        ];
+        let source_file = match manifest.schema_version {
+            1 => {
+                ensure!(
+                    manifest.id == "merge-ranges"
+                        && ["synthetic-v1", "synthetic-v2"].contains(&manifest.revision.as_str()),
+                    "unsupported task identity"
+                );
+                "repo/ranges.py"
+            }
+            2 => {
+                ensure!(
+                    !manifest.id.is_empty()
+                        && manifest.id.len() <= 64
+                        && manifest
+                            .id
+                            .bytes()
+                            .all(|b| b.is_ascii_lowercase() || b.is_ascii_digit() || b == b'-'),
+                    "unsafe task identity"
+                );
+                ensure!(
+                    manifest.revision == "synthetic-v1",
+                    "unsupported task revision"
+                );
+                "repo/solution.py"
+            }
+            _ => bail!("unsupported task schema"),
+        };
+        let required = [source_file, "spec.md", "acceptance.json", "evaluation.json"];
         ensure!(
             manifest.files.len() == required.len()
                 && required.iter().all(|p| manifest.files.contains_key(*p)),
@@ -92,7 +108,7 @@ impl Task {
             Ok(cases)
         };
         Ok(Self {
-            source: fs::read_to_string(root.join("repo/ranges.py"))?,
+            source: fs::read_to_string(root.join(source_file))?,
             spec: fs::read_to_string(root.join("spec.md"))?,
             acceptance: load_cases("acceptance.json")?,
             evaluation: load_cases("evaluation.json")?,
@@ -102,11 +118,24 @@ impl Task {
 
     pub fn prompt(&self) -> Result<String> {
         Ok(format!(
-            "{}\n\nCurrent ranges.py:\n```python\n{}```\n\nVisible acceptance examples:\n{}\n",
+            "{}\n\nCurrent {}:\n```python\n{}```\n\nVisible acceptance examples:\n{}\n",
             self.spec,
+            if self.manifest.schema_version == 1 {
+                "ranges.py"
+            } else {
+                "solution.py"
+            },
             self.source,
             serde_json::to_string_pretty(&self.acceptance)?
         ))
+    }
+
+    pub fn entrypoint(&self) -> &'static str {
+        if self.manifest.schema_version == 1 {
+            "merge_ranges"
+        } else {
+            "solve"
+        }
     }
 
     pub fn cases(&self, suite: &str) -> Result<&[Case]> {
@@ -211,6 +240,40 @@ mod tests {
             assert!(!prompt.contains(&case.name));
         }
         assert!(!prompt.contains("1000000000000000000"));
+    }
+
+    #[test]
+    fn schema_two_is_pinned_and_rejects_unsafe_identity() {
+        let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tasks/dev/binary-search");
+        let task = Task::load(&root).unwrap();
+        assert_eq!(task.entrypoint(), "solve");
+        assert!(task.prompt().unwrap().contains("Current solution.py"));
+        for case in task.cases("evaluation").unwrap() {
+            assert!(!task.prompt().unwrap().contains(&case.name));
+        }
+        let tmp = tempfile::tempdir().unwrap();
+        fs::create_dir(tmp.path().join("repo")).unwrap();
+        for name in [
+            "manifest.json",
+            "repo/solution.py",
+            "spec.md",
+            "acceptance.json",
+            "evaluation.json",
+        ] {
+            fs::copy(root.join(name), tmp.path().join(name)).unwrap();
+        }
+        let mut manifest: Value =
+            serde_json::from_slice(&fs::read(tmp.path().join("manifest.json")).unwrap()).unwrap();
+        manifest["id"] = "../escape".into();
+        fs::write(
+            tmp.path().join("manifest.json"),
+            serde_json::to_vec(&manifest).unwrap(),
+        )
+        .unwrap();
+        assert!(Task::load(tmp.path()).is_err());
+        fs::copy(root.join("manifest.json"), tmp.path().join("manifest.json")).unwrap();
+        fs::write(tmp.path().join("repo/solution.py"), "tampered").unwrap();
+        assert!(Task::load(tmp.path()).is_err());
     }
 
     #[test]

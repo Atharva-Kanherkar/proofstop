@@ -1,0 +1,47 @@
+[
+  {
+    "name": "moving-average-acceptance-1",
+    "input": [
+      [
+        1,
+        2,
+        3
+      ],
+      2
+    ],
+    "expected": [
+      1.5,
+      2.5
+    ]
+  },
+  {
+    "name": "moving-average-acceptance-2",
+    "input": [
+      [
+        4
+      ],
+      1
+    ],
+    "expected": [
+      4
+    ]
+  },
+  {
+    "name": "moving-average-acceptance-3",
+    "input": [
+      [],
+      2
+    ],
+    "expected": []
+  },
+  {
+    "name": "moving-average-acceptance-4",
+    "input": [
+      [
+        1
+      ],
+      0
+    ],
+    "error": "ValueError"
+  }
+]
