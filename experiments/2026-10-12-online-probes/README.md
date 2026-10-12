@@ -67,7 +67,8 @@ The live token records confirm:
 
 - The original probe's 128-token main prefix matches the no-probe control.
 - All 4096 main tokens on the multi-bug variant match the no-probe control.
-- No HTTP request occurred after acceptance triggered the original stop.
+- Within that run, no further inference or tokenizer request occurred after
+  acceptance triggered the original stop. Metrics collection happened separately.
 
 These are checks of this experiment, alongside general controller tests for
 branch isolation, unknown usage, evaluation failure, and inconclusive verifiers.
