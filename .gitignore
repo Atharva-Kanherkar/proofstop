@@ -1,0 +1,24 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Research artifacts and downloaded models
+runs/
+artifacts/
+checkpoints/
+models/
+*.safetensors
+
+# Local tooling
+.DS_Store
+.idea/
+.vscode/
