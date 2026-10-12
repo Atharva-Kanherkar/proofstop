@@ -34,6 +34,7 @@ pub struct Task {
     spec: String,
     pub acceptance: Vec<Case>,
     evaluation: Vec<Case>,
+    repository: BTreeMap<String, Vec<u8>>,
 }
 
 pub fn hash(bytes: &[u8]) -> String {
@@ -68,14 +69,36 @@ impl Task {
                 );
                 "repo/solution.py"
             }
+            3 => {
+                ensure!(
+                    manifest.id == "naturalsize-rollover"
+                        && manifest.revision == "snapshot-7574e0c",
+                    "unsupported repository task identity"
+                );
+                "repo/humanize/filesize.py"
+            }
             _ => bail!("unsupported task schema"),
         };
-        let required = [source_file, "spec.md", "acceptance.json", "evaluation.json"];
+        let mut required = vec![source_file, "spec.md", "acceptance.json", "evaluation.json"];
+        if manifest.schema_version == 3 {
+            required.extend([
+                "upstream.json",
+                "repo/LICENCE",
+                "repo/humanize/__init__.py",
+                "repo/humanize/i18n.py",
+                "repo/humanize/lists.py",
+                "repo/humanize/number.py",
+                "repo/humanize/time.py",
+                "repo/humanize/_version.py",
+                "repo/humanize/py.typed",
+            ]);
+        }
         ensure!(
             manifest.files.len() == required.len()
                 && required.iter().all(|p| manifest.files.contains_key(*p)),
             "unexpected task file set"
         );
+        let mut pinned = BTreeMap::new();
         for (relative, expected_hash) in &manifest.files {
             ensure!(
                 Path::new(relative)
@@ -90,13 +113,34 @@ impl Task {
                     "task files cannot use symlinks"
                 );
             }
+            let bytes = fs::read(&path)?;
             ensure!(
-                hash(&fs::read(&path)?) == *expected_hash,
+                hash(&bytes) == *expected_hash,
                 "task hash mismatch: {relative}"
+            );
+            pinned.insert(relative.clone(), bytes);
+        }
+        let mut repository = BTreeMap::new();
+        if manifest.schema_version == 3 {
+            let upstream: Value = serde_json::from_slice(&pinned["upstream.json"])?;
+            ensure!(
+                upstream["repository"] == "https://github.com/python-humanize/humanize"
+                    && upstream["base_commit"] == "7574e0cc377d80db0d2756fc2c5e0b8799a6f8b4"
+                    && upstream["target"] == source_file,
+                "unsupported upstream identity"
+            );
+            for relative in manifest.files.keys().filter(|p| p.starts_with("repo/")) {
+                let bytes = pinned[relative].clone();
+                ensure!(bytes.len() <= 128 * 1024, "repository file too large");
+                repository.insert(relative.clone(), bytes);
+            }
+            ensure!(
+                repository.values().map(Vec::len).sum::<usize>() <= 512 * 1024,
+                "repository snapshot too large"
             );
         }
         let load_cases = |name: &str| -> Result<Vec<Case>> {
-            let cases: Vec<Case> = serde_json::from_slice(&fs::read(root.join(name))?)?;
+            let cases: Vec<Case> = serde_json::from_slice(&pinned[name])?;
             ensure!(!cases.is_empty(), "empty suite");
             for case in &cases {
                 ensure!(
@@ -104,37 +148,62 @@ impl Task {
                     "case must specify exactly one expected result or error"
                 );
                 ensure!(case.input.is_array(), "case input must be an array");
+                if manifest.schema_version == 3 {
+                    ensure!(
+                        case.input.as_array().unwrap().len() == 4,
+                        "naturalsize requires four positional arguments"
+                    );
+                }
             }
             Ok(cases)
         };
         Ok(Self {
-            source: fs::read_to_string(root.join(source_file))?,
-            spec: fs::read_to_string(root.join("spec.md"))?,
+            source: String::from_utf8(pinned[source_file].clone())?,
+            spec: String::from_utf8(pinned["spec.md"].clone())?,
             acceptance: load_cases("acceptance.json")?,
             evaluation: load_cases("evaluation.json")?,
             manifest,
+            repository,
         })
     }
 
     pub fn prompt(&self) -> Result<String> {
-        Ok(format!(
-            "{}\n\nCurrent {}:\n```python\n{}```\n\nVisible acceptance examples:\n{}\n",
+        let fence = if self.repository.is_empty() {
+            "```"
+        } else {
+            "````"
+        };
+        let mut prompt = format!(
+            "{}\n\nCurrent {}:\n{fence}python\n{}{fence}\n\nVisible acceptance examples:\n{}\n",
             self.spec,
-            if self.manifest.schema_version == 1 {
-                "ranges.py"
-            } else {
-                "solution.py"
-            },
+            self.source_path(),
             self.source,
             serde_json::to_string_pretty(&self.acceptance)?
-        ))
+        );
+        if !self.repository.is_empty() {
+            let buffer = std::str::from_utf8(&self.repository["repo/humanize/i18n.py"])?;
+            prompt.push_str(&format!(
+                "\nDependency context humanize/i18n.py (read-only):\n{fence}python\n{buffer}{fence}\n"
+            ));
+        }
+        Ok(prompt)
     }
 
+    pub fn source_path(&self) -> &'static str {
+        match self.manifest.schema_version {
+            1 => "ranges.py",
+            2 => "solution.py",
+            _ => "humanize/filesize.py",
+        }
+    }
+    pub fn repository(&self) -> &BTreeMap<String, Vec<u8>> {
+        &self.repository
+    }
     pub fn entrypoint(&self) -> &'static str {
-        if self.manifest.schema_version == 1 {
-            "merge_ranges"
-        } else {
-            "solve"
+        match self.manifest.schema_version {
+            1 => "merge_ranges",
+            2 => "solve",
+            _ => "humanize",
         }
     }
 
@@ -273,6 +342,39 @@ mod tests {
         assert!(Task::load(tmp.path()).is_err());
         fs::copy(root.join("manifest.json"), tmp.path().join("manifest.json")).unwrap();
         fs::write(tmp.path().join("repo/solution.py"), "tampered").unwrap();
+        assert!(Task::load(tmp.path()).is_err());
+    }
+
+    #[test]
+    fn repository_prompt_excludes_reference_and_pins_dependencies() {
+        let root =
+            Path::new(env!("CARGO_MANIFEST_DIR")).join("tasks/repository/naturalsize-rollover");
+        let task = Task::load(&root).unwrap();
+        assert_eq!(task.repository().len(), 9);
+        let prompt = task.prompt().unwrap();
+        assert!(prompt.contains("Current humanize/filesize.py"));
+        for case in task.cases("evaluation").unwrap() {
+            assert!(!prompt.contains(&format!(
+                "\"name\": {}",
+                serde_json::to_string(&case.name).unwrap()
+            )));
+        }
+        let tmp = tempfile::tempdir().unwrap();
+        for relative in task
+            .manifest
+            .files
+            .keys()
+            .chain(std::iter::once(&"manifest.json".to_string()))
+        {
+            let p = tmp.path().join(relative);
+            fs::create_dir_all(p.parent().unwrap()).unwrap();
+            fs::copy(root.join(relative), p).unwrap();
+        }
+        fs::write(
+            tmp.path().join("repo/humanize/i18n.py"),
+            "changed dependency",
+        )
+        .unwrap();
         assert!(Task::load(tmp.path()).is_err());
     }
 

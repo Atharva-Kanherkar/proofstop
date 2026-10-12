@@ -190,9 +190,7 @@ async fn main() -> Result<()> {
             };
             let mut passed = true;
             for suite in suites {
-                let result =
-                    sandbox::verify_function(&code, task.cases(suite)?, &config, task.entrypoint())
-                        .await?;
+                let result = sandbox::verify_task(&code, &task, suite, &config).await?;
                 passed &= matches!(result.verdict, sandbox::Verdict::Passed);
                 println!(
                     "{}",

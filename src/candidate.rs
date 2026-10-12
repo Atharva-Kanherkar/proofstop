@@ -11,9 +11,17 @@ pub fn extract(text: &str) -> Result<String> {
     } else {
         text
     };
-    let parts: Vec<_> = text.split("```").collect();
+    let fence = if text.contains("````python\n") || text.contains("````python\r\n") {
+        "````"
+    } else {
+        "```"
+    };
+    let parts: Vec<_> = text.split(fence).collect();
     if parts.len() != 3 {
         bail!("expected exactly one complete fenced Python block");
+    }
+    if parts[0].contains("```") || parts[2].contains("```") {
+        bail!("ambiguous external code fences");
     }
     let block = parts[1];
     let Some(code) = block
@@ -32,6 +40,14 @@ pub fn extract(text: &str) -> Result<String> {
 mod tests {
     use super::*;
 
+    #[test]
+    fn four_backticks_allow_literal_examples_and_reject_ambiguity() {
+        let code =
+            "def f():\n    \"\"\"\n    ```pycon\n    >>> f()\n    ```\n    \"\"\"\n    return 1\n";
+        assert_eq!(extract(&format!("````python\n{code}````\n")).unwrap(), code);
+        assert!(extract(&format!("````python\n{code}")).is_err());
+        assert!(extract("````python\nx=1\n````\n```python\ny=2\n```").is_err());
+    }
     #[test]
     fn accepts_one_complete_python_block() {
         assert_eq!(

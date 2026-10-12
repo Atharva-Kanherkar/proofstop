@@ -30,6 +30,17 @@ class ScreenTests(unittest.TestCase):
                     self.assertEqual(existing.read_bytes(), b'preserve these bytes')
                 self.assertFalse((session / 'plan.json').exists())
 
+    def test_repository_driver_refuses_interrupted_state(self):
+        for state in ['screen-started.json','results.json','trials','01-test-metrics-before.txt']:
+            with self.subTest(state=state), tempfile.TemporaryDirectory() as directory:
+                session=Path(directory);existing=session/state
+                if state=='trials': existing.mkdir()
+                else: existing.write_bytes(b'preserve bytes')
+                result=subprocess.run([sys.executable,str(ROOT/'scripts/repository-screen.py'),'--session',str(session),'--endpoint','http://127.0.0.1:1'],capture_output=True,timeout=10,check=False)
+                self.assertNotEqual(result.returncode,0)
+                self.assertIn(b'refusing to rerun',result.stderr)
+                if state!='trials': self.assertEqual(existing.read_bytes(),b'preserve bytes')
+
     def test_published_report_recomputes_from_raw_counters(self):
         spec = importlib.util.spec_from_file_location('screen_report', ROOT / 'scripts/summarize-screen.py')
         module = importlib.util.module_from_spec(spec)
