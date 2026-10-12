@@ -19,6 +19,9 @@ The [live direct-first screen](experiments/2026-10-12-direct-first/README.md)
 passed 10/10 tasks with two repairs, versus 8/10 direct and 6/10 thinking.
 Repair increased cost per success over direct answering; these tiny public tasks
 establish a quality/cost tradeoff, not a general efficiency benefit.
+A [real repository task](docs/repository-repair.md) now replaces h11’s parser file
+in a pinned historical runtime and verifies it through the public connection API.
+Its GPU comparison remains pending.
 
 The [first live A40 experiment](experiments/2026-10-12-qwen3-8b/README.md)
 recorded two truncated thinking attempts and a non-thinking control that passed

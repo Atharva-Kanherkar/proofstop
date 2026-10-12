@@ -1,0 +1,354 @@
+{
+  "acceptance": [
+    {
+      "name": "valid-one-chunk",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162630d0a300d0a0d0a"
+      ],
+      "fragment_byte_lengths": [
+        89
+      ],
+      "wire_file": "acceptance-valid-one-chunk.bin"
+    },
+    {
+      "name": "invalid-two-byte-footer",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162635859300d0a0d0a"
+      ],
+      "fragment_byte_lengths": [
+        89
+      ],
+      "wire_file": "acceptance-invalid-two-byte-footer.bin"
+    },
+    {
+      "name": "valid-split-footer",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a7a0d",
+        "0a300d0a0d0a"
+      ],
+      "fragment_byte_lengths": [
+        81,
+        6
+      ],
+      "wire_file": "acceptance-valid-split-footer.bin"
+    },
+    {
+      "name": "empty-chunked-body",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a"
+      ],
+      "fragment_byte_lengths": [
+        81
+      ],
+      "wire_file": "acceptance-empty-chunked-body.bin"
+    }
+  ],
+  "evaluation": [
+    {
+      "name": "invalid-first-byte-split",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a616258",
+        "59300d0a0d0a"
+      ],
+      "fragment_byte_lengths": [
+        82,
+        6
+      ],
+      "wire_file": "evaluation-invalid-first-byte-split.bin"
+    },
+    {
+      "name": "invalid-second-byte-split",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d",
+        "58300d0a0d0a"
+      ],
+      "fragment_byte_lengths": [
+        82,
+        6
+      ],
+      "wire_file": "evaluation-invalid-second-byte-split.bin"
+    },
+    {
+      "name": "invalid-later-chunk",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62635a5a300d0a0d0a"
+      ],
+      "fragment_byte_lengths": [
+        94
+      ],
+      "wire_file": "evaluation-invalid-later-chunk.bin"
+    },
+    {
+      "name": "valid-bytewise-footer",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a6162",
+        "0d",
+        "0a",
+        "300d0a0d0a"
+      ],
+      "fragment_byte_lengths": [
+        81,
+        1,
+        1,
+        5
+      ],
+      "wire_file": "evaluation-valid-bytewise-footer.bin"
+    },
+    {
+      "name": "valid-multiple-chunks",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62630d0a300d0a0d0a"
+      ],
+      "fragment_byte_lengths": [
+        94
+      ],
+      "wire_file": "evaluation-valid-multiple-chunks.bin"
+    },
+    {
+      "name": "extensions-and-trailers",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a323b6b65793d76616c75650d0a78790d0a300d0a582d546573743a207965730d0a0d0a"
+      ],
+      "fragment_byte_lengths": [
+        111
+      ],
+      "wire_file": "evaluation-extensions-and-trailers.bin"
+    },
+    {
+      "name": "incomplete-footer-waits",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d"
+      ],
+      "fragment_byte_lengths": [
+        82
+      ],
+      "wire_file": "evaluation-incomplete-footer-waits.bin"
+    },
+    {
+      "name": "unexpected-eof",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d",
+        ""
+      ],
+      "fragment_byte_lengths": [
+        82,
+        0
+      ],
+      "wire_file": "evaluation-unexpected-eof.bin"
+    },
+    {
+      "name": "pipeline-preserved",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a300d0a0d0a474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a"
+      ],
+      "fragment_byte_lengths": [
+        132
+      ],
+      "wire_file": "evaluation-pipeline-preserved.bin"
+    },
+    {
+      "name": "content-length-unaffected",
+      "fragments_hex": [
+        "504f5354202f20485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a436f6e74656e742d4c656e6774683a20330d0a0d0a616263"
+      ],
+      "fragment_byte_lengths": [
+        64
+      ],
+      "wire_file": "evaluation-content-length-unaffected.bin"
+    },
+    {
+      "name": "complete-byte-at-a-time",
+      "fragments_hex": [
+        "50",
+        "4f",
+        "53",
+        "54",
+        "20",
+        "2f",
+        "75",
+        "70",
+        "6c",
+        "6f",
+        "61",
+        "64",
+        "20",
+        "48",
+        "54",
+        "54",
+        "50",
+        "2f",
+        "31",
+        "2e",
+        "31",
+        "0d",
+        "0a",
+        "48",
+        "6f",
+        "73",
+        "74",
+        "3a",
+        "20",
+        "65",
+        "78",
+        "61",
+        "6d",
+        "70",
+        "6c",
+        "65",
+        "2e",
+        "69",
+        "6e",
+        "76",
+        "61",
+        "6c",
+        "69",
+        "64",
+        "0d",
+        "0a",
+        "54",
+        "72",
+        "61",
+        "6e",
+        "73",
+        "66",
+        "65",
+        "72",
+        "2d",
+        "45",
+        "6e",
+        "63",
+        "6f",
+        "64",
+        "69",
+        "6e",
+        "67",
+        "3a",
+        "20",
+        "63",
+        "68",
+        "75",
+        "6e",
+        "6b",
+        "65",
+        "64",
+        "0d",
+        "0a",
+        "0d",
+        "0a",
+        "31",
+        "0d",
+        "0a",
+        "71",
+        "0d",
+        "0a",
+        "30",
+        "0d",
+        "0a",
+        "0d",
+        "0a"
+      ],
+      "fragment_byte_lengths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "wire_file": "evaluation-complete-byte-at-a-time.bin"
+    },
+    {
+      "name": "complete-then-trailing-arrives",
+      "fragments_hex": [
+        "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a",
+        "4e455854"
+      ],
+      "fragment_byte_lengths": [
+        81,
+        4
+      ],
+      "wire_file": "evaluation-complete-then-trailing-arrives.bin"
+    }
+  ]
+}

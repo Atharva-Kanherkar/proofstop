@@ -1,0 +1,398 @@
+{
+  "source_commit": "2dce90f4ea27f20bc825e6ca0a58a35f30c468d3",
+  "classification": "repository_harness_validation",
+  "runs": [
+    {
+      "trial": 1,
+      "candidate": "bug",
+      "candidate_sha256": "11b49e7748f3c155220f59ce3c07947151381657f7c179317dbf1cd3af8e4c13",
+      "command": [
+        "cargo",
+        "run",
+        "--locked",
+        "--",
+        "verify",
+        "--task",
+        "tasks/repository/h11-chunk-footer",
+        "--config",
+        "configs/local.json",
+        "--candidate",
+        "tasks/repository/h11-chunk-footer/repo/h11/_readers.py"
+      ],
+      "exit_code": 1,
+      "verification": [
+        {
+          "suite": "acceptance",
+          "verification": {
+            "cases": 4,
+            "checks": [
+              true,
+              false,
+              true,
+              true
+            ],
+            "container_name": "proofstop-f7b9aa5e-e62f-47ed-8918-13d89ae39aa0",
+            "passed": 3,
+            "reason": "3 of 4 checks passed",
+            "verdict": "failed",
+            "wall_ms": 524,
+            "worker_stdout": "[{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162630d0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162635859300d0a0d0a\"]},{\"result\": {\"body_hex\": \"7a\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a7a0d\", \"0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a\"]}]\n"
+          }
+        },
+        {
+          "suite": "evaluation",
+          "verification": {
+            "cases": 12,
+            "checks": [
+              false,
+              false,
+              false,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "container_name": "proofstop-f58b8745-8f77-4d97-94f3-3ee9c8f077e4",
+            "passed": 9,
+            "reason": "9 of 12 checks passed",
+            "verdict": "failed",
+            "wall_ms": 435,
+            "worker_stdout": "[{\"result\": {\"body_hex\": \"6162\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a616258\", \"59300d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\", \"58300d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62635a5a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a6162\", \"0d\", \"0a\", \"300d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62630d0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"7879\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a323b6b65793d76616c75650d0a78790d0a300d0a582d546573743a207965730d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": false, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\", \"\"]},{\"result\": {\"body_hex\": \"61\", \"complete\": true, \"trailing_hex\": \"474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a300d0a0d0a474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f20485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a436f6e74656e742d4c656e6774683a20330d0a0d0a616263\"]},{\"result\": {\"body_hex\": \"71\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"50\", \"4f\", \"53\", \"54\", \"20\", \"2f\", \"75\", \"70\", \"6c\", \"6f\", \"61\", \"64\", \"20\", \"48\", \"54\", \"54\", \"50\", \"2f\", \"31\", \"2e\", \"31\", \"0d\", \"0a\", \"48\", \"6f\", \"73\", \"74\", \"3a\", \"20\", \"65\", \"78\", \"61\", \"6d\", \"70\", \"6c\", \"65\", \"2e\", \"69\", \"6e\", \"76\", \"61\", \"6c\", \"69\", \"64\", \"0d\", \"0a\", \"54\", \"72\", \"61\", \"6e\", \"73\", \"66\", \"65\", \"72\", \"2d\", \"45\", \"6e\", \"63\", \"6f\", \"64\", \"69\", \"6e\", \"67\", \"3a\", \"20\", \"63\", \"68\", \"75\", \"6e\", \"6b\", \"65\", \"64\", \"0d\", \"0a\", \"0d\", \"0a\", \"31\", \"0d\", \"0a\", \"71\", \"0d\", \"0a\", \"30\", \"0d\", \"0a\", \"0d\", \"0a\"]},{\"result\": {\"body_hex\": \"\", \"complete\": true, \"trailing_hex\": \"4e455854\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a\", \"4e455854\"]}]\n"
+          }
+        }
+      ]
+    },
+    {
+      "trial": 1,
+      "candidate": "control",
+      "candidate_sha256": "6b8472a4e454082dddd2afe4c4fb8120cee34c3f222ede57f754c7d05b1db8de",
+      "command": [
+        "cargo",
+        "run",
+        "--locked",
+        "--",
+        "verify",
+        "--task",
+        "tasks/repository/h11-chunk-footer",
+        "--config",
+        "configs/local.json",
+        "--candidate",
+        "tests/fixtures/repository/h11-readers-fixed.py"
+      ],
+      "exit_code": 0,
+      "verification": [
+        {
+          "suite": "acceptance",
+          "verification": {
+            "cases": 4,
+            "checks": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "container_name": "proofstop-4701e384-854c-4739-b4b4-02a4edbdbd90",
+            "passed": 4,
+            "reason": "4 of 4 checks passed",
+            "verdict": "passed",
+            "wall_ms": 483,
+            "worker_stdout": "[{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162630d0a300d0a0d0a\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162635859300d0a0d0a\"]},{\"result\": {\"body_hex\": \"7a\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a7a0d\", \"0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a\"]}]\n"
+          }
+        },
+        {
+          "suite": "evaluation",
+          "verification": {
+            "cases": 12,
+            "checks": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "container_name": "proofstop-fa0d61db-0873-4efe-8284-30a63032f81a",
+            "passed": 12,
+            "reason": "12 of 12 checks passed",
+            "verdict": "passed",
+            "wall_ms": 470,
+            "worker_stdout": "[{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a616258\", \"59300d0a0d0a\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\", \"58300d0a0d0a\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62635a5a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a6162\", \"0d\", \"0a\", \"300d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62630d0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"7879\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a323b6b65793d76616c75650d0a78790d0a300d0a582d546573743a207965730d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": false, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\", \"\"]},{\"result\": {\"body_hex\": \"61\", \"complete\": true, \"trailing_hex\": \"474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a300d0a0d0a474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f20485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a436f6e74656e742d4c656e6774683a20330d0a0d0a616263\"]},{\"result\": {\"body_hex\": \"71\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"50\", \"4f\", \"53\", \"54\", \"20\", \"2f\", \"75\", \"70\", \"6c\", \"6f\", \"61\", \"64\", \"20\", \"48\", \"54\", \"54\", \"50\", \"2f\", \"31\", \"2e\", \"31\", \"0d\", \"0a\", \"48\", \"6f\", \"73\", \"74\", \"3a\", \"20\", \"65\", \"78\", \"61\", \"6d\", \"70\", \"6c\", \"65\", \"2e\", \"69\", \"6e\", \"76\", \"61\", \"6c\", \"69\", \"64\", \"0d\", \"0a\", \"54\", \"72\", \"61\", \"6e\", \"73\", \"66\", \"65\", \"72\", \"2d\", \"45\", \"6e\", \"63\", \"6f\", \"64\", \"69\", \"6e\", \"67\", \"3a\", \"20\", \"63\", \"68\", \"75\", \"6e\", \"6b\", \"65\", \"64\", \"0d\", \"0a\", \"0d\", \"0a\", \"31\", \"0d\", \"0a\", \"71\", \"0d\", \"0a\", \"30\", \"0d\", \"0a\", \"0d\", \"0a\"]},{\"result\": {\"body_hex\": \"\", \"complete\": true, \"trailing_hex\": \"4e455854\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a\", \"4e455854\"]}]\n"
+          }
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "candidate": "bug",
+      "candidate_sha256": "11b49e7748f3c155220f59ce3c07947151381657f7c179317dbf1cd3af8e4c13",
+      "command": [
+        "cargo",
+        "run",
+        "--locked",
+        "--",
+        "verify",
+        "--task",
+        "tasks/repository/h11-chunk-footer",
+        "--config",
+        "configs/local.json",
+        "--candidate",
+        "tasks/repository/h11-chunk-footer/repo/h11/_readers.py"
+      ],
+      "exit_code": 1,
+      "verification": [
+        {
+          "suite": "acceptance",
+          "verification": {
+            "cases": 4,
+            "checks": [
+              true,
+              false,
+              true,
+              true
+            ],
+            "container_name": "proofstop-db5b14b8-2420-45cc-80f7-fbd2b5deb5e4",
+            "passed": 3,
+            "reason": "3 of 4 checks passed",
+            "verdict": "failed",
+            "wall_ms": 540,
+            "worker_stdout": "[{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162630d0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162635859300d0a0d0a\"]},{\"result\": {\"body_hex\": \"7a\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a7a0d\", \"0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a\"]}]\n"
+          }
+        },
+        {
+          "suite": "evaluation",
+          "verification": {
+            "cases": 12,
+            "checks": [
+              false,
+              false,
+              false,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "container_name": "proofstop-e3ba73cc-b046-4fea-8c68-de72bb7c0801",
+            "passed": 9,
+            "reason": "9 of 12 checks passed",
+            "verdict": "failed",
+            "wall_ms": 490,
+            "worker_stdout": "[{\"result\": {\"body_hex\": \"6162\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a616258\", \"59300d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\", \"58300d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62635a5a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a6162\", \"0d\", \"0a\", \"300d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62630d0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"7879\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a323b6b65793d76616c75650d0a78790d0a300d0a582d546573743a207965730d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": false, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\", \"\"]},{\"result\": {\"body_hex\": \"61\", \"complete\": true, \"trailing_hex\": \"474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a300d0a0d0a474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f20485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a436f6e74656e742d4c656e6774683a20330d0a0d0a616263\"]},{\"result\": {\"body_hex\": \"71\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"50\", \"4f\", \"53\", \"54\", \"20\", \"2f\", \"75\", \"70\", \"6c\", \"6f\", \"61\", \"64\", \"20\", \"48\", \"54\", \"54\", \"50\", \"2f\", \"31\", \"2e\", \"31\", \"0d\", \"0a\", \"48\", \"6f\", \"73\", \"74\", \"3a\", \"20\", \"65\", \"78\", \"61\", \"6d\", \"70\", \"6c\", \"65\", \"2e\", \"69\", \"6e\", \"76\", \"61\", \"6c\", \"69\", \"64\", \"0d\", \"0a\", \"54\", \"72\", \"61\", \"6e\", \"73\", \"66\", \"65\", \"72\", \"2d\", \"45\", \"6e\", \"63\", \"6f\", \"64\", \"69\", \"6e\", \"67\", \"3a\", \"20\", \"63\", \"68\", \"75\", \"6e\", \"6b\", \"65\", \"64\", \"0d\", \"0a\", \"0d\", \"0a\", \"31\", \"0d\", \"0a\", \"71\", \"0d\", \"0a\", \"30\", \"0d\", \"0a\", \"0d\", \"0a\"]},{\"result\": {\"body_hex\": \"\", \"complete\": true, \"trailing_hex\": \"4e455854\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a\", \"4e455854\"]}]\n"
+          }
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "candidate": "control",
+      "candidate_sha256": "6b8472a4e454082dddd2afe4c4fb8120cee34c3f222ede57f754c7d05b1db8de",
+      "command": [
+        "cargo",
+        "run",
+        "--locked",
+        "--",
+        "verify",
+        "--task",
+        "tasks/repository/h11-chunk-footer",
+        "--config",
+        "configs/local.json",
+        "--candidate",
+        "tests/fixtures/repository/h11-readers-fixed.py"
+      ],
+      "exit_code": 0,
+      "verification": [
+        {
+          "suite": "acceptance",
+          "verification": {
+            "cases": 4,
+            "checks": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "container_name": "proofstop-4c627367-e977-49e0-aa2b-265f5f40f902",
+            "passed": 4,
+            "reason": "4 of 4 checks passed",
+            "verdict": "passed",
+            "wall_ms": 491,
+            "worker_stdout": "[{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162630d0a300d0a0d0a\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162635859300d0a0d0a\"]},{\"result\": {\"body_hex\": \"7a\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a7a0d\", \"0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a\"]}]\n"
+          }
+        },
+        {
+          "suite": "evaluation",
+          "verification": {
+            "cases": 12,
+            "checks": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "container_name": "proofstop-a7d6643d-cdc4-4d83-8de0-def45d0cdb56",
+            "passed": 12,
+            "reason": "12 of 12 checks passed",
+            "verdict": "passed",
+            "wall_ms": 504,
+            "worker_stdout": "[{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a616258\", \"59300d0a0d0a\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\", \"58300d0a0d0a\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62635a5a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a6162\", \"0d\", \"0a\", \"300d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62630d0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"7879\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a323b6b65793d76616c75650d0a78790d0a300d0a582d546573743a207965730d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": false, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\", \"\"]},{\"result\": {\"body_hex\": \"61\", \"complete\": true, \"trailing_hex\": \"474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a300d0a0d0a474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f20485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a436f6e74656e742d4c656e6774683a20330d0a0d0a616263\"]},{\"result\": {\"body_hex\": \"71\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"50\", \"4f\", \"53\", \"54\", \"20\", \"2f\", \"75\", \"70\", \"6c\", \"6f\", \"61\", \"64\", \"20\", \"48\", \"54\", \"54\", \"50\", \"2f\", \"31\", \"2e\", \"31\", \"0d\", \"0a\", \"48\", \"6f\", \"73\", \"74\", \"3a\", \"20\", \"65\", \"78\", \"61\", \"6d\", \"70\", \"6c\", \"65\", \"2e\", \"69\", \"6e\", \"76\", \"61\", \"6c\", \"69\", \"64\", \"0d\", \"0a\", \"54\", \"72\", \"61\", \"6e\", \"73\", \"66\", \"65\", \"72\", \"2d\", \"45\", \"6e\", \"63\", \"6f\", \"64\", \"69\", \"6e\", \"67\", \"3a\", \"20\", \"63\", \"68\", \"75\", \"6e\", \"6b\", \"65\", \"64\", \"0d\", \"0a\", \"0d\", \"0a\", \"31\", \"0d\", \"0a\", \"71\", \"0d\", \"0a\", \"30\", \"0d\", \"0a\", \"0d\", \"0a\"]},{\"result\": {\"body_hex\": \"\", \"complete\": true, \"trailing_hex\": \"4e455854\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a\", \"4e455854\"]}]\n"
+          }
+        }
+      ]
+    },
+    {
+      "trial": 3,
+      "candidate": "bug",
+      "candidate_sha256": "11b49e7748f3c155220f59ce3c07947151381657f7c179317dbf1cd3af8e4c13",
+      "command": [
+        "cargo",
+        "run",
+        "--locked",
+        "--",
+        "verify",
+        "--task",
+        "tasks/repository/h11-chunk-footer",
+        "--config",
+        "configs/local.json",
+        "--candidate",
+        "tasks/repository/h11-chunk-footer/repo/h11/_readers.py"
+      ],
+      "exit_code": 1,
+      "verification": [
+        {
+          "suite": "acceptance",
+          "verification": {
+            "cases": 4,
+            "checks": [
+              true,
+              false,
+              true,
+              true
+            ],
+            "container_name": "proofstop-afc4432a-3ce6-40bd-8ee8-4001d5b0eed2",
+            "passed": 3,
+            "reason": "3 of 4 checks passed",
+            "verdict": "failed",
+            "wall_ms": 467,
+            "worker_stdout": "[{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162630d0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162635859300d0a0d0a\"]},{\"result\": {\"body_hex\": \"7a\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a7a0d\", \"0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a\"]}]\n"
+          }
+        },
+        {
+          "suite": "evaluation",
+          "verification": {
+            "cases": 12,
+            "checks": [
+              false,
+              false,
+              false,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "container_name": "proofstop-6176844c-a3a4-4ae6-b772-4e80d1ef60d1",
+            "passed": 9,
+            "reason": "9 of 12 checks passed",
+            "verdict": "failed",
+            "wall_ms": 478,
+            "worker_stdout": "[{\"result\": {\"body_hex\": \"6162\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a616258\", \"59300d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\", \"58300d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62635a5a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a6162\", \"0d\", \"0a\", \"300d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62630d0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"7879\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a323b6b65793d76616c75650d0a78790d0a300d0a582d546573743a207965730d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": false, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\", \"\"]},{\"result\": {\"body_hex\": \"61\", \"complete\": true, \"trailing_hex\": \"474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a300d0a0d0a474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f20485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a436f6e74656e742d4c656e6774683a20330d0a0d0a616263\"]},{\"result\": {\"body_hex\": \"71\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"50\", \"4f\", \"53\", \"54\", \"20\", \"2f\", \"75\", \"70\", \"6c\", \"6f\", \"61\", \"64\", \"20\", \"48\", \"54\", \"54\", \"50\", \"2f\", \"31\", \"2e\", \"31\", \"0d\", \"0a\", \"48\", \"6f\", \"73\", \"74\", \"3a\", \"20\", \"65\", \"78\", \"61\", \"6d\", \"70\", \"6c\", \"65\", \"2e\", \"69\", \"6e\", \"76\", \"61\", \"6c\", \"69\", \"64\", \"0d\", \"0a\", \"54\", \"72\", \"61\", \"6e\", \"73\", \"66\", \"65\", \"72\", \"2d\", \"45\", \"6e\", \"63\", \"6f\", \"64\", \"69\", \"6e\", \"67\", \"3a\", \"20\", \"63\", \"68\", \"75\", \"6e\", \"6b\", \"65\", \"64\", \"0d\", \"0a\", \"0d\", \"0a\", \"31\", \"0d\", \"0a\", \"71\", \"0d\", \"0a\", \"30\", \"0d\", \"0a\", \"0d\", \"0a\"]},{\"result\": {\"body_hex\": \"\", \"complete\": true, \"trailing_hex\": \"4e455854\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a\", \"4e455854\"]}]\n"
+          }
+        }
+      ]
+    },
+    {
+      "trial": 3,
+      "candidate": "control",
+      "candidate_sha256": "6b8472a4e454082dddd2afe4c4fb8120cee34c3f222ede57f754c7d05b1db8de",
+      "command": [
+        "cargo",
+        "run",
+        "--locked",
+        "--",
+        "verify",
+        "--task",
+        "tasks/repository/h11-chunk-footer",
+        "--config",
+        "configs/local.json",
+        "--candidate",
+        "tests/fixtures/repository/h11-readers-fixed.py"
+      ],
+      "exit_code": 0,
+      "verification": [
+        {
+          "suite": "acceptance",
+          "verification": {
+            "cases": 4,
+            "checks": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "container_name": "proofstop-ad9c973a-1336-442b-9d20-003348d000e8",
+            "passed": 4,
+            "reason": "4 of 4 checks passed",
+            "verdict": "passed",
+            "wall_ms": 470,
+            "worker_stdout": "[{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162630d0a300d0a0d0a\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a330d0a6162635859300d0a0d0a\"]},{\"result\": {\"body_hex\": \"7a\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a7a0d\", \"0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a\"]}]\n"
+          }
+        },
+        {
+          "suite": "evaluation",
+          "verification": {
+            "cases": 12,
+            "checks": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "container_name": "proofstop-75d5924f-8ad7-4663-aeeb-f63ac69f4856",
+            "passed": 12,
+            "reason": "12 of 12 checks passed",
+            "verdict": "passed",
+            "wall_ms": 458,
+            "worker_stdout": "[{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a616258\", \"59300d0a0d0a\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\", \"58300d0a0d0a\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62635a5a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a6162\", \"0d\", \"0a\", \"300d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62630d0a300d0a0d0a\"]},{\"result\": {\"body_hex\": \"7879\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a323b6b65793d76616c75650d0a78790d0a300d0a582d546573743a207965730d0a0d0a\"]},{\"result\": {\"body_hex\": \"6162\", \"complete\": false, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\"]},{\"error\": \"RemoteProtocolError\", \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d\", \"\"]},{\"result\": {\"body_hex\": \"61\", \"complete\": true, \"trailing_hex\": \"474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a300d0a0d0a474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a\"]},{\"result\": {\"body_hex\": \"616263\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"504f5354202f20485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a436f6e74656e742d4c656e6774683a20330d0a0d0a616263\"]},{\"result\": {\"body_hex\": \"71\", \"complete\": true, \"trailing_hex\": \"\"}, \"input_after\": [\"50\", \"4f\", \"53\", \"54\", \"20\", \"2f\", \"75\", \"70\", \"6c\", \"6f\", \"61\", \"64\", \"20\", \"48\", \"54\", \"54\", \"50\", \"2f\", \"31\", \"2e\", \"31\", \"0d\", \"0a\", \"48\", \"6f\", \"73\", \"74\", \"3a\", \"20\", \"65\", \"78\", \"61\", \"6d\", \"70\", \"6c\", \"65\", \"2e\", \"69\", \"6e\", \"76\", \"61\", \"6c\", \"69\", \"64\", \"0d\", \"0a\", \"54\", \"72\", \"61\", \"6e\", \"73\", \"66\", \"65\", \"72\", \"2d\", \"45\", \"6e\", \"63\", \"6f\", \"64\", \"69\", \"6e\", \"67\", \"3a\", \"20\", \"63\", \"68\", \"75\", \"6e\", \"6b\", \"65\", \"64\", \"0d\", \"0a\", \"0d\", \"0a\", \"31\", \"0d\", \"0a\", \"71\", \"0d\", \"0a\", \"30\", \"0d\", \"0a\", \"0d\", \"0a\"]},{\"result\": {\"body_hex\": \"\", \"complete\": true, \"trailing_hex\": \"4e455854\"}, \"input_after\": [\"504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a\", \"4e455854\"]}]\n"
+          }
+        }
+      ]
+    }
+  ],
+  "repetitions_per_candidate": 3,
+  "model_inference": "not performed"
+}
