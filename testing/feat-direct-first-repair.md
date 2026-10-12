@@ -5,7 +5,7 @@
 - A failed acceptance verdict permits exactly one request with thinking enabled, the original prompt, previous answer, and visible per-case pass/fail feedback. Evaluation never enters feedback.
 - Transport errors, malformed or truncated answers, and inconclusive verification abort without retry. Failed repairs terminate.
 - Evaluation scores the last frozen valid candidate after generation ends. Evaluation failure never resumes generation.
-- Capture both requests and responses, configs, candidate versions, events, total usage and wall time. Missing usage makes aggregate counts null. Refuse existing output directories.
+- Capture both requests and responses, configs, candidate versions, events, total usage and wall time. Missing usage makes aggregate counts null. Refuse existing output directories. The screen driver also refuses interrupted sessions before overwriting metrics or making network calls.
 - Support ten diverse public synthetic development tasks through schema 2 with a fixed solution.py file and solve(single_array_argument) interface. Preserve schema 1 merge-ranges behavior and pinned file validation.
 
 ## Unit Tests
