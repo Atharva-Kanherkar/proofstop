@@ -1,0 +1,19 @@
+{
+  "policy": "nonthinking_sanity_control",
+  "evidence_class": "development_fixture",
+  "purpose": "Check task solvability without reasoning; not early exit",
+  "changes_from_run_002": [
+    "enable_thinking=false",
+    "temperature=0.7",
+    "top_p=0.8"
+  ],
+  "unchanged": [
+    "prompt",
+    "model revision",
+    "seed 42",
+    "4096-token budget",
+    "top_k=20",
+    "verifier"
+  ],
+  "endpoint": "http://127.0.0.1:18000/v1/chat/completions"
+}

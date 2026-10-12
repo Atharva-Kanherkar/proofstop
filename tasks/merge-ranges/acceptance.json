@@ -1,0 +1,6 @@
+[
+  {"name":"nested_range", "input":[[1,10],[2,3]], "expected":[[1,10]]},
+  {"name":"empty", "input":[], "expected":[]},
+  {"name":"adjacent", "input":[[3,4],[1,2]], "expected":[[1,4]]},
+  {"name":"disjoint", "input":[[9,10],[1,2]], "expected":[[1,2],[9,10]]}
+]

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "image": "python@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1",
+  "verifier_timeout_seconds": 10,
+  "request_timeout_seconds": 600,
+  "max_tokens": 4096,
+  "seed": 42,
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "enable_thinking": true
+}

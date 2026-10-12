@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "policy": "segmented_no_probe",
+  "evidence_class": "unclassified",
+  "outcome": "failed",
+  "task_id": "merge-ranges",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 212841,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 79616,
+  "completion_tokens": 4096,
+  "acceptance": null,
+  "evaluation": null,
+  "error": "main budget exhausted without accepted final answer"
+}

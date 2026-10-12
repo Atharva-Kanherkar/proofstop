@@ -2,13 +2,71 @@
 
 **Cost-aware early exit for verifiable reasoning.**
 
-ProofStop is a proposed open-source inference controller that decides when to
-continue reasoning, probe a candidate answer, or stop generation. Its objective
+ProofStop is an open-source research project for an inference controller that
+decides when to continue reasoning, probe a candidate answer, or stop generation. Its objective
 is to reduce compute cost per successful task, including the cost of verification.
 
-**Status:** research proposal. This repository contains the implementation and
-evaluation plan. There is no runtime, installation procedure, or measured
-efficiency result yet.
+**Status:** baseline prototype. A Rust CLI validates pinned tasks, runs Python
+candidates in isolated Docker containers, and records a single model request and
+its verification outcomes. An experimental Qwen3/vLLM adapter now runs exact-token
+segments and separate answer probes, stopping future generation on acceptance.
+Adaptive scheduling and measured GPU-efficiency benefits remain unestablished.
+See the [online stopping loop](docs/online-probes.md) for the four controls.
+
+The [first live A40 experiment](experiments/2026-10-12-qwen3-8b/README.md)
+recorded two truncated thinking attempts and a non-thinking control that passed
+all 12 fixture checks in 126 output tokens. This is development evidence, with
+no demonstrated early-exit or GPU-efficiency benefit.
+
+The [online comparison](experiments/2026-10-12-online-probes/README.md) now
+verifies a stop after 128 main tokens and a passing 126-token probe. Fixed probing
+was slower than direct answering and added work on the multi-bug variant.
+
+## Get started
+
+Prerequisites: Rust 1.96.0 and a running Docker daemon. The toolchain,
+dependencies, task files, and verifier image are pinned. Commands below run from
+the repository root.
+
+```bash
+cargo build --locked
+docker pull python@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1
+cargo run --locked -- inspect --show-prompt
+cargo run --locked -- verify --candidate tests/fixtures/reference.py
+```
+
+To reproduce the unfixed bug, verify `tasks/merge-ranges/repo/ranges.py` instead.
+That command exits unsuccessfully, as expected. The reference fix is a harness
+control; it is never supplied to the model.
+
+Against a separately provisioned vLLM-compatible server:
+
+```bash
+cargo run --locked -- baseline \
+  --endpoint http://127.0.0.1:8000/v1 \
+  --model Qwen/Qwen3-8B \
+  --output runs/first-baseline
+```
+
+This makes one non-streaming chat-completion request. It saves the exact request
+and response bodies, candidate source, configuration, task manifest, event
+ledger, and final summary. The output directory must not already exist.
+It does not launch a model server, rent hardware, or perform early stopping.
+The initial adapter supports an endpoint without authentication; do not expose
+an unauthenticated model server publicly.
+
+Run the local checks:
+
+```bash
+cargo test --locked --all-targets
+cargo test --locked --tests -- --ignored --test-threads=1
+cargo fmt --check
+cargo clippy --locked --all-targets -- -D warnings
+```
+
+The second test command requires Docker and the pinned image. It exercises real
+candidate execution, timeout cleanup, containment, and a mock-inference-to-verifier
+flow. Mock inference validates the harness, not model capability or savings.
 
 ## Research question
 
@@ -28,12 +86,13 @@ advantage or a claim of a new early-stopping algorithm.
 
 ## Initial scope
 
-The first workload is Python function synthesis with a provided function
-signature, task description, and executable acceptance checks. A separately
-held-out test suite evaluates the returned function.
+The first workload is repairing a buggy Python function in a miniature pinned
+repository, given its source, contract, and visible acceptance examples. A
+separate evaluation suite tests the returned replacement file.
 
-The controller receives acceptance outcomes, not evaluation results. Neither
-test suite is included in model prompts. Passing acceptance checks means only
+The model sees acceptance examples. Evaluation inputs and reference outputs are
+excluded from its prompt. The controller must receive acceptance outcomes, not
+evaluation results. Passing acceptance checks means only
 that those checks passed; it does not establish general program correctness.
 
 The first experiment uses one open-weight reasoning model, one GPU, sequential
@@ -44,6 +103,54 @@ precision, and inference dependencies must be pinned before execution.
 
 Initially out of scope: model training, open-ended answer grading, distributed
 serving, multi-model routing, and production deployment.
+
+### First task: nested-range merge
+
+[`tasks/merge-ranges`](tasks/merge-ranges/spec.md) is a synthetic development
+fixture, identified as `merge-ranges / synthetic-v1`. Its manifest pins the
+source, specification, and both test suites by SHA-256. Loading a modified fixture
+fails rather than silently changing the workload.
+
+The bug is concrete: merging `[(1, 10), (2, 3)]` shrinks the result to `[(1, 3)]`.
+The correct result is `[(1, 10)]`. The function must also handle adjacent ranges,
+invalid ranges, and empty input without mutating its arguments.
+
+The fixture has four acceptance cases and eight evaluation cases. Evaluation
+cases are published for reproducibility but withheld from model requests; this
+development fixture is not a held-out research benchmark. Larger experiments
+require an independently frozen evaluation partition.
+
+## Locked implementation architecture
+
+| Layer | Implementation |
+| --- | --- |
+| Controller and CLI | Rust, with Tokio for asynchronous I/O and process lifecycle. |
+| Inference transport | Rust HTTP client to a separately running vLLM-compatible server. |
+| Candidate execution | Python inside a digest-pinned, disposable Docker container. |
+| Verification scoring | Rust compares returned values with expected results outside the container. |
+| Run artifacts | JSON request/response bodies and summaries, plus a JSONL event ledger. |
+
+Each suite runs in a fresh container with no network, a read-only root and source
+mount, a non-root user, dropped capabilities, and bounded memory, CPU, processes,
+output, and wall time. Candidate containers receive input values but no expected
+answers, task manifest, or test-suite files. Docker must be available; there is
+no host-execution fallback.
+
+The current baseline freezes the candidate before acceptance and evaluation.
+It records reported token counts, including truncated completions, and leaves
+unobserved GPU measurements and model/backend revisions unknown. Client wall
+time is not reported as allocated GPU time.
+
+A candidate that fails to import, raises `SystemExit`, or returns a value that
+cannot be serialized is scored as failed. Only harness faults such as timeouts,
+Docker errors, and malformed worker output are inconclusive.
+
+The baseline transport has a 1 MiB response-body limit. Transport failures may
+have no captured response; their failed attempt remains in the ledger. The Python
+worker is a finite functional checker, not an adversarially sound proof system.
+Process interruption or Docker daemon failure can prevent cleanup; those failures
+must be addressed before production use. This prototype is for dedicated,
+synthetic research workloads.
 
 ## Proposed architecture
 
@@ -95,6 +202,9 @@ controller must not pause unrelated requests through an engine-wide pause API.
 
 ### Milestone 0: Lock the experimental contract
 
+**Progress:** Rust architecture and one synthetic task are pinned. Live-model,
+backend, hardware, and benchmark-partition identities remain to be locked.
+
 Select and pin the model, engine, tokenizer, hardware, decoding settings, dataset
 revision, and acceptance/evaluation split. Define the candidate extraction method
 and verify that the selected backend can continue from an exact token prefix.
@@ -108,6 +218,13 @@ another person to repeat the experiment.
 
 ### Milestone 1: Establish the baseline and accounting
 
+**Progress:** the single-request baseline, isolated verifier, and artifact ledger
+exist. A live GPU fixture run is recorded, including failures and a non-thinking
+control. Exact-token segmented continuation and a no-probe control now exist;
+the [first online comparison](experiments/2026-10-12-online-probes/README.md)
+verified stopping and branch isolation but did not beat direct non-thinking.
+Measured GPU accounting and held-out quality evaluation remain pending.
+
 Run unmodified reasoning to natural completion within a fixed maximum budget.
 Save token-level output and timing events for synthetic or licensed workloads.
 Add the isolated Python test runner and held-out evaluator.
@@ -120,6 +237,10 @@ any effect to early stopping.
 for all requests, failures, and compute stages.
 
 ### Milestone 2: Implement bounded periodic probing
+
+**Progress:** serialized exact-token probes, acceptance-driven stopping, branch
+isolation tests, and the first live comparison exist. Fixed probing added work
+on the multi-bug variant; adaptive scheduling and held-out validation remain.
 
 At configured checkpoints, generate a bounded candidate, execute acceptance
 checks, and stop the parent only after acceptance. Continue after rejection or an
@@ -270,3 +391,5 @@ artifacts separate from source and document how results were derived.
 
 ProofStop is licensed under the [MIT License](LICENSE). Models, datasets, and
 dependencies retain their respective licenses.
+
+For the first rented GPU run, follow the [pinned GPU baseline runbook](docs/gpu-baseline.md).

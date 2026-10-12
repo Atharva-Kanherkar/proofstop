@@ -1,0 +1,22 @@
+{
+  "suite": "acceptance",
+  "verification": {
+    "cases": 4,
+    "container_name": "proofstop-f5c557a2-ff41-4a49-a2ab-aec38f69c2b1",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 173
+  }
+}
+{
+  "suite": "evaluation",
+  "verification": {
+    "cases": 8,
+    "container_name": "proofstop-79e9b75a-32b0-41f2-9dcb-d8c4bad9477c",
+    "passed": 8,
+    "reason": "8 of 8 checks passed",
+    "verdict": "passed",
+    "wall_ms": 153
+  }
+}

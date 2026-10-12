@@ -1,0 +1,12 @@
+{
+  "all_http_requests": 74,
+  "allocated_gpu_seconds": null,
+  "generation_requests": 36,
+  "probe_tokens": 586,
+  "probes": 4,
+  "reasoning_tokens": 4096,
+  "replay_and_probe_usage_included": true,
+  "reported_completion_tokens_known_sum": 4682,
+  "reported_prompt_tokens_known_sum": 81880,
+  "usage_unknown": false
+}

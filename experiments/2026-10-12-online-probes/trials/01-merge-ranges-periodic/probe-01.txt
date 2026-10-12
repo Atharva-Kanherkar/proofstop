@@ -1,0 +1,24 @@
+<think>
+Okay, I need to fix the merge_ranges function in the given Python code. Let me look at the problem again. The task is to merge overlapping or adjacent ranges. The current code might have some issues. Let me check the examples and see what's wrong.
+
+Looking at the current code: The function sorts the ranges, checks for any start > end, then merges. The merging logic is that if the current start is <= the last merged end + 1, then merge. But wait, the problem says to preserve the largest endpoint when one range contains another. Let me think about that.
+
+For example, if there's
+</think>
+
+```python
+def merge_ranges(ranges):
+    """Merge overlapping or adjacent inclusive integer ranges without mutation."""
+    if not ranges:
+        return []
+    ordered = sorted(ranges)
+    if any(start > end for start, end in ordered):
+        raise ValueError("range start exceeds end")
+    merged = []
+    for start, end in ordered:
+        if merged and start <= merged[-1][1] + 1:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], end))
+        else:
+            merged.append((start, end))
+    return merged
+```<|im_end|>

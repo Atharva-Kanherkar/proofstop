@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "policy": "nonthinking_baseline",
+  "evidence_class": "unclassified",
+  "outcome": "failed_checks",
+  "task_id": "merge-ranges",
+  "task_revision": "synthetic-v2",
+  "wall_ms": 6306,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 479,
+  "completion_tokens": 148,
+  "acceptance": {
+    "cases": 4,
+    "container_name": "proofstop-8e335521-a67c-47cb-b96f-e667d708862a",
+    "passed": 2,
+    "reason": "2 of 4 checks passed",
+    "verdict": "failed",
+    "wall_ms": 298
+  },
+  "evaluation": {
+    "cases": 8,
+    "container_name": "proofstop-2abebdac-9028-4a52-86d0-93a4d6773678",
+    "passed": 5,
+    "reason": "5 of 8 checks passed",
+    "verdict": "failed",
+    "wall_ms": 170
+  },
+  "error": null
+}

@@ -1,0 +1,23 @@
+{
+  "policy": "nonthinking_sanity_control",
+  "outcome": "passed",
+  "request_started_unix": 1791811181.619576,
+  "usage": {
+    "prompt_tokens": 508,
+    "total_tokens": 634,
+    "completion_tokens": 126,
+    "prompt_tokens_details": null
+  },
+  "finish_reason": "stop",
+  "wall_ms": 4806,
+  "acceptance": {
+    "passed": 4,
+    "cases": 4
+  },
+  "evaluation": {
+    "passed": 8,
+    "cases": 8
+  },
+  "verifier_wall_ms": 326,
+  "generated_code_execution": "local Docker only"
+}

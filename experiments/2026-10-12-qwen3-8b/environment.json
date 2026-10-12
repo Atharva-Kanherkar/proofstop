@@ -1,0 +1,27 @@
+{
+  "gpu": "NVIDIA A40",
+  "gpu_memory_mib": 46068,
+  "driver": "580.159.03",
+  "image": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",
+  "image_digest": "sha256:0a360022e8de4375af99430f84e8b38951acc397252163a37ceac7204d01be35",
+  "data_center": "EU-SE-1",
+  "python": "3.12.3",
+  "model": "Qwen/Qwen3-8B",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "vllm": "0.10.2",
+  "torch": "2.8.0+cu128",
+  "transformers": "4.55.2",
+  "ephemeral_disk_gb": 80,
+  "gpu_usd_per_hour": 0.59,
+  "allocation_started_at": "2026-10-12T13:04:04.018Z",
+  "cleanup_confirmed_at": "2026-10-12T13:20:37Z",
+  "allocation_seconds_upper_bound": 993,
+  "estimated_compute_usd": 0.1627,
+  "billed_cost": "pending, no records returned yet",
+  "cleanup": "Pod terminated and fresh account Pod list empty",
+  "baseline_source_commits": [
+    "dfe5920",
+    "4278094"
+  ],
+  "nonthinking_client": "standalone non-streaming HTTP client, followed by Rust verify; not the baseline CLI"
+}

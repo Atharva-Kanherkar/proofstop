@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "merge-ranges",
+  "revision": "synthetic-v2",
+  "files": {
+    "repo/ranges.py": "2aa855008a834547bbdf120a5dac6297a2fa37e4a3d393563f28ab29b218d7ca",
+    "spec.md": "12b390b2308d15d5abe00bae3f1a7e3b87f2ad7ac09216a8fff02f5c26ef6855",
+    "acceptance.json": "5177f8c54ba48ad51f28def167a1db342ae2124c62c763c0caeb59a6c90e7b59",
+    "evaluation.json": "f32e945f5c9aabf69d218e83dc85635866e9ea8cfd6c50cacc2a82ef0eb1625a"
+  }
+}

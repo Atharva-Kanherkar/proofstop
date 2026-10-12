@@ -1,0 +1,6 @@
+{
+  "original_probe_prefix_matches_no_probe": true,
+  "original_main_tokens_at_stop": 128,
+  "multi_bug_full_main_matches_no_probe": true,
+  "multi_bug_main_tokens": 4096
+}
