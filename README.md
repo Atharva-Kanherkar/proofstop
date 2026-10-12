@@ -8,8 +8,10 @@ is to reduce compute cost per successful task, including the cost of verificatio
 
 **Status:** baseline prototype. A Rust CLI validates pinned tasks, runs Python
 candidates in isolated Docker containers, and records a single model request and
-its verification outcomes. Early-exit policies, token checkpoints, and GPU
-efficiency measurements are not implemented yet.
+its verification outcomes. An experimental Qwen3/vLLM adapter now runs exact-token
+segments and separate answer probes, stopping future generation on acceptance.
+Adaptive scheduling and measured GPU-efficiency benefits remain unestablished.
+See the [online stopping loop](docs/online-probes.md) for the four controls.
 
 The [first live A40 experiment](experiments/2026-10-12-qwen3-8b/README.md)
 recorded two truncated thinking attempts and a non-thinking control that passed
@@ -53,7 +55,7 @@ Run the local checks:
 
 ```bash
 cargo test --locked --all-targets
-cargo test --locked --test baseline -- --ignored --test-threads=1
+cargo test --locked --tests -- --ignored --test-threads=1
 cargo fmt --check
 cargo clippy --locked --all-targets -- -D warnings
 ```
@@ -214,8 +216,9 @@ another person to repeat the experiment.
 
 **Progress:** the single-request baseline, isolated verifier, and artifact ledger
 exist. A live GPU fixture run is recorded, including failures and a non-thinking
-control. Token-level traces, measured GPU accounting, and the segmented
-continuation control remain pending.
+control. Exact-token segmented continuation and a no-probe control now exist;
+the first online comparison is being run. Measured GPU accounting and held-out
+quality evaluation remain pending.
 
 Run unmodified reasoning to natural completion within a fixed maximum budget.
 Save token-level output and timing events for synthetic or licensed workloads.

@@ -28,4 +28,4 @@ jobs:
           image=$(python3 -c 'import json; print(json.load(open("configs/local.json"))["image"])')
           docker pull "$image"
       - name: Real Docker integration tests
-        run: cargo test --locked --test baseline -- --ignored --test-threads=1
+        run: cargo test --locked --tests -- --ignored --test-threads=1
