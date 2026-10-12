@@ -34,6 +34,7 @@ pub struct Task {
     spec: String,
     pub acceptance: Vec<Case>,
     evaluation: Vec<Case>,
+    repository: BTreeMap<String, Vec<u8>>,
 }
 
 pub fn hash(bytes: &[u8]) -> String {
@@ -68,14 +69,39 @@ impl Task {
                 );
                 "repo/solution.py"
             }
+            3 => {
+                ensure!(
+                    manifest.id == "h11-chunk-footer" && manifest.revision == "v0.14.0",
+                    "unsupported repository task identity"
+                );
+                "repo/h11/_readers.py"
+            }
             _ => bail!("unsupported task schema"),
         };
-        let required = [source_file, "spec.md", "acceptance.json", "evaluation.json"];
+        let mut required = vec![source_file, "spec.md", "acceptance.json", "evaluation.json"];
+        if manifest.schema_version == 3 {
+            required.extend([
+                "upstream.json",
+                "repo/LICENSE.txt",
+                "repo/h11/__init__.py",
+                "repo/h11/_abnf.py",
+                "repo/h11/_connection.py",
+                "repo/h11/_events.py",
+                "repo/h11/_headers.py",
+                "repo/h11/_receivebuffer.py",
+                "repo/h11/_state.py",
+                "repo/h11/_util.py",
+                "repo/h11/_version.py",
+                "repo/h11/_writers.py",
+                "repo/h11/py.typed",
+            ]);
+        }
         ensure!(
             manifest.files.len() == required.len()
                 && required.iter().all(|p| manifest.files.contains_key(*p)),
             "unexpected task file set"
         );
+        let mut pinned = BTreeMap::new();
         for (relative, expected_hash) in &manifest.files {
             ensure!(
                 Path::new(relative)
@@ -90,13 +116,34 @@ impl Task {
                     "task files cannot use symlinks"
                 );
             }
+            let bytes = fs::read(&path)?;
             ensure!(
-                hash(&fs::read(&path)?) == *expected_hash,
+                hash(&bytes) == *expected_hash,
                 "task hash mismatch: {relative}"
+            );
+            pinned.insert(relative.clone(), bytes);
+        }
+        let mut repository = BTreeMap::new();
+        if manifest.schema_version == 3 {
+            let upstream: Value = serde_json::from_slice(&pinned["upstream.json"])?;
+            ensure!(
+                upstream["repository"] == "https://github.com/python-hyper/h11"
+                    && upstream["base_commit"] == "467c5cfc5f9a1364c7da6b754d591092ee409931"
+                    && upstream["target"] == source_file,
+                "unsupported upstream identity"
+            );
+            for relative in manifest.files.keys().filter(|p| p.starts_with("repo/")) {
+                let bytes = pinned[relative].clone();
+                ensure!(bytes.len() <= 128 * 1024, "repository file too large");
+                repository.insert(relative.clone(), bytes);
+            }
+            ensure!(
+                repository.values().map(Vec::len).sum::<usize>() <= 512 * 1024,
+                "repository snapshot too large"
             );
         }
         let load_cases = |name: &str| -> Result<Vec<Case>> {
-            let cases: Vec<Case> = serde_json::from_slice(&fs::read(root.join(name))?)?;
+            let cases: Vec<Case> = serde_json::from_slice(&pinned[name])?;
             ensure!(!cases.is_empty(), "empty suite");
             for case in &cases {
                 ensure!(
@@ -104,37 +151,62 @@ impl Task {
                     "case must specify exactly one expected result or error"
                 );
                 ensure!(case.input.is_array(), "case input must be an array");
+                if manifest.schema_version == 3 {
+                    ensure!(
+                        case.input
+                            .as_array()
+                            .unwrap()
+                            .iter()
+                            .all(|v| v.as_str().is_some_and(|hex| hex.len() % 2 == 0
+                                && hex.bytes().all(|b| b.is_ascii_hexdigit()))),
+                        "repository input fragments must be hex strings"
+                    );
+                }
             }
             Ok(cases)
         };
         Ok(Self {
-            source: fs::read_to_string(root.join(source_file))?,
-            spec: fs::read_to_string(root.join("spec.md"))?,
+            source: String::from_utf8(pinned[source_file].clone())?,
+            spec: String::from_utf8(pinned["spec.md"].clone())?,
             acceptance: load_cases("acceptance.json")?,
             evaluation: load_cases("evaluation.json")?,
             manifest,
+            repository,
         })
     }
 
     pub fn prompt(&self) -> Result<String> {
-        Ok(format!(
+        let mut prompt = format!(
             "{}\n\nCurrent {}:\n```python\n{}```\n\nVisible acceptance examples:\n{}\n",
             self.spec,
-            if self.manifest.schema_version == 1 {
-                "ranges.py"
-            } else {
-                "solution.py"
-            },
+            self.source_path(),
             self.source,
             serde_json::to_string_pretty(&self.acceptance)?
-        ))
+        );
+        if !self.repository.is_empty() {
+            let buffer = std::str::from_utf8(&self.repository["repo/h11/_receivebuffer.py"])?;
+            prompt.push_str(&format!(
+                "\nDependency context h11/_receivebuffer.py (read-only):\n```python\n{buffer}```\n"
+            ));
+        }
+        Ok(prompt)
     }
 
+    pub fn source_path(&self) -> &'static str {
+        match self.manifest.schema_version {
+            1 => "ranges.py",
+            2 => "solution.py",
+            _ => "h11/_readers.py",
+        }
+    }
+    pub fn repository(&self) -> &BTreeMap<String, Vec<u8>> {
+        &self.repository
+    }
     pub fn entrypoint(&self) -> &'static str {
-        if self.manifest.schema_version == 1 {
-            "merge_ranges"
-        } else {
-            "solve"
+        match self.manifest.schema_version {
+            1 => "merge_ranges",
+            2 => "solve",
+            _ => "h11",
         }
     }
 
@@ -274,6 +346,79 @@ mod tests {
         fs::copy(root.join("manifest.json"), tmp.path().join("manifest.json")).unwrap();
         fs::write(tmp.path().join("repo/solution.py"), "tampered").unwrap();
         assert!(Task::load(tmp.path()).is_err());
+    }
+
+    #[test]
+    fn repository_dependencies_are_pinned_and_evaluation_is_excluded() {
+        let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("tasks/repository/h11-chunk-footer");
+        let task = Task::load(&root).unwrap();
+        assert_eq!(task.entrypoint(), "h11");
+        assert_eq!(task.repository().len(), 13);
+        let prompt = task.prompt().unwrap();
+        assert!(prompt.contains("Current h11/_readers.py"));
+        assert!(prompt.contains("Dependency context h11/_receivebuffer.py"));
+        assert!(!prompt.contains("malformed chunk footer:"));
+        assert!(!prompt.contains("GHSA-vqfr"));
+        for case in task.cases("evaluation").unwrap() {
+            assert!(!prompt.contains(&case.name));
+        }
+        let tmp = tempfile::tempdir().unwrap();
+        for relative in task
+            .manifest
+            .files
+            .keys()
+            .chain(std::iter::once(&"manifest.json".to_string()))
+        {
+            let destination = tmp.path().join(relative);
+            fs::create_dir_all(destination.parent().unwrap()).unwrap();
+            fs::copy(root.join(relative), destination).unwrap();
+        }
+        fs::write(
+            tmp.path().join("repo/h11/_connection.py"),
+            "tampered dependency",
+        )
+        .unwrap();
+        assert!(Task::load(tmp.path()).is_err());
+        fs::copy(
+            root.join("repo/h11/_connection.py"),
+            tmp.path().join("repo/h11/_connection.py"),
+        )
+        .unwrap();
+        let mut manifest: Value =
+            serde_json::from_slice(&fs::read(tmp.path().join("manifest.json")).unwrap()).unwrap();
+        manifest["id"] = "another-parser".into();
+        fs::write(
+            tmp.path().join("manifest.json"),
+            serde_json::to_vec(&manifest).unwrap(),
+        )
+        .unwrap();
+        assert!(Task::load(tmp.path()).is_err());
+        fs::copy(root.join("manifest.json"), tmp.path().join("manifest.json")).unwrap();
+        let frozen = Task::load(tmp.path()).unwrap();
+        fs::write(
+            tmp.path().join("repo/h11/_connection.py"),
+            "changed after loading",
+        )
+        .unwrap();
+        assert_eq!(
+            frozen.repository()["repo/h11/_connection.py"],
+            task.repository()["repo/h11/_connection.py"]
+        );
+        #[cfg(unix)]
+        {
+            fs::copy(
+                root.join("repo/h11/_connection.py"),
+                tmp.path().join("repo/h11/_connection.py"),
+            )
+            .unwrap();
+            fs::remove_file(tmp.path().join("repo/h11/_readers.py")).unwrap();
+            std::os::unix::fs::symlink(
+                root.join("repo/h11/_readers.py"),
+                tmp.path().join("repo/h11/_readers.py"),
+            )
+            .unwrap();
+            assert!(Task::load(tmp.path()).is_err());
+        }
     }
 
     #[test]

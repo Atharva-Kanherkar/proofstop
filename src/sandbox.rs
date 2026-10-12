@@ -1,4 +1,4 @@
-use crate::task::{Case, Config};
+use crate::task::{Case, Config, Task};
 use anyhow::{Result, ensure};
 use serde::Serialize;
 use serde_json::Value;
@@ -34,6 +34,8 @@ pub struct Verification {
     pub wall_ms: u128,
     pub reason: String,
     pub container_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub worker_stdout: Option<String>,
 }
 
 pub fn validate_image(image: &str) -> Result<()> {
@@ -111,9 +113,43 @@ pub async fn verify_function(
     config: &Config,
     entrypoint: &str,
 ) -> Result<Verification> {
+    verify_workspace(code, cases, config, entrypoint, None).await
+}
+
+pub async fn verify_task(
+    code: &str,
+    task: &Task,
+    suite: &str,
+    config: &Config,
+) -> Result<Verification> {
+    verify_workspace(
+        code,
+        task.cases(suite)?,
+        config,
+        task.entrypoint(),
+        if task.repository().is_empty() {
+            None
+        } else {
+            Some(task)
+        },
+    )
+    .await
+}
+
+async fn verify_workspace(
+    code: &str,
+    cases: &[Case],
+    config: &Config,
+    entrypoint: &str,
+    repository: Option<&Task>,
+) -> Result<Verification> {
     ensure!(
-        ["merge_ranges", "solve"].contains(&entrypoint),
+        ["merge_ranges", "solve", "h11"].contains(&entrypoint),
         "unsupported entrypoint"
+    );
+    ensure!(
+        entrypoint != "h11" || repository.is_some(),
+        "repository snapshot required"
     );
     validate_image(&config.image)?;
     ensure!(!cases.is_empty(), "cannot verify an empty suite");
@@ -126,7 +162,16 @@ pub async fn verify_function(
         use std::os::unix::fs::PermissionsExt;
         fs::set_permissions(workspace.path(), fs::Permissions::from_mode(0o755))?;
     }
-    fs::write(workspace.path().join("ranges.py"), code)?;
+    if let Some(task) = repository {
+        for (relative, bytes) in task.repository() {
+            let path = workspace.path().join(relative);
+            fs::create_dir_all(path.parent().unwrap())?;
+            fs::write(path, bytes)?;
+        }
+        fs::write(workspace.path().join("repo/h11/_readers.py"), code)?;
+    } else {
+        fs::write(workspace.path().join("ranges.py"), code)?;
+    }
     fs::write(workspace.path().join("worker.py"), WORKER)?;
     let workspace_path = workspace
         .path()
@@ -191,6 +236,7 @@ pub async fn verify_function(
         wall_ms: started.elapsed().as_millis(),
         reason: String::new(),
         container_name: name,
+        worker_stdout: None,
     };
     if !cleanup_ok {
         result.reason = "container cleanup failed".into();
@@ -214,6 +260,9 @@ pub async fn verify_function(
     if output.len() as u64 > OUTPUT_LIMIT || errors.len() as u64 > OUTPUT_LIMIT {
         result.reason = "verifier output exceeded limit".into();
         return Ok(result);
+    }
+    if repository.is_some() {
+        result.worker_stdout = String::from_utf8(output.clone()).ok();
     }
     match score_checks(&output, cases) {
         Ok(checks) => {

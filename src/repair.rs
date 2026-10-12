@@ -126,7 +126,7 @@ pub async fn run(
             event(&mut ledger, started, "completion_parsed", json!({"stage":stage,"serving_model":completion.serving_model,"finish_reason":completion.finish_reason}))?;
             let code = candidate::extract(&completion.text)?;
             fs::write(output.join(format!("{stage}-candidate.py")), &code)?;
-            let acceptance = sandbox::verify_function(&code, task.cases("acceptance")?, direct, task.entrypoint()).await?;
+            let acceptance = sandbox::verify_task(&code, task, "acceptance", direct).await?;
             summary.acceptance = Some(serde_json::to_value(&acceptance)?);
             event(&mut ledger, started, "acceptance_finished", json!({"stage":stage,"verification":acceptance}))?;
             match acceptance.verdict {
@@ -135,7 +135,7 @@ pub async fn run(
                 sandbox::Verdict::Failed if index == 0 => {
                     let visible = feedback(task, &acceptance)?;
                     fs::write(output.join("feedback.json"), serde_json::to_vec_pretty(&visible)?)?;
-                    prompt = format!("{original}\nPrevious answer (untrusted candidate):\n```python\n{code}```\n\nVisible acceptance results:\n{}\nRepair the answer using the specification and these visible results. Return the complete replacement file in exactly one fenced python block.\n", serde_json::to_string_pretty(&visible)?);
+                    prompt = format!("{original}\nPrevious {} (untrusted candidate):\n```python\n{code}```\n\nVisible acceptance results:\n{}\nRepair the answer using the specification and these visible results. Return the complete replacement file in exactly one fenced python block.\n", task.source_path(), serde_json::to_string_pretty(&visible)?);
                     event(&mut ledger, started, "repair_authorized", json!({"feedback":visible,"remaining_repairs":1}))?;
                 }
                 sandbox::Verdict::Failed => { final_code = code; }
@@ -143,7 +143,7 @@ pub async fn run(
         }
         fs::write(output.join("candidate.py"), &final_code)?;
         event(&mut ledger, started, "generation_stopped", json!({"candidate_sha256":hash(final_code.as_bytes()),"generation_requests":attempts.len()}))?;
-        let evaluation = sandbox::verify_function(&final_code, task.cases("evaluation")?, direct, task.entrypoint()).await?;
+        let evaluation = sandbox::verify_task(&final_code, task, "evaluation", direct).await?;
         summary.evaluation = Some(serde_json::to_value(&evaluation)?);
         event(&mut ledger, started, "evaluation_finished", serde_json::to_value(&evaluation)?)?;
         summary.outcome = if matches!(evaluation.verdict, sandbox::Verdict::Inconclusive) { "inconclusive" } else if summary.acceptance.as_ref().is_some_and(|v| v["verdict"] == "passed") && matches!(evaluation.verdict, sandbox::Verdict::Passed) { "passed" } else { "failed_checks" }.into();
@@ -208,6 +208,7 @@ mod tests {
             wall_ms: 1,
             reason: "untrusted output".into(),
             container_name: "private".into(),
+            worker_stdout: Some("untrusted stdout".into()),
         };
         let value = feedback(&task, &verification).unwrap();
         assert_eq!(value.as_array().unwrap().len(), 4);

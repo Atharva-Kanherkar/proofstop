@@ -24,12 +24,39 @@ def serialize(record, value):
         return json.dumps({"error": "UnserializableResult", "input_after": None})
 
 
+def consume_h11(value):
+    connection = module.h11.Connection(module.h11.SERVER)
+    body = bytearray()
+    complete = False
+    for fragment in value:
+        connection.receive_data(bytes.fromhex(fragment))
+        while True:
+            event = connection.next_event()
+            if event is module.h11.NEED_DATA or event is module.h11.PAUSED:
+                break
+            if isinstance(event, module.h11.Data):
+                body.extend(event.data)
+            elif isinstance(event, module.h11.EndOfMessage):
+                complete = True
+            elif isinstance(event, module.h11.ConnectionClosed):
+                break
+    return {"body_hex": body.hex(), "complete": complete,
+            "trailing_hex": connection.trailing_data[0].hex()}
+
+
 records = []
 with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
     module = types.ModuleType("candidate")
     try:
-        with open("/work/ranges.py", encoding="utf-8") as source:
-            exec(compile(source.read(), "ranges.py", "exec"), module.__dict__)
+        if entrypoint == "h11":
+            sys.path.insert(0, "/work/repo")
+            import h11
+            module.h11 = h11
+            module.h11_consumer = consume_h11
+            entrypoint = "h11_consumer"
+        else:
+            with open("/work/ranges.py", encoding="utf-8") as source:
+                exec(compile(source.read(), "ranges.py", "exec"), module.__dict__)
     except BaseException as error:  # noqa: BLE001 - a broken candidate is a failed candidate
         detail = type(error).__name__
         records = [
