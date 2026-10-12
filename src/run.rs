@@ -116,11 +116,11 @@ pub async fn baseline(
         let source = candidate::extract(&completion.text)?;
         fs::write(output.join("candidate.py"), &source)?;
         ledger.event("candidate_frozen", json!({"sha256":hash(source.as_bytes())}))?;
-        let acceptance = sandbox::verify(&source, task.cases("acceptance")?, config).await?;
+        let acceptance = sandbox::verify_function(&source, task.cases("acceptance")?, config, task.entrypoint()).await?;
         summary.acceptance = Some(serde_json::to_value(&acceptance)?);
         ledger.event("acceptance_finished", serde_json::to_value(&acceptance)?)?;
         // Evaluation happens after the candidate is frozen and never informs generation.
-        let evaluation = sandbox::verify(&source, task.cases("evaluation")?, config).await?;
+        let evaluation = sandbox::verify_function(&source, task.cases("evaluation")?, config, task.entrypoint()).await?;
         summary.evaluation = Some(serde_json::to_value(&evaluation)?);
         ledger.event("evaluation_finished", serde_json::to_value(&evaluation)?)?;
         summary.outcome = match (&acceptance.verdict, &evaluation.verdict) {
