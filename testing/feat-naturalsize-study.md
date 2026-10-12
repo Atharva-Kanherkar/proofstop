@@ -5,7 +5,7 @@
 - Pin pre-fix commit 7574e0cc377d80db0d2756fc2c5e0b8799a6f8b4 and replace humanize/filesize.py. Execute the actual humanize.naturalsize API in read-only Docker with unchanged runtime dependencies.
 - Freeze independently authored visible acceptance and separate evaluation cases before inspecting the upstream repaired target. Keep reference code and evaluation out of generation and feedback.
 - Preserve English formatting, decimal/binary/GNU modes, signs, custom precision and suffix limits. Rounded mantissas reaching their unit base must advance when a larger suffix exists.
-- Support four-backtick Python fences so literal triple-backtick examples inside the real source file do not invalidate a complete candidate. Keep old three-backtick behavior and ambiguity rejection covered.
+- Parse one standard Markdown Python fence by line boundaries and indentation. Indented backticks within source docstrings remain code. Support three or more backticks and reject multiple external blocks or unclosed candidates. Preserve the interrupted pilot as a harness-fault record; freeze a corrected study before new generation.
 - Validate all source hashes, fixed repository identity, safe paths and dependency pinning. Capture exact repository worker stdout without passing it to repair feedback.
 - Freeze three policies across seeds 42, 43, 44. Direct budget 4,096, full thinking 12,288, bounded repair 4,096 plus at most 8,192. Three seeds are attempts on one public task, not three distinct tasks or held-out evidence.
 - Tokenize the exact prompt before GPU allocation; verify its count on the private server before generation. Context 24,576, pinned Qwen3-8B/vLLM 0.10.2/BF16, prefix caching off. No retries, tuning or task changes after generation starts.
