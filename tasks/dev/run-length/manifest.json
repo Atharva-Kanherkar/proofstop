@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "id": "run-length",
+  "revision": "synthetic-v1",
+  "files": {
+    "repo/solution.py": "9cc0a44db625e94cca54370f1c45e4715d4b6b35c89ab169051fe2c8d3ed43d6",
+    "spec.md": "3586837b3085a65c9fe4318b71c278ecee6be45c64b28601f1f68692f947c6ca",
+    "acceptance.json": "5ef1f7aa99be558e73fc4525eefda06c9a76049971bf37f60f7f4c01ce15f5b8",
+    "evaluation.json": "81a6a0a2ee716c9bfe52e1f71abf30eaa44e697345223f8a3126d0b83c250c64"
+  }
+}

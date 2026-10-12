@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "id": "stable-difference",
+  "revision": "synthetic-v1",
+  "files": {
+    "repo/solution.py": "c60f401fd5d64abb50bdc9cebbff10e0db4aebffa301223fed7bd49bc52ed91c",
+    "spec.md": "32dd4039076bd2508b84be45173ffcbb36bea5c1af922d888857153d23c153da",
+    "acceptance.json": "6bb25d5d9c1d52fe799dbc54c46d79098fc96da096b0ee888eb127773f9cfc07",
+    "evaluation.json": "3bc7504192ca52718db24acb094063406269a3bc6164a1f80e1a4a4694ae9d4f"
+  }
+}

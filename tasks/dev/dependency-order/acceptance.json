@@ -1,0 +1,65 @@
+[
+  {
+    "name": "dependency-order-acceptance-1",
+    "input": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        [
+          "b",
+          "a"
+        ]
+      ]
+    ],
+    "expected": [
+      "b",
+      "a"
+    ]
+  },
+  {
+    "name": "dependency-order-acceptance-2",
+    "input": [
+      [],
+      []
+    ],
+    "expected": []
+  },
+  {
+    "name": "dependency-order-acceptance-3",
+    "input": [
+      [
+        "c",
+        "a",
+        "b"
+      ],
+      []
+    ],
+    "expected": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "name": "dependency-order-acceptance-4",
+    "input": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "b",
+          "a"
+        ]
+      ]
+    ],
+    "error": "ValueError"
+  }
+]

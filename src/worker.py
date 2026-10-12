@@ -6,6 +6,7 @@ import json
 import sys
 import types
 
+entrypoint = sys.argv[1] if len(sys.argv) > 1 else "merge_ranges"
 inputs = json.load(sys.stdin)
 output_stream = sys.stdout
 
@@ -38,7 +39,7 @@ with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.St
     else:
         for value in inputs:
             try:
-                result = module.merge_ranges(value)
+                result = getattr(module, entrypoint)(value)
                 record = {"result": result, "input_after": value}
             except BaseException as error:  # noqa: BLE001 - SystemExit is still a wrong answer
                 record = {"error": type(error).__name__, "input_after": value}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "id": "moving-average",
+  "revision": "synthetic-v1",
+  "files": {
+    "repo/solution.py": "a6e9f0df6ae8e94a975a16b3d8ac479d2dafd3a944c7d53080b3c2b959c472e7",
+    "spec.md": "aa3c419e085ad4edbb3cdb2fd094f68ace8e837156382f0d1311f97e317e42aa",
+    "acceptance.json": "d3460a5b96ba4067188b5cd6ef4a9a6c953366b216f7c771704eed739eb74f19",
+    "evaluation.json": "23adcbcfe4ed1ef1cfc4ef434b1cfcccdac27b78d0d3e6833872fb8457fa7a41"
+  }
+}

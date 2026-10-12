@@ -1,0 +1,59 @@
+[
+  {
+    "name": "run-length-acceptance-1",
+    "input": [
+      "a",
+      "a",
+      "b"
+    ],
+    "expected": [
+      [
+        "a",
+        2
+      ],
+      [
+        "b",
+        1
+      ]
+    ]
+  },
+  {
+    "name": "run-length-acceptance-2",
+    "input": [],
+    "expected": []
+  },
+  {
+    "name": "run-length-acceptance-3",
+    "input": [
+      "x"
+    ],
+    "expected": [
+      [
+        "x",
+        1
+      ]
+    ]
+  },
+  {
+    "name": "run-length-acceptance-4",
+    "input": [
+      "a",
+      "b",
+      "a"
+    ],
+    "expected": [
+      [
+        "a",
+        1
+      ],
+      [
+        "b",
+        1
+      ],
+      [
+        "a",
+        1
+      ]
+    ]
+  }
+]

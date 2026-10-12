@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "id": "binary-search",
+  "revision": "synthetic-v1",
+  "files": {
+    "repo/solution.py": "dc68bb6587ee3d5ccc8ce6d0d90be762cf2f9e11a00c1fca3d25d25d6626f5b8",
+    "spec.md": "c2c652436fd5f153fe7e2989e95999c391bc982ac394681c48694d4ca9d6cc1f",
+    "acceptance.json": "259a9245c24a04ecf3801ff32853e63547652302a15975f62ec579d6a614f137",
+    "evaluation.json": "6c5c9db8ce330c58b56263d66d568280f9993654a157cb73a471dd33b00c6dce"
+  }
+}

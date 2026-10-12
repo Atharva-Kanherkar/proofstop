@@ -1,0 +1,45 @@
+[
+  {
+    "name": "binary-search-acceptance-1",
+    "input": [
+      [
+        1,
+        2,
+        3
+      ],
+      3
+    ],
+    "expected": 2
+  },
+  {
+    "name": "binary-search-acceptance-2",
+    "input": [
+      [],
+      1
+    ],
+    "expected": -1
+  },
+  {
+    "name": "binary-search-acceptance-3",
+    "input": [
+      [
+        2,
+        2,
+        2
+      ],
+      2
+    ],
+    "expected": 0
+  },
+  {
+    "name": "binary-search-acceptance-4",
+    "input": [
+      [
+        1,
+        3
+      ],
+      2
+    ],
+    "expected": -1
+  }
+]

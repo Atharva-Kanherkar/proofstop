@@ -30,6 +30,7 @@ pub struct Verification {
     pub verdict: Verdict,
     pub cases: usize,
     pub passed: usize,
+    pub checks: Vec<bool>,
     pub wall_ms: u128,
     pub reason: String,
     pub container_name: String,
@@ -101,6 +102,19 @@ async fn bounded_read(reader: impl AsyncRead + Unpin) -> std::io::Result<Vec<u8>
 
 /// All expected answers stay in Rust. Only inputs and candidate code enter Docker.
 pub async fn verify(code: &str, cases: &[Case], config: &Config) -> Result<Verification> {
+    verify_function(code, cases, config, "merge_ranges").await
+}
+
+pub async fn verify_function(
+    code: &str,
+    cases: &[Case],
+    config: &Config,
+    entrypoint: &str,
+) -> Result<Verification> {
+    ensure!(
+        ["merge_ranges", "solve"].contains(&entrypoint),
+        "unsupported entrypoint"
+    );
     validate_image(&config.image)?;
     ensure!(!cases.is_empty(), "cannot verify an empty suite");
     ensure!(code.len() <= 64 * 1024, "candidate exceeds 64 KiB");
@@ -125,6 +139,7 @@ pub async fn verify(code: &str, cases: &[Case], config: &Config) -> Result<Verif
     let mount = format!("type=bind,src={workspace_path},dst=/work,readonly");
     let mut child = Command::new("docker")
         .args(docker_args(&config.image, &mount, &name))
+        .arg(entrypoint)
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
@@ -172,6 +187,7 @@ pub async fn verify(code: &str, cases: &[Case], config: &Config) -> Result<Verif
         verdict: Verdict::Inconclusive,
         cases: cases.len(),
         passed: 0,
+        checks: Vec::new(),
         wall_ms: started.elapsed().as_millis(),
         reason: String::new(),
         container_name: name,
@@ -199,8 +215,10 @@ pub async fn verify(code: &str, cases: &[Case], config: &Config) -> Result<Verif
         result.reason = "verifier output exceeded limit".into();
         return Ok(result);
     }
-    match score_output(&output, cases) {
-        Ok(passed) => {
+    match score_checks(&output, cases) {
+        Ok(checks) => {
+            let passed = checks.iter().filter(|p| **p).count();
+            result.checks = checks;
             result.passed = passed;
             result.verdict = if passed == cases.len() {
                 Verdict::Passed
@@ -214,10 +232,15 @@ pub async fn verify(code: &str, cases: &[Case], config: &Config) -> Result<Verif
     Ok(result)
 }
 
+#[cfg(test)]
 fn score_output(output: &[u8], cases: &[Case]) -> Result<usize> {
+    Ok(score_checks(output, cases)?.iter().filter(|p| **p).count())
+}
+
+fn score_checks(output: &[u8], cases: &[Case]) -> Result<Vec<bool>> {
     let records: Vec<Value> = serde_json::from_slice(output)?;
     ensure!(records.len() == cases.len(), "wrong verifier result count");
-    let mut passed = 0;
+    let mut checks = Vec::new();
     for (record, case) in records.iter().zip(cases) {
         ensure!(
             record.is_object() && record.get("input_after").is_some(),
@@ -225,7 +248,10 @@ fn score_output(output: &[u8], cases: &[Case]) -> Result<usize> {
         );
         let matches = match (&case.expected, &case.error) {
             (Some(expected), None) => {
-                record.get("result") == Some(expected) && record.get("error").is_none()
+                record
+                    .get("result")
+                    .is_some_and(|actual| json_equal(actual, expected))
+                    && record.get("error").is_none()
             }
             (None, Some(error)) => {
                 record.get("error").and_then(Value::as_str) == Some(error)
@@ -233,16 +259,71 @@ fn score_output(output: &[u8], cases: &[Case]) -> Result<usize> {
             }
             _ => false,
         };
-        if matches && record["input_after"] == case.input {
-            passed += 1;
-        }
+        checks.push(matches && record["input_after"] == case.input);
     }
-    Ok(passed)
+    Ok(checks)
+}
+
+// JSON distinguishes 4 from 4.0 internally; compare numeric values without rounding
+// large integer answers through f64.
+fn json_equal(actual: &Value, expected: &Value) -> bool {
+    if actual == expected {
+        return true;
+    }
+    match (actual, expected) {
+        (Value::Array(a), Value::Array(b)) => {
+            a.len() == b.len() && a.iter().zip(b).all(|(a, b)| json_equal(a, b))
+        }
+        (Value::Object(a), Value::Object(b)) => {
+            a.len() == b.len()
+                && a.iter()
+                    .all(|(key, value)| b.get(key).is_some_and(|other| json_equal(value, other)))
+        }
+        (Value::Number(a), Value::Number(b)) => {
+            let integer = |n: &serde_json::Number| {
+                n.as_i64()
+                    .map(i128::from)
+                    .or_else(|| n.as_u64().map(i128::from))
+            };
+            let (Some(i), Some(f)) = (
+                integer(a).or_else(|| integer(b)),
+                if integer(a).is_some() {
+                    b.as_f64()
+                } else {
+                    a.as_f64()
+                },
+            ) else {
+                return false;
+            };
+            // Both integer representations were already compared above.
+            if integer(a).is_some() && integer(b).is_some() {
+                return false;
+            }
+            f.is_finite()
+                && f.fract() == 0.0
+                && (-9223372036854775808.0..18446744073709551616.0).contains(&f)
+                && f as i128 == i
+        }
+        _ => false,
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn numeric_scoring_preserves_large_integer_precision() {
+        assert!(json_equal(
+            &serde_json::json!([4.0, -2.0]),
+            &serde_json::json!([4, -2])
+        ));
+        assert!(!json_equal(
+            &serde_json::json!(1000000000000000000.0),
+            &serde_json::json!(1000000000000000001u64)
+        ));
+        assert!(!json_equal(&serde_json::json!(1.5), &serde_json::json!(1)));
+        assert!(!json_equal(&serde_json::json!(true), &serde_json::json!(1)));
+    }
     #[test]
     fn pins_image_and_requires_isolation_flags() {
         assert!(validate_image("python:latest").is_err());

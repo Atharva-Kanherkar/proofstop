@@ -1,0 +1,75 @@
+[
+  {
+    "name": "run-length-evaluation-1",
+    "input": [
+      "",
+      "",
+      "x",
+      "x"
+    ],
+    "expected": [
+      [
+        "",
+        2
+      ],
+      [
+        "x",
+        2
+      ]
+    ]
+  },
+  {
+    "name": "run-length-evaluation-2",
+    "input": [
+      "z",
+      "z",
+      "z"
+    ],
+    "expected": [
+      [
+        "z",
+        3
+      ]
+    ]
+  },
+  {
+    "name": "run-length-evaluation-3",
+    "input": [
+      "A",
+      "a"
+    ],
+    "expected": [
+      [
+        "A",
+        1
+      ],
+      [
+        "a",
+        1
+      ]
+    ]
+  },
+  {
+    "name": "run-length-evaluation-4",
+    "input": [
+      "1",
+      "1",
+      "2",
+      "1"
+    ],
+    "expected": [
+      [
+        "1",
+        2
+      ],
+      [
+        "2",
+        1
+      ],
+      [
+        "1",
+        1
+      ]
+    ]
+  }
+]

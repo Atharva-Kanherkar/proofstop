@@ -1,0 +1,68 @@
+[
+  {
+    "name": "group-totals-acceptance-1",
+    "input": [
+      [
+        "b",
+        2
+      ],
+      [
+        "a",
+        1
+      ],
+      [
+        "b",
+        3
+      ]
+    ],
+    "expected": [
+      [
+        "b",
+        5
+      ],
+      [
+        "a",
+        1
+      ]
+    ]
+  },
+  {
+    "name": "group-totals-acceptance-2",
+    "input": [],
+    "expected": []
+  },
+  {
+    "name": "group-totals-acceptance-3",
+    "input": [
+      [
+        "x",
+        2
+      ],
+      [
+        "x",
+        -2
+      ]
+    ],
+    "expected": [
+      [
+        "x",
+        0
+      ]
+    ]
+  },
+  {
+    "name": "group-totals-acceptance-4",
+    "input": [
+      [
+        "a",
+        1
+      ]
+    ],
+    "expected": [
+      [
+        "a",
+        1
+      ]
+    ]
+  }
+]

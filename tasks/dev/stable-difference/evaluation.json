@@ -1,0 +1,63 @@
+[
+  {
+    "name": "stable-difference-evaluation-1",
+    "input": [
+      [
+        "z",
+        "x",
+        "y",
+        "z"
+      ],
+      [
+        "x"
+      ]
+    ],
+    "expected": [
+      "z",
+      "y"
+    ]
+  },
+  {
+    "name": "stable-difference-evaluation-2",
+    "input": [
+      [
+        "",
+        "a",
+        ""
+      ],
+      []
+    ],
+    "expected": [
+      "",
+      "a"
+    ]
+  },
+  {
+    "name": "stable-difference-evaluation-3",
+    "input": [
+      [
+        "A",
+        "a"
+      ],
+      [
+        "a"
+      ]
+    ],
+    "expected": [
+      "A"
+    ]
+  },
+  {
+    "name": "stable-difference-evaluation-4",
+    "input": [
+      [
+        "b"
+      ],
+      [
+        "b",
+        "b"
+      ]
+    ],
+    "expected": []
+  }
+]
