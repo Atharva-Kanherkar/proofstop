@@ -12,6 +12,9 @@ its verification outcomes. An experimental Qwen3/vLLM adapter now runs exact-tok
 segments and separate answer probes, stopping future generation on acceptance.
 Adaptive scheduling and measured GPU-efficiency benefits remain unestablished.
 See the [online stopping loop](docs/online-probes.md) for the four controls.
+A [direct-first controller](docs/direct-first-repair.md) now permits one
+reasoning-enabled repair after visible acceptance failure. Ten varied public
+development fixtures extend the comparison beyond interval merging.
 
 The [first live A40 experiment](experiments/2026-10-12-qwen3-8b/README.md)
 recorded two truncated thinking attempts and a non-thinking control that passed
@@ -296,6 +299,8 @@ the predeclared task-success requirement.
 
 | Policy | Purpose |
 | --- | --- |
+| Direct non-thinking | Cheapest answer-only control. |
+| Direct plus one repair | Spend reasoning only after visible acceptance failure. |
 | Full reasoning | Natural completion with a fixed maximum budget. |
 | Short fixed budget | Test whether simply allocating less reasoning is sufficient. |
 | Segmented continuation without probes | Isolate checkpoint, replay, and cache overhead. |
