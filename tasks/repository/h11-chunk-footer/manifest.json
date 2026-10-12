@@ -1,0 +1,24 @@
+{
+  "schema_version": 3,
+  "id": "h11-chunk-footer",
+  "revision": "v0.14.0",
+  "files": {
+    "repo/h11/__init__.py": "88ed4ace448ee36c99e9f7e0f953206f1fd9553586518d349d16045a7facde46",
+    "repo/h11/_abnf.py": "c9b8b1af4c6cba99e403a18503232e6ee5c5e9373595bfe117cf743600ac7cd7",
+    "repo/h11/_connection.py": "792daca2b303d3328b085881f655bd5bd17f3739f2dad8c76b87bab35ba3af57",
+    "repo/h11/_events.py": "2c47eebe0d406e11da551c3109dd08fa9167f7e7b350e6a82fca362afcb53c10",
+    "repo/h11/_headers.py": "46a07c71df023746e560fcdc2dee6a78287ea61bfa0f553f0878f886cebb9604",
+    "repo/h11/_readers.py": "11b49e7748f3c155220f59ce3c07947151381657f7c179317dbf1cd3af8e4c13",
+    "repo/h11/_receivebuffer.py": "c6bb29b1db0d81617145f41c4d7c51f11add8d15d74cad08a39710616a49d56b",
+    "repo/h11/_state.py": "93554be920db68f912ad9fb8f5ec025c3a6e8944baf7fe3a6216d68ee575a846",
+    "repo/h11/_util.py": "2d69248d7c89685940cba2eddfdc3bdd44ad925153e68bdcbe8d13918ed162e9",
+    "repo/h11/_version.py": "2d5c93762651cc8204bfbf54c8e81b339894ac9525944ce5096689118058d737",
+    "repo/h11/_writers.py": "a052a6e8fb637877db8f844b5fb541eca0dcd60218e778171b7fc747d96d9930",
+    "repo/h11/py.typed": "b28c3db284f03fd4ff80401049587b19bf3ce79874e0dc2686cd967be2518193",
+    "repo/LICENSE.txt": "37db5bb85926db28a427a25867f10b1232003aea1be69ccb851138adb8e6f361",
+    "acceptance.json": "9af289a392d602ec82f8feadaa4502d9de99575508062a1f4d2a20769b9ad40a",
+    "evaluation.json": "54cfabab82d78b7a217e17a87536fc390d06358b4bb0fef1b752742667650152",
+    "spec.md": "1d421dc54f031ecf66bf8ff262b40773869447fe7b930c0ef8ffd910ac672eaf",
+    "upstream.json": "b8910a102adc68dcb357e2d73a11094dcfb70742424a51efa8d75beff13e25a2"
+  }
+}

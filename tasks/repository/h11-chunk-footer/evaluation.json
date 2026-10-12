@@ -1,0 +1,211 @@
+[
+  {
+    "name": "invalid-first-byte-split",
+    "input": [
+      "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a616258",
+      "59300d0a0d0a"
+    ],
+    "error": "RemoteProtocolError"
+  },
+  {
+    "name": "invalid-second-byte-split",
+    "input": [
+      "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d",
+      "58300d0a0d0a"
+    ],
+    "error": "RemoteProtocolError"
+  },
+  {
+    "name": "invalid-later-chunk",
+    "input": [
+      "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62635a5a300d0a0d0a"
+    ],
+    "error": "RemoteProtocolError"
+  },
+  {
+    "name": "valid-bytewise-footer",
+    "input": [
+      "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a6162",
+      "0d",
+      "0a",
+      "300d0a0d0a"
+    ],
+    "expected": {
+      "body_hex": "6162",
+      "complete": true,
+      "trailing_hex": ""
+    }
+  },
+  {
+    "name": "valid-multiple-chunks",
+    "input": [
+      "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a320d0a62630d0a300d0a0d0a"
+    ],
+    "expected": {
+      "body_hex": "616263",
+      "complete": true,
+      "trailing_hex": ""
+    }
+  },
+  {
+    "name": "extensions-and-trailers",
+    "input": [
+      "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a323b6b65793d76616c75650d0a78790d0a300d0a582d546573743a207965730d0a0d0a"
+    ],
+    "expected": {
+      "body_hex": "7879",
+      "complete": true,
+      "trailing_hex": ""
+    }
+  },
+  {
+    "name": "incomplete-footer-waits",
+    "input": [
+      "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d"
+    ],
+    "expected": {
+      "body_hex": "6162",
+      "complete": false,
+      "trailing_hex": ""
+    }
+  },
+  {
+    "name": "unexpected-eof",
+    "input": [
+      "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a320d0a61620d",
+      ""
+    ],
+    "error": "RemoteProtocolError"
+  },
+  {
+    "name": "pipeline-preserved",
+    "input": [
+      "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a310d0a610d0a300d0a0d0a474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a"
+    ],
+    "expected": {
+      "body_hex": "61",
+      "complete": true,
+      "trailing_hex": "474554202f6e65787420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a0d0a"
+    }
+  },
+  {
+    "name": "content-length-unaffected",
+    "input": [
+      "504f5354202f20485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a436f6e74656e742d4c656e6774683a20330d0a0d0a616263"
+    ],
+    "expected": {
+      "body_hex": "616263",
+      "complete": true,
+      "trailing_hex": ""
+    }
+  },
+  {
+    "name": "complete-byte-at-a-time",
+    "input": [
+      "50",
+      "4f",
+      "53",
+      "54",
+      "20",
+      "2f",
+      "75",
+      "70",
+      "6c",
+      "6f",
+      "61",
+      "64",
+      "20",
+      "48",
+      "54",
+      "54",
+      "50",
+      "2f",
+      "31",
+      "2e",
+      "31",
+      "0d",
+      "0a",
+      "48",
+      "6f",
+      "73",
+      "74",
+      "3a",
+      "20",
+      "65",
+      "78",
+      "61",
+      "6d",
+      "70",
+      "6c",
+      "65",
+      "2e",
+      "69",
+      "6e",
+      "76",
+      "61",
+      "6c",
+      "69",
+      "64",
+      "0d",
+      "0a",
+      "54",
+      "72",
+      "61",
+      "6e",
+      "73",
+      "66",
+      "65",
+      "72",
+      "2d",
+      "45",
+      "6e",
+      "63",
+      "6f",
+      "64",
+      "69",
+      "6e",
+      "67",
+      "3a",
+      "20",
+      "63",
+      "68",
+      "75",
+      "6e",
+      "6b",
+      "65",
+      "64",
+      "0d",
+      "0a",
+      "0d",
+      "0a",
+      "31",
+      "0d",
+      "0a",
+      "71",
+      "0d",
+      "0a",
+      "30",
+      "0d",
+      "0a",
+      "0d",
+      "0a"
+    ],
+    "expected": {
+      "body_hex": "71",
+      "complete": true,
+      "trailing_hex": ""
+    }
+  },
+  {
+    "name": "complete-then-trailing-arrives",
+    "input": [
+      "504f5354202f75706c6f616420485454502f312e310d0a486f73743a206578616d706c652e696e76616c69640d0a5472616e736665722d456e636f64696e673a206368756e6b65640d0a0d0a300d0a0d0a",
+      "4e455854"
+    ],
+    "expected": {
+      "body_hex": "",
+      "complete": true,
+      "trailing_hex": "4e455854"
+    }
+  }
+]

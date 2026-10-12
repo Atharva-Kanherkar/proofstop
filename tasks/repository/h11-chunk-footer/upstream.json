@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/python-hyper/h11",
+  "base_version": "0.14.0",
+  "base_commit": "467c5cfc5f9a1364c7da6b754d591092ee409931",
+  "target": "repo/h11/_readers.py",
+  "control_version": "0.16.0",
+  "control_commit": "1c5b07581f058886c8bdd87adababd7d959dc7ca",
+  "status": "historical-fixed",
+  "advisory": "https://github.com/python-hyper/h11/security/advisories/GHSA-vqfr-h8mv-ghfj",
+  "checked_date_local": "2026-10-13",
+  "checked_timezone": "Asia/Tokyo",
+  "classification": "public_historical_development",
+  "test_authorship": "ProofStop cases authored from the HTTP framing contract before inspecting the upstream repaired target; not copied from upstream tests.",
+  "runtime_snapshot": "All h11 runtime modules and py.typed copied byte-for-byte; upstream tests and packaging files omitted. No external runtime dependencies."
+}
