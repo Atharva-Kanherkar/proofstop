@@ -352,7 +352,7 @@ pub async fn run(
             fs::write(output.join("main-trace.txt"), &trace)?;
             recorder.event("main_checkpoint", json!({"generated_tokens":main_generated.len(),"stopped":stopped,"prefix_sha256":hash(&serde_json::to_vec(&branch(&prompt_ids,&main_generated))?)}))?;
             if stopped {
-                match candidate::extract(&trace) {
+                match candidate::extract(&format!("<think>\n{trace}")) {
                     Ok(source) => { if !score(&mut recorder, &mut summary, &source, task, config, "natural-answer").await? { summary.outcome="failed_checks".into(); } },
                     Err(error) => { summary.error=Some(error.to_string()); },
                 }
@@ -373,7 +373,7 @@ pub async fn run(
                 let text = recorder.text(model, &branch(&branch(&main_generated,suffix),&tokens)).await?;
                 let label = format!("probe-{probe_count:02}");
                 fs::write(output.join(format!("{label}.txt")), &text)?;
-                match candidate::extract(&text) {
+                match candidate::extract(&format!("<think>\n{text}")) {
                     Ok(source) => { if score(&mut recorder, &mut summary, &source, task, config, &label).await? { break; } },
                     Err(error) => { recorder.event("probe_rejected", json!({"probe":probe_count,"reason":error.to_string()}))?; },
                 }

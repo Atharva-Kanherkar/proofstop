@@ -28,7 +28,8 @@ For an answer probe, it copies the main prefix and adds `</think>` if reasoning
 is still open. It never appends that closure, the probe output, or test feedback
 to the main branch. If reasoning resumes, it uses the original main tokens.
 
-Only a naturally stopped probe containing exactly one complete Python block is
+Draft code inside a closed thinking envelope is excluded before parsing.
+Only a naturally stopped probe containing exactly one complete final Python block is
 eligible for execution. The Docker verifier uses visible acceptance cases to
 make the stopping decision. Evaluation runs after that decision and never
 feeds back into generation. A verifier fault aborts as inconclusive. All

@@ -2,6 +2,15 @@ use anyhow::{Result, bail};
 
 /// Only complete fenced candidates are executable. Reasoning is never code.
 pub fn extract(text: &str) -> Result<String> {
+    let text = text.trim_start();
+    let text = if let Some(reasoning) = text.strip_prefix("<think>") {
+        reasoning
+            .split_once("</think>")
+            .ok_or_else(|| anyhow::anyhow!("reasoning did not close"))?
+            .1
+    } else {
+        text
+    };
     let parts: Vec<_> = text.split("```").collect();
     if parts.len() != 3 {
         bail!("expected exactly one complete fenced Python block");
@@ -29,6 +38,17 @@ mod tests {
             extract("Reasoning\n```python\nx = 1\n```\n").unwrap(),
             "x = 1\n"
         );
+    }
+
+    #[test]
+    fn only_final_answer_code_is_executable() {
+        assert_eq!(
+            extract("<think>draft\n```python\nwrong()\n```\n</think>\n```python\nright()\n```\n")
+                .unwrap(),
+            "right()\n"
+        );
+        assert!(extract("<think>```python\nwrong()\n```").is_err());
+        assert!(extract("<think>```python\nwrong()\n```</think>no final code").is_err());
     }
 
     #[test]
