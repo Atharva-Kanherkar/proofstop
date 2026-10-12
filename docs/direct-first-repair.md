@@ -64,7 +64,8 @@ for all trials, retain metrics before and after each run, and include failures.
 
 `scripts/development-screen.py` consumes a local session directory containing a
 frozen `plan.json` and `allocation.json` with a UTC deadline. It requires the
-source commit and task manifest hashes to match, refuses reruns and captures
+source commit and task manifest hashes to match, reserves the session with an
+exclusive start marker, refuses completed or interrupted reruns and captures
 all outcomes. Hardware provisioning and deletion are separate actions.
 
 Trial allocation time includes generation, verification, client process work

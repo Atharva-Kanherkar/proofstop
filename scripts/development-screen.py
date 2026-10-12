@@ -20,6 +20,10 @@ def main():
     args = parser.parse_args()
     root = Path(__file__).resolve().parent.parent
     session = args.session.resolve()
+    # Check incomplete sessions too, before any network call or capture write.
+    marker = session / 'screen-started.json'
+    if marker.exists() or (session / 'results.json').exists() or (session / 'trials').exists() or any(session.glob('*-metrics-*.txt')):
+        raise RuntimeError('refusing to rerun an existing or interrupted screen')
     plan = json.loads((session / 'plan.json').read_text())
     allocation = json.loads((session / 'allocation.json').read_text())
     deadline = datetime.datetime.fromisoformat(allocation['deadline_utc'].replace('Z', '+00:00'))
@@ -33,6 +37,10 @@ def main():
         digest = hashlib.sha256((root / entry['path'] / 'manifest.json').read_bytes()).hexdigest()
         if digest != entry['manifest_sha256']:
             raise RuntimeError('task set drift')
+    # Exclusive creation also prevents two drivers racing on a fresh directory.
+    with marker.open('x') as file:
+        json.dump({'source_commit': head, 'started_utc': datetime.datetime.now(datetime.timezone.utc).isoformat()}, file)
+        file.write('\n')
     results = []
     def snapshot(path):
         with urllib.request.urlopen(args.endpoint + '/metrics', timeout=15) as response:
