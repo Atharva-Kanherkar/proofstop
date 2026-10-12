@@ -23,7 +23,14 @@ pub struct WireResponse {
 }
 
 pub fn request(model: &str, prompt: &str, config: &Config) -> Vec<u8> {
-    serde_json::to_vec(&json!({"model":model,"messages":[{"role":"user","content":prompt}],"stream":false,"n":1,"max_tokens":config.max_tokens,"seed":config.seed,"temperature":config.temperature})).expect("validated configuration")
+    let mut value = json!({"model":model,"messages":[{"role":"user","content":prompt}],"stream":false,"n":1,"max_tokens":config.max_tokens,"seed":config.seed,"temperature":config.temperature});
+    if let Some(p) = config.top_p {
+        value["top_p"] = json!(p);
+    }
+    if let Some(k) = config.top_k {
+        value["top_k"] = json!(k);
+    }
+    serde_json::to_vec(&value).expect("validated configuration")
 }
 
 pub fn endpoint(base: &str) -> Result<reqwest::Url> {
@@ -115,6 +122,16 @@ pub fn parse(body: &[u8]) -> Result<Completion> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn legacy_sampling_fields_stay_absent() {
+        let config = Config::load(
+            &std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("configs/local.json"),
+        )
+        .unwrap();
+        let value: Value = serde_json::from_slice(&request("m", "p", &config)).unwrap();
+        assert!(value.get("top_p").is_none());
+        assert!(value.get("top_k").is_none());
+    }
     #[test]
     fn finish_reason_and_usage_are_not_guessed() {
         let mut value = json!({"model":"test","choices":[{"finish_reason":"stop","message":{"content":"```python\nx=1\n```"}}]});

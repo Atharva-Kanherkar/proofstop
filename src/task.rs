@@ -127,6 +127,10 @@ pub struct Config {
     pub max_tokens: u32,
     pub seed: u64,
     pub temperature: f64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub top_p: Option<f64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub top_k: Option<i32>,
 }
 
 impl Config {
@@ -150,6 +154,16 @@ impl Config {
             "invalid temperature"
         );
         crate::sandbox::validate_image(&config.image)?;
+        ensure!(
+            config
+                .top_p
+                .is_none_or(|p| p.is_finite() && p > 0.0 && p <= 1.0),
+            "top_p must be in (0, 1]"
+        );
+        ensure!(
+            config.top_k.is_none_or(|k| k == -1 || k > 0),
+            "top_k must be -1 or positive"
+        );
         Ok(config)
     }
 }
@@ -157,6 +171,30 @@ impl Config {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn sampling_values_are_validated() {
+        let original: Value = serde_json::from_slice(
+            &fs::read(Path::new(env!("CARGO_MANIFEST_DIR")).join("configs/local.json")).unwrap(),
+        )
+        .unwrap();
+        let tmp = tempfile::tempdir().unwrap();
+        let path = tmp.path().join("config.json");
+        for (p, k, valid) in [
+            (0.95, 20, true),
+            (1.0, -1, true),
+            (0.0, 20, false),
+            (-0.1, 20, false),
+            (1.1, 20, false),
+            (0.95, 0, false),
+            (0.95, -2, false),
+        ] {
+            let mut value = original.clone();
+            value["top_p"] = serde_json::json!(p);
+            value["top_k"] = serde_json::json!(k);
+            fs::write(&path, serde_json::to_vec(&value).unwrap()).unwrap();
+            assert_eq!(Config::load(&path).is_ok(), valid, "top_p={p}, top_k={k}");
+        }
+    }
     fn fixture() -> std::path::PathBuf {
         Path::new(env!("CARGO_MANIFEST_DIR")).join("tasks/merge-ranges")
     }

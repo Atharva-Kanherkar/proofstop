@@ -18,7 +18,7 @@ copying the evidence locally. A shell timeout does not stop rental billing.
 | Context | 8192 tokens |
 | Tensor parallelism / concurrent sequences | 1 / 1 |
 | GPU memory utilization | 0.85 |
-| Generation | 4096 tokens maximum; temperature 0.6; seed 42 |
+| Generation | 4096 tokens maximum; temperature 0.6; top-p 0.95; top-k 20; seed 42 |
 | Request timeout | 600 seconds |
 | Task | `merge-ranges`, `synthetic-v1` |
 | Expected GPU | One Ampere GPU with 48 GB; record the actual allocated SKU |
@@ -113,3 +113,14 @@ Sources checked during preparation:
 - [Pinned model](https://huggingface.co/Qwen/Qwen3-8B/tree/b968826d9c46dd6066d109eabc6255188de91218)
 - [vLLM 0.10.2 installation](https://docs.vllm.ai/en/v0.10.2/getting_started/installation/gpu.html)
 - [Runpod billing](https://docs.runpod.io/accounts-billing/billing)
+
+## Initial live attempt and sampling correction
+
+The original GPU profile omitted top-p and top-k while disabling the model's
+repository generation configuration. Its first attempt reached 4096 tokens
+without a final answer. Preserve that attempt as `gpu-baseline-001`.
+The corrected profile sets Qwen's recommended thinking top-p 0.95 and top-k 20
+explicitly and retains the same seed, prompt, and token budget. Record reruns in
+new directories. This correction is prompted by model documentation and visible
+reasoning, not by evaluation feedback. It does not establish that sampling caused
+the initial failure or that early exit saves compute.

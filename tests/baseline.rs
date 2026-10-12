@@ -74,9 +74,12 @@ async fn failed_http_request_is_captured_and_cannot_overwrite_a_run() {
     let (endpoint, capture) = capture_server(503, body.clone()).await;
     let tmp = tempfile::tempdir().unwrap();
     let output = tmp.path().join("run");
+    let mut sampling = config();
+    sampling.top_p = Some(0.95);
+    sampling.top_k = Some(20);
     let result = run::baseline(
         &task(),
-        &config(),
+        &sampling,
         &endpoint,
         "fixture-model",
         &output,
@@ -90,6 +93,12 @@ async fn failed_http_request_is_captured_and_cannot_overwrite_a_run() {
     let request = capture.await.unwrap();
     assert_eq!(request["stream"], false);
     assert_eq!(request["model"], "fixture-model");
+    assert_eq!(request["top_p"], 0.95);
+    assert_eq!(request["top_k"], 20);
+    assert_eq!(
+        serde_json::from_slice::<Value>(&fs::read(output.join("request.json")).unwrap()).unwrap(),
+        request
+    );
     assert!(!request.to_string().contains("negative_nested"));
     assert!(
         fs::read_to_string(output.join("events.jsonl"))
