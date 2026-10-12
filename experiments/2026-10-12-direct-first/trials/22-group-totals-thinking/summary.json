@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "policy": "full_reasoning_baseline",
+  "evidence_class": "unclassified",
+  "outcome": "passed",
+  "task_id": "group-totals",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 67373,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 367,
+  "completion_tokens": 1963,
+  "acceptance": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-112df756-16e2-4312-98be-38f52a1c5f37",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 321
+  },
+  "evaluation": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-80665086-90da-489f-b929-61d86a80b30e",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 273
+  },
+  "error": null
+}

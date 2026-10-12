@@ -1,0 +1,109 @@
+{
+  "classification": "public_synthetic_development",
+  "groups": [
+    {
+      "policy": "nonthinking",
+      "trials": 10,
+      "successful_tasks": 8,
+      "generated_tokens": 806,
+      "prompt_tokens": 3315,
+      "client_wall_seconds": 54.903,
+      "allocated_trial_seconds": 79.23085379600525,
+      "allocated_trial_seconds_per_success": 9.903856724500656,
+      "engine_request_seconds": 25.365888658037875,
+      "trial_gpu_cost_usd_estimate": 0.012985056594345304,
+      "generation_requests": 10,
+      "acceptance_false_positives": 0,
+      "repair_attempts": 0
+    },
+    {
+      "policy": "thinking",
+      "trials": 10,
+      "successful_tasks": 6,
+      "generated_tokens": 26144,
+      "prompt_tokens": 3275,
+      "client_wall_seconds": 845.752,
+      "allocated_trial_seconds": 869.5441994667053,
+      "allocated_trial_seconds_per_success": 144.9240332444509,
+      "engine_request_seconds": 819.5933064790443,
+      "trial_gpu_cost_usd_estimate": 0.1425086326903767,
+      "generation_requests": 10,
+      "acceptance_false_positives": 0,
+      "repair_attempts": 0
+    },
+    {
+      "policy": "repair",
+      "trials": 10,
+      "successful_tasks": 10,
+      "generated_tokens": 4116,
+      "prompt_tokens": 4363,
+      "client_wall_seconds": 155.838,
+      "allocated_trial_seconds": 181.11005020141602,
+      "allocated_trial_seconds_per_success": 18.1110050201416,
+      "engine_request_seconds": 129.19326976203592,
+      "trial_gpu_cost_usd_estimate": 0.029681924894120956,
+      "generation_requests": 12,
+      "acceptance_false_positives": 0,
+      "repair_attempts": 2
+    }
+  ],
+  "direct_stage_checks": [
+    {
+      "task": "moving-average",
+      "direct_text_matches": true,
+      "requests": 1
+    },
+    {
+      "task": "dependency-order",
+      "direct_text_matches": true,
+      "requests": 1
+    },
+    {
+      "task": "chunk-list",
+      "direct_text_matches": true,
+      "requests": 1
+    },
+    {
+      "task": "run-length",
+      "direct_text_matches": true,
+      "requests": 1
+    },
+    {
+      "task": "group-totals",
+      "direct_text_matches": true,
+      "requests": 1
+    },
+    {
+      "task": "binary-search",
+      "direct_text_matches": true,
+      "requests": 2
+    },
+    {
+      "task": "stable-difference",
+      "direct_text_matches": true,
+      "requests": 1
+    },
+    {
+      "task": "flatten-once",
+      "direct_text_matches": true,
+      "requests": 2
+    },
+    {
+      "task": "balanced-brackets",
+      "direct_text_matches": true,
+      "requests": 1
+    },
+    {
+      "task": "rotate-list",
+      "direct_text_matches": true,
+      "requests": 1
+    }
+  ],
+  "trial_count": 30,
+  "notes": [
+    "One seed and one trial per policy per task. Public synthetic tasks, not held-out quality evidence.",
+    "Engine counters measure request processing time, not CUDA kernel time.",
+    "Trial allocation brackets include verifier waits, client process and metric calls; setup and inter-trial gaps are separate.",
+    "A repair has two per-request budgets, while direct and thinking have one. Sampling profiles differ by mode."
+  ]
+}

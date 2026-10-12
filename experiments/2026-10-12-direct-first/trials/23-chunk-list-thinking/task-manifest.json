@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "id": "chunk-list",
+  "revision": "synthetic-v1",
+  "files": {
+    "acceptance.json": "9e8f4ebfd81678e10640533efff51451e0a381cdcb0846147aede0178848a7db",
+    "evaluation.json": "7fa7d1c025124ee42c949e10838cfa249a8f2cebc6595894f20d630604115159",
+    "repo/solution.py": "87bfa98ff767b77d9f4d4032be03194b44ef12d1d75ea4cf1ddb00792dae77fd",
+    "spec.md": "79c5708dc3d2ba43dd0f26f084617f1fb847dcb906beb69cf9ca692628c6a1af"
+  }
+}

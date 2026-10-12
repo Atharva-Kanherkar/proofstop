@@ -78,3 +78,9 @@ These small public tasks are a development screen, not held-out benchmark or
 real upstream bugs. One seed and ten tasks cannot establish general quality or
 savings. If direct answers already solve everything, that is evidence that the
 tasks are too easy to test whether repair helps.
+
+The [first live screen](../experiments/2026-10-12-direct-first/README.md)
+passed 10/10 with two repairs, compared with 8/10 direct and 6/10 thinking.
+Trial allocation time per success was 18.11 seconds for repair, 9.90 for direct
+and 144.92 for thinking. Repairs improved the measured quality at extra cost
+over direct answering; shared setup and rental overhead are reported separately.

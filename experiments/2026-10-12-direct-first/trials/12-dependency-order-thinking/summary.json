@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "policy": "full_reasoning_baseline",
+  "evidence_class": "unclassified",
+  "outcome": "failed",
+  "task_id": "dependency-order",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 129905,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 356,
+  "completion_tokens": 4096,
+  "acceptance": null,
+  "evaluation": null,
+  "error": "completion did not finish normally"
+}

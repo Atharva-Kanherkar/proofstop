@@ -1,0 +1,18 @@
+[
+  {
+    "name": "binary-search-acceptance-1",
+    "passed": true
+  },
+  {
+    "name": "binary-search-acceptance-2",
+    "passed": true
+  },
+  {
+    "name": "binary-search-acceptance-3",
+    "passed": false
+  },
+  {
+    "name": "binary-search-acceptance-4",
+    "passed": true
+  }
+]

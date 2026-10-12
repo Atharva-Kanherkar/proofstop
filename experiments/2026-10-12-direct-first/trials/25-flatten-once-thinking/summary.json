@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "policy": "full_reasoning_baseline",
+  "evidence_class": "unclassified",
+  "outcome": "passed",
+  "task_id": "flatten-once",
+  "task_revision": "synthetic-v1",
+  "wall_ms": 78277,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 310,
+  "completion_tokens": 2315,
+  "acceptance": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-325e9977-2c41-4a14-9b62-ab88bf820cc5",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 335
+  },
+  "evaluation": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-fa3f759c-b8f2-493d-95c1-f53d964587ad",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 236
+  },
+  "error": null
+}

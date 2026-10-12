@@ -1,0 +1,187 @@
+{
+  "trial_count": 30,
+  "generation_request_count": 32,
+  "direct_stage_text_matches_control": 10,
+  "checks": [
+    {
+      "trial": "01-rotate-list-thinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": null
+    },
+    {
+      "trial": "02-moving-average-repair",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "03-run-length-thinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "04-dependency-order-repair",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "05-balanced-brackets-thinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "06-flatten-once-nonthinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "07-chunk-list-repair",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "08-moving-average-nonthinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "09-run-length-repair",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "10-stable-difference-nonthinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "11-run-length-nonthinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "12-dependency-order-thinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": null
+    },
+    {
+      "trial": "13-group-totals-repair",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "14-balanced-brackets-nonthinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "15-stable-difference-thinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "16-group-totals-nonthinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "17-binary-search-thinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "18-moving-average-thinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": null
+    },
+    {
+      "trial": "19-rotate-list-nonthinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "20-binary-search-repair",
+      "request_count": 2,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "21-stable-difference-repair",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "22-group-totals-thinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "23-chunk-list-thinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "24-dependency-order-nonthinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "25-flatten-once-thinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "26-flatten-once-repair",
+      "request_count": 2,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "27-balanced-brackets-repair",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "28-binary-search-nonthinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "29-chunk-list-nonthinking",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    },
+    {
+      "trial": "30-rotate-list-repair",
+      "request_count": 1,
+      "evaluation_names_excluded": true,
+      "no_generation_after_stop": true
+    }
+  ]
+}

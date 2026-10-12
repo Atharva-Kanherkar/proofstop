@@ -15,6 +15,10 @@ See the [online stopping loop](docs/online-probes.md) for the four controls.
 A [direct-first controller](docs/direct-first-repair.md) now permits one
 reasoning-enabled repair after visible acceptance failure. Ten varied public
 development fixtures extend the comparison beyond interval merging.
+The [live direct-first screen](experiments/2026-10-12-direct-first/README.md)
+passed 10/10 tasks with two repairs, versus 8/10 direct and 6/10 thinking.
+Repair increased cost per success over direct answering; these tiny public tasks
+establish a quality/cost tradeoff, not a general efficiency benefit.
 
 The [first live A40 experiment](experiments/2026-10-12-qwen3-8b/README.md)
 recorded two truncated thinking attempts and a non-thinking control that passed
@@ -205,8 +209,9 @@ controller must not pause unrelated requests through an engine-wide pause API.
 
 ### Milestone 0: Lock the experimental contract
 
-**Progress:** Rust architecture and one synthetic task are pinned. Live-model,
-backend, hardware, and benchmark-partition identities remain to be locked.
+**Progress:** Rust architecture, twelve public synthetic fixtures, and live
+model/backend/hardware identities are pinned in the published studies. An
+independently frozen held-out benchmark partition remains pending.
 
 Select and pin the model, engine, tokenizer, hardware, decoding settings, dataset
 revision, and acceptance/evaluation split. Define the candidate extraction method
