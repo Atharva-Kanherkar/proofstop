@@ -11,7 +11,7 @@
 ## Unit Tests
 - Validate schema 2 identity and fixed file set; reject unknown schema, unsafe identity, changed hashes.
 - Feedback contains only visible case names and pass/fail, with no evaluation cases or candidate output.
-- Per-case scoring requires correct result or error and unchanged input.
+- Per-case scoring requires correct result or error and unchanged input. JSON numeric results treat exact integer/float equivalents equally, without rounding large integers.
 
 ## Integration / Functional Tests
 - Real HTTP capture and Docker: direct pass makes one request; failure then successful repair makes two; failed repair never makes a third.
