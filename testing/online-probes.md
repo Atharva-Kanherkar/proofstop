@@ -64,3 +64,11 @@ Run formatting, Clippy, Rust and real Docker tests. Review traces to confirm
 probe isolation and no request after acceptance. Publish raw synthetic artifacts,
 limitations, and a plain-language explanation. Terminate only this experiment's
 Pod after copying evidence and confirm absence.
+
+## Final-answer parsing refinement
+
+Strip a leading, closed Qwen `<think>...</think>` envelope before extracting
+executable code. Reject unclosed reasoning even if it contains a complete code
+fence. In token-prefix runs, restore the known opening thinking marker for
+parsing only; never insert it into generation or change recorded token IDs.
+Test that draft reasoning code is excluded and only the final block executes.
