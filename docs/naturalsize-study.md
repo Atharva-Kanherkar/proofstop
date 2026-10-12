@@ -19,9 +19,9 @@ The suites were written before inspecting the repaired target. A large numeric
 input uses the API's supported string form to preserve its exact input bytes
 across host JSON parsing. Expected answers stay outside Docker.
 
-The real source contains triple-backtick examples inside its docstring. Use a
-four-backtick Python block for a complete replacement file. Candidate parsing
-supports that delimiter while still rejecting ambiguous external blocks.
+The real source contains indented triple-backtick examples inside its docstring.
+Candidate parsing follows Markdown fence lines and indentation, preserving those
+examples while rejecting multiple external blocks and unclosed candidates.
 
 ```bash
 cargo run --locked -- inspect --task tasks/repository/naturalsize-rollover --show-prompt

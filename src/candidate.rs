@@ -11,29 +11,52 @@ pub fn extract(text: &str) -> Result<String> {
     } else {
         text
     };
-    let fence = if text.contains("````python\n") || text.contains("````python\r\n") {
-        "````"
-    } else {
-        "```"
-    };
-    let parts: Vec<_> = text.split(fence).collect();
-    if parts.len() != 3 {
+    let mut opening = None;
+    let mut closing = None;
+    let mut offset = 0;
+    for line in text.split_inclusive('\n') {
+        if let Some((width, info)) = markdown_fence(line) {
+            match opening {
+                None => {
+                    if info != "python" {
+                        bail!("candidate fence must identify Python");
+                    }
+                    opening = Some((width, offset + line.len()));
+                }
+                Some((minimum, _)) if closing.is_none() => {
+                    if width >= minimum && info.is_empty() {
+                        closing = Some(offset);
+                    }
+                }
+                Some(_) => bail!("expected exactly one complete fenced Python block"),
+            }
+        }
+        offset += line.len();
+    }
+    let (Some((_, start)), Some(end)) = (opening, closing) else {
         bail!("expected exactly one complete fenced Python block");
-    }
-    if parts[0].contains("```") || parts[2].contains("```") {
-        bail!("ambiguous external code fences");
-    }
-    let block = parts[1];
-    let Some(code) = block
-        .strip_prefix("python\n")
-        .or_else(|| block.strip_prefix("python\r\n"))
-    else {
-        bail!("candidate fence must identify Python");
     };
+    let code = &text[start..end];
     if code.trim().is_empty() || code.len() > 64 * 1024 {
         bail!("candidate is empty or exceeds 64 KiB");
     }
     Ok(format!("{}\n", code.trim_end()))
+}
+
+// Closing Markdown fences may have at most three leading spaces. More deeply
+// indented backticks, such as Python docstring examples, are ordinary code.
+fn markdown_fence(line: &str) -> Option<(usize, &str)> {
+    let line = line.trim_end_matches(['\n', '\r']);
+    let indent = line.bytes().take_while(|b| *b == b' ').count();
+    if indent > 3 {
+        return None;
+    }
+    let content = &line[indent..];
+    let width = content.bytes().take_while(|b| *b == b'`').count();
+    if width < 3 {
+        return None;
+    }
+    Some((width, content[width..].trim()))
 }
 
 #[cfg(test)]
@@ -47,6 +70,13 @@ mod tests {
         assert_eq!(extract(&format!("````python\n{code}````\n")).unwrap(), code);
         assert!(extract(&format!("````python\n{code}")).is_err());
         assert!(extract("````python\nx=1\n````\n```python\ny=2\n```").is_err());
+    }
+    #[test]
+    fn ordinary_three_tick_fence_preserves_indented_docstring_examples() {
+        let code =
+            include_str!("../tasks/repository/naturalsize-rollover/repo/humanize/filesize.py");
+        assert_eq!(extract(&format!("```python\n{code}```\n")).unwrap(), code);
+        assert!(extract("```python\nx=1\n```\n```python\ny=2\n```").is_err());
     }
     #[test]
     fn accepts_one_complete_python_block() {
