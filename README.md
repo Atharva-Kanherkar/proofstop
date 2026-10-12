@@ -373,3 +373,5 @@ artifacts separate from source and document how results were derived.
 
 ProofStop is licensed under the [MIT License](LICENSE). Models, datasets, and
 dependencies retain their respective licenses.
+
+For the first rented GPU run, follow the [pinned GPU baseline runbook](docs/gpu-baseline.md).
