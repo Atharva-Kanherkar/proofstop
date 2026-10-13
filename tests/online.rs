@@ -109,6 +109,7 @@ async fn budget_exhaustion_and_unknown_usage_are_recorded() {
         segment_tokens: 1,
         probe_tokens: 1,
         max_probes: 0,
+        force_answer: false,
     };
     let result = online::run(
         &task(),
@@ -161,6 +162,7 @@ async fn invalid_echo_aborts_before_probe_and_preserves_wire() {
         segment_tokens: 1,
         probe_tokens: 1,
         max_probes: 1,
+        force_answer: false,
     };
     let result = online::run(
         &task(),
@@ -179,19 +181,26 @@ async fn invalid_echo_aborts_before_probe_and_preserves_wire() {
     assert!(tmp.path().join("run/003-main.response.json").exists());
 }
 
-async fn probe_scenario(first_bad: bool, overfit: bool, inconclusive: bool) {
+async fn probe_scenario(first_bad: bool, overfit: bool, inconclusive: bool, force_answer: bool) {
+    let current_task = if force_answer {
+        Task::load(&root().join("tasks/repository/naturalsize-rollover")).unwrap()
+    } else {
+        task()
+    };
     let good = if inconclusive {
         "while True: pass\n".to_string()
     } else {
-        fs::read_to_string(root().join(if overfit {
+        fs::read_to_string(root().join(if force_answer {
+            "tests/fixtures/repository/naturalsize-fixed.py"
+        } else if overfit {
             "tests/fixtures/overfit.py"
         } else {
             "tests/fixtures/reference.py"
         }))
         .unwrap()
     };
-    let bad = task().source;
-    let count = if first_bad { 10 } else { 6 };
+    let bad = current_task.source.clone();
+    let count = if first_bad && !force_answer { 10 } else { 6 };
     let mut mains = 0;
     let mut probes = 0;
     let (endpoint, capture) = server(count, move |route, body| match route {
@@ -238,12 +247,13 @@ async fn probe_scenario(first_bad: bool, overfit: bool, inconclusive: bool) {
     let options = online::Options {
         segment_tokens: 1,
         probe_tokens: 1,
-        max_probes: 2,
+        max_probes: if force_answer { 1 } else { 2 },
+        force_answer,
     };
     let result = tokio::time::timeout(
         Duration::from_secs(30),
         online::run(
-            &task(),
+            &current_task,
             &config,
             &endpoint,
             "m",
@@ -257,7 +267,9 @@ async fn probe_scenario(first_bad: bool, overfit: bool, inconclusive: bool) {
     .unwrap();
     assert_eq!(
         result.outcome,
-        if inconclusive {
+        if first_bad && force_answer {
+            "failed_checks"
+        } else if inconclusive {
             "inconclusive"
         } else if overfit {
             "failed_checks"
@@ -270,8 +282,11 @@ async fn probe_scenario(first_bad: bool, overfit: bool, inconclusive: bool) {
         .iter()
         .filter(|r| r["route"] == "/v1/completions")
         .collect();
-    assert_eq!(generations.len(), if first_bad { 4 } else { 2 });
-    if first_bad {
+    assert_eq!(
+        generations.len(),
+        if first_bad && !force_answer { 4 } else { 2 }
+    );
+    if first_bad && !force_answer {
         assert_eq!(generations[2]["body"]["prompt"], json!([10, 11, 1]));
     }
     assert_eq!(result.completion_tokens, Some(generations.len() as u64));
@@ -280,6 +295,11 @@ async fn probe_scenario(first_bad: bool, overfit: bool, inconclusive: bool) {
         .lines()
         .map(|x| serde_json::from_str(x).unwrap())
         .collect();
+    if first_bad && force_answer {
+        assert!(result.evaluation.is_none());
+        assert_eq!(result.policy, "bounded_forced_answer");
+        return;
+    }
     let stop = parsed
         .iter()
         .rposition(|e| {
@@ -308,17 +328,17 @@ async fn probe_scenario(first_bad: bool, overfit: bool, inconclusive: bool) {
 #[tokio::test]
 #[ignore = "requires real Docker and pinned Python image"]
 async fn first_passing_probe_stops_generation() {
-    probe_scenario(false, false, false).await;
+    probe_scenario(false, false, false, false).await;
 }
 #[tokio::test]
 #[ignore = "requires real Docker and pinned Python image"]
 async fn failed_probe_cannot_contaminate_continuation() {
-    probe_scenario(true, false, false).await;
+    probe_scenario(true, false, false, false).await;
 }
 #[tokio::test]
 #[ignore = "requires real Docker and pinned Python image"]
 async fn evaluation_failure_does_not_resume_generation() {
-    probe_scenario(false, true, false).await;
+    probe_scenario(false, true, false, false).await;
 }
 #[tokio::test]
 #[ignore = "requires real Docker and pinned Python image"]
@@ -357,6 +377,7 @@ async fn failed_generation_http_keeps_attempt_and_unknown_usage() {
         segment_tokens: 1,
         probe_tokens: 1,
         max_probes: 0,
+        force_answer: false,
     };
     let result = online::run(
         &task(),
@@ -381,5 +402,53 @@ async fn failed_generation_http_keeps_attempt_and_unknown_usage() {
 #[tokio::test]
 #[ignore = "requires real Docker and pinned Python image"]
 async fn inconclusive_verifier_aborts_without_accepting_or_resuming() {
-    probe_scenario(false, false, true).await;
+    probe_scenario(false, false, true, false).await;
+}
+
+#[tokio::test]
+#[ignore = "requires real Docker and pinned Python image"]
+async fn forced_repository_answer_stops_after_failed_acceptance() {
+    probe_scenario(true, false, false, true).await;
+}
+#[tokio::test]
+#[ignore = "requires real Docker and pinned Python image"]
+async fn forced_repository_answer_scores_only_after_stopping() {
+    probe_scenario(false, false, false, true).await;
+}
+#[tokio::test]
+async fn truncated_forced_answer_never_resumes_or_executes() {
+    let (endpoint, capture) = server(5, |route, body| match route {
+        "/tokenize" => tokenized(if body.get("messages").is_some() {
+            json!([10, 11])
+        } else {
+            json!([99])
+        }),
+        "/v1/completions" => generated(&body["prompt"], 1, false, true),
+        "/detokenize" => json!({"prompt":"unfinished reasoning"}),
+        _ => panic!("unexpected request"),
+    })
+    .await;
+    let tmp = tempfile::tempdir().unwrap();
+    let options = online::Options {
+        segment_tokens: 1,
+        probe_tokens: 1,
+        max_probes: 1,
+        force_answer: true,
+    };
+    let summary = online::run(
+        &task(),
+        &config(),
+        &endpoint,
+        "m",
+        &tmp.path().join("run"),
+        &options,
+        "harness_validation",
+    )
+    .await
+    .unwrap();
+    assert_eq!(summary.error.as_deref(), Some("forced answer truncated"));
+    assert!(summary.acceptance.is_none());
+    assert!(summary.evaluation.is_none());
+    assert_eq!(summary.completion_tokens, Some(2));
+    assert_eq!(capture.await.unwrap().len(), 5);
 }

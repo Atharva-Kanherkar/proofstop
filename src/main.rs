@@ -65,6 +65,9 @@ enum Commands {
         probe_tokens: u32,
         #[arg(long, default_value_t = 4)]
         max_probes: u32,
+        /// Stop after the first answer probe, even when it fails. Requires --max-probes 1.
+        #[arg(long)]
+        force_answer: bool,
         #[arg(long, value_enum, default_value = "unclassified")]
         evidence_class: Evidence,
     },
@@ -141,6 +144,7 @@ async fn main() -> Result<()> {
             segment_tokens,
             probe_tokens,
             max_probes,
+            force_answer,
             evidence_class,
         } => {
             let task = Task::load(&task)?;
@@ -149,6 +153,7 @@ async fn main() -> Result<()> {
                 segment_tokens,
                 probe_tokens,
                 max_probes,
+                force_answer,
             };
             let evidence = match evidence_class {
                 Evidence::Unclassified => "unclassified",
