@@ -243,8 +243,8 @@ impl Config {
             "verifier timeout must be 1..60 seconds"
         );
         ensure!(
-            (1..=600).contains(&config.request_timeout_seconds),
-            "request timeout must be 1..600 seconds"
+            (1..=1200).contains(&config.request_timeout_seconds),
+            "request timeout must be 1..1200 seconds"
         );
         ensure!(
             (1..=32768).contains(&config.max_tokens),

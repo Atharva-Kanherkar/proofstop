@@ -452,3 +452,30 @@ async fn truncated_forced_answer_never_resumes_or_executes() {
     assert_eq!(summary.completion_tokens, Some(2));
     assert_eq!(capture.await.unwrap().len(), 5);
 }
+
+#[test]
+fn committed_bounded_configs_validate_before_inference() {
+    for seed in [42, 43, 44] {
+        for mode in ["baseline", "forced"] {
+            let path = root().join(format!("configs/bounded-answer/{mode}-seed-{seed}.json"));
+            let config = Config::load(&path).unwrap();
+            assert_eq!(config.request_timeout_seconds, 1200);
+            if mode == "forced" {
+                online::Options {
+                    segment_tokens: 512,
+                    probe_tokens: 2048,
+                    max_probes: 1,
+                    force_answer: true,
+                }
+                .validate(&config)
+                .unwrap();
+            }
+            let mut value: Value = serde_json::from_slice(&fs::read(path).unwrap()).unwrap();
+            value["request_timeout_seconds"] = json!(1201);
+            let tmp = tempfile::tempdir().unwrap();
+            let invalid = tmp.path().join("config.json");
+            fs::write(&invalid, serde_json::to_vec(&value).unwrap()).unwrap();
+            assert!(Config::load(&invalid).is_err());
+        }
+    }
+}
