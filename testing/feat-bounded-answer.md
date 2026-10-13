@@ -6,6 +6,7 @@
 - Preserve the default periodic-probe and segmented policies and their recorded identities.
 - Require one probe and a reasoning segment strictly below the configured main budget. Record reasoning, answer, replay usage and all failures; truncated answers cannot execute.
 - Freeze a 16384-token thinking calibration at seed 43 and a 512-token reasoning plus 2048-token forced answer. If calibration passes, repeat both policies at seeds 42 and 44. No outcome-driven prompt, test or budget changes.
+- Use a separately recorded Serverless calibration if needed: pinned worker release v2.29.0 (source b7212acc6d60d5ada997f453783c2e09df8e6e49), vLLM 0.31.0, same Qwen3-8B revision, BF16 and 24576 context. Verify exact token-prefix echo and tokenization. Min workers 0, max 1, 10-second idle release, bounded startup and per-job execution. Record queue/proxy transport and do not claim original upstream HTTP byte spacing or dedicated GPU timing from queue execution time.
 - Additional GPU spending must remain under $3. Do not provision a billable Pod without verified automatic teardown independent of the interactive client. A scale-to-zero backend is acceptable only if model identity, exact-prefix protocol and cost bounds can be established; disclose backend changes.
 
 ## Unit Tests
