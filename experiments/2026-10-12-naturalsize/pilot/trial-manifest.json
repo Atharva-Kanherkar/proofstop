@@ -1,0 +1,20 @@
+{
+  "trials/01-seed-43-nonthinking/config.json": "3a38b5d004a322f48f290d7496ff700072c89a5502e33ac76a94b215143885e1",
+  "trials/01-seed-43-nonthinking/events.jsonl": "1994ed40bf4eba117fa8a688bfde0512b1d2ad0c745272b89538aa6dc9fee265",
+  "trials/01-seed-43-nonthinking/request.json": "9225bf5bd18aac496066afdee07768a80bb79372bef86121fe66c41c4c580dae",
+  "trials/01-seed-43-nonthinking/response.json": "b7faa08f3befc2c8bb3b6bbacd303a06f74f533b519092f50427991b8d8ca08a",
+  "trials/01-seed-43-nonthinking/summary.json": "8285ad911ada93fd085f063365e797a5b1e01f9fc05e8ceaf9665ccb4dd34ceb",
+  "trials/01-seed-43-nonthinking/task-manifest.json": "bface6760b37b2c36323b888c1256790d62e4d5cbccce7a0a8a647ad59a705f1",
+  "trials/02-seed-44-nonthinking/config.json": "cab9c040126fb6f74ec78ffa2efe1102ecc533b8172ff0c3621d092c498064d7",
+  "trials/02-seed-44-nonthinking/events.jsonl": "e38a96f8dd21a81d9be3ff8aed177adb4328e6aa6590678188cd4779b2cb6798",
+  "trials/02-seed-44-nonthinking/request.json": "cae5d5ba4ab2c35992bbf169576c7bed15f3f16037d019da178418d0f2fd93db",
+  "trials/02-seed-44-nonthinking/response.json": "f5f8a34bad1e214810c8ac3ac61e30411a8a95aa6099b3cb4b2edc56dfbd45b1",
+  "trials/02-seed-44-nonthinking/summary.json": "5ea8403f601e061faeaa3789fef6334dac90f2dd5a9a2f8dc376af2f3d565b78",
+  "trials/02-seed-44-nonthinking/task-manifest.json": "bface6760b37b2c36323b888c1256790d62e4d5cbccce7a0a8a647ad59a705f1",
+  "trials/03-seed-44-thinking/config.json": "c02c3a6f315e601534fb2de646ff3d6c8a963eea8dd52e875f25dca442c024f7",
+  "trials/03-seed-44-thinking/events.jsonl": "38c81e649cbe3323fcbf4954e2f4cb6e802f2e84fc5a836a971b38df5629b04d",
+  "trials/03-seed-44-thinking/request.json": "1a5bf1cfe0eda3345bfcf48568651ba37d0794b28c79eeab42f184cb61c25b57",
+  "trials/03-seed-44-thinking/response.json": "c26669e5119f17e209a2d481611cf8b6bcfbeeed57b2b185c1d47d8e063341de",
+  "trials/03-seed-44-thinking/summary.json": "940d70f3aa962a225046e528fd03e6ff165efff212a58bd3446cb36be190cabc",
+  "trials/03-seed-44-thinking/task-manifest.json": "bface6760b37b2c36323b888c1256790d62e4d5cbccce7a0a8a647ad59a705f1"
+}

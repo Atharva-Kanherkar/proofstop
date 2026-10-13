@@ -1,0 +1,7 @@
+{
+  "reason": "Candidate parser incorrectly treats indented documentation fences as external blocks. Pilot paused before further trials; active third request allowed to finish.",
+  "driver_pid": 54297,
+  "classification": "harness_fault_pilot",
+  "paused_utc": "2026-10-12T17:30:15.834843+00:00",
+  "generation_not_retried": true
+}

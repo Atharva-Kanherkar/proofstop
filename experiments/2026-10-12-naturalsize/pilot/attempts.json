@@ -1,0 +1,59 @@
+[
+  {
+    "label": "01-seed-43-nonthinking",
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed",
+      "task_id": "naturalsize-rollover",
+      "task_revision": "snapshot-7574e0c",
+      "wall_ms": 26173,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 2411,
+      "completion_tokens": 761,
+      "acceptance": null,
+      "evaluation": null,
+      "error": "expected exactly one complete fenced Python block"
+    },
+    "allocated_trial_seconds": 29.515635013580322
+  },
+  {
+    "label": "02-seed-44-nonthinking",
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed",
+      "task_id": "naturalsize-rollover",
+      "task_revision": "snapshot-7574e0c",
+      "wall_ms": 26571,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 2411,
+      "completion_tokens": 760,
+      "acceptance": null,
+      "evaluation": null,
+      "error": "expected exactly one complete fenced Python block"
+    },
+    "allocated_trial_seconds": 29.354769229888916
+  },
+  {
+    "label": "03-seed-44-thinking",
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed",
+      "task_id": "naturalsize-rollover",
+      "task_revision": "snapshot-7574e0c",
+      "wall_ms": 406560,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 2407,
+      "completion_tokens": 12288,
+      "acceptance": null,
+      "evaluation": null,
+      "error": "completion did not finish normally"
+    },
+    "allocated_trial_seconds": null
+  }
+]

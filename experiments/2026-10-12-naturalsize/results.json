@@ -1,0 +1,593 @@
+[
+  {
+    "seed": 43,
+    "policy": "nonthinking",
+    "label": "01-seed-43-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/repository/naturalsize-rollover",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "trials/01-seed-43-nonthinking",
+      "--config",
+      "configs/naturalsize/nonthinking-seed-43.json"
+    ],
+    "started_unix": 1791826617.4068239,
+    "ended_unix": 1791826645.2172081,
+    "allocated_trial_seconds": 29.610591888427734,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed_checks",
+      "task_id": "naturalsize-rollover",
+      "task_revision": "snapshot-7574e0c",
+      "wall_ms": 27121,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 2387,
+      "completion_tokens": 761,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "container_name": "proofstop-64a9640f-be3d-4f61-97cf-8794b64afaa3",
+        "passed": 2,
+        "reason": "2 of 4 checks passed",
+        "verdict": "failed",
+        "wall_ms": 439,
+        "worker_stdout": "[{\"result\": \"1000.0 kB\", \"input_after\": [999999, false, false, \"%.1f\"]},{\"result\": \"1024.0 KiB\", \"input_after\": [1048575, true, false, \"%.1f\"]},{\"result\": \"3.0 MB\", \"input_after\": [3000000, false, false, \"%.1f\"]},{\"result\": \"1 Byte\", \"input_after\": [1, false, false, \"%.1f\"]}]\n"
+      },
+      "evaluation": {
+        "cases": 12,
+        "checks": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "container_name": "proofstop-f7d642e5-f135-42f5-9284-ec3bd199dad7",
+        "passed": 6,
+        "reason": "6 of 12 checks passed",
+        "verdict": "failed",
+        "wall_ms": 373,
+        "worker_stdout": "[{\"result\": \"-1000.0 kB\", \"input_after\": [-999999, false, false, \"%.1f\"]},{\"result\": \"1024.0K\", \"input_after\": [1048575, false, true, \"%.1f\"]},{\"result\": \"1000.0 MB\", \"input_after\": [999999999, false, false, \"%.1f\"]},{\"result\": \"1024.0 MiB\", \"input_after\": [1073741823, true, false, \"%.1f\"]},{\"result\": \"999.9 kB\", \"input_after\": [999940, false, false, \"%.1f\"]},{\"result\": \"999.999 kB\", \"input_after\": [999999, false, false, \"%.3f\"]},{\"result\": \"1000 kB\", \"input_after\": [999999, false, false, \"%.0f\"]},{\"result\": \"0 Bytes\", \"input_after\": [0, false, false, \"%.1f\"]},{\"result\": \"-1 Byte\", \"input_after\": [-1, false, false, \"%.1f\"]},{\"result\": \"300B\", \"input_after\": [300, false, true, \"%.1f\"]},{\"result\": \"1000.0 kB\", \"input_after\": [\"999999\", false, false, \"%.1f\"]},{\"result\": \"30000.0 QB\", \"input_after\": [\"30000000000000000000000000000000000\", false, false, \"%.1f\"]}]\n"
+      },
+      "error": null
+    }
+  },
+  {
+    "seed": 44,
+    "policy": "nonthinking",
+    "label": "02-seed-44-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/repository/naturalsize-rollover",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "trials/02-seed-44-nonthinking",
+      "--config",
+      "configs/naturalsize/nonthinking-seed-44.json"
+    ],
+    "started_unix": 1791826646.992418,
+    "ended_unix": 1791826674.9045591,
+    "allocated_trial_seconds": 29.685208082199097,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed_checks",
+      "task_id": "naturalsize-rollover",
+      "task_revision": "snapshot-7574e0c",
+      "wall_ms": 27190,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 2387,
+      "completion_tokens": 761,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "container_name": "proofstop-8b86b639-195d-471c-a58e-38b2ca76aa38",
+        "passed": 2,
+        "reason": "2 of 4 checks passed",
+        "verdict": "failed",
+        "wall_ms": 353,
+        "worker_stdout": "[{\"result\": \"1000.0 kB\", \"input_after\": [999999, false, false, \"%.1f\"]},{\"result\": \"1024.0 KiB\", \"input_after\": [1048575, true, false, \"%.1f\"]},{\"result\": \"3.0 MB\", \"input_after\": [3000000, false, false, \"%.1f\"]},{\"result\": \"1 Byte\", \"input_after\": [1, false, false, \"%.1f\"]}]\n"
+      },
+      "evaluation": {
+        "cases": 12,
+        "checks": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "container_name": "proofstop-e6400c78-f5b4-43cf-b40d-ddfcf54b7140",
+        "passed": 6,
+        "reason": "6 of 12 checks passed",
+        "verdict": "failed",
+        "wall_ms": 305,
+        "worker_stdout": "[{\"result\": \"-1000.0 kB\", \"input_after\": [-999999, false, false, \"%.1f\"]},{\"result\": \"1024.0K\", \"input_after\": [1048575, false, true, \"%.1f\"]},{\"result\": \"1000.0 MB\", \"input_after\": [999999999, false, false, \"%.1f\"]},{\"result\": \"1024.0 MiB\", \"input_after\": [1073741823, true, false, \"%.1f\"]},{\"result\": \"999.9 kB\", \"input_after\": [999940, false, false, \"%.1f\"]},{\"result\": \"999.999 kB\", \"input_after\": [999999, false, false, \"%.3f\"]},{\"result\": \"1000 kB\", \"input_after\": [999999, false, false, \"%.0f\"]},{\"result\": \"0 Bytes\", \"input_after\": [0, false, false, \"%.1f\"]},{\"result\": \"-1 Byte\", \"input_after\": [-1, false, false, \"%.1f\"]},{\"result\": \"300B\", \"input_after\": [300, false, true, \"%.1f\"]},{\"result\": \"1000.0 kB\", \"input_after\": [\"999999\", false, false, \"%.1f\"]},{\"result\": \"30000.0 QB\", \"input_after\": [\"30000000000000000000000000000000000\", false, false, \"%.1f\"]}]\n"
+      },
+      "error": null
+    }
+  },
+  {
+    "seed": 44,
+    "policy": "thinking",
+    "label": "03-seed-44-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/repository/naturalsize-rollover",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "trials/03-seed-44-thinking",
+      "--config",
+      "configs/naturalsize/thinking-seed-44.json"
+    ],
+    "started_unix": 1791826677.01838,
+    "ended_unix": 1791827829.338248,
+    "allocated_trial_seconds": 1155.3561940193176,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed",
+      "task_id": "naturalsize-rollover",
+      "task_revision": "snapshot-7574e0c",
+      "wall_ms": 380775,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 2383,
+      "completion_tokens": 12288,
+      "acceptance": null,
+      "evaluation": null,
+      "error": "completion did not finish normally"
+    }
+  },
+  {
+    "seed": 43,
+    "policy": "thinking",
+    "label": "04-seed-43-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/repository/naturalsize-rollover",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "trials/04-seed-43-thinking",
+      "--config",
+      "configs/naturalsize/thinking-seed-43.json"
+    ],
+    "started_unix": 1791827832.544363,
+    "ended_unix": 1791828242.448075,
+    "allocated_trial_seconds": 412.6241719722748,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed",
+      "task_id": "naturalsize-rollover",
+      "task_revision": "snapshot-7574e0c",
+      "wall_ms": 408988,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 2383,
+      "completion_tokens": 12288,
+      "acceptance": null,
+      "evaluation": null,
+      "error": "completion did not finish normally"
+    }
+  },
+  {
+    "seed": 44,
+    "policy": "repair",
+    "label": "05-seed-44-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/repository/naturalsize-rollover",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "trials/05-seed-44-repair",
+      "--direct-config",
+      "configs/naturalsize/nonthinking-seed-44.json",
+      "--repair-config",
+      "configs/naturalsize/repair-seed-44.json"
+    ],
+    "started_unix": 1791828245.080897,
+    "ended_unix": 1791828543.4160159,
+    "allocated_trial_seconds": 300.9196197986603,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "failed",
+      "task_id": "naturalsize-rollover",
+      "task_revision": "snapshot-7574e0c",
+      "wall_ms": 297387,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 5652,
+      "completion_tokens": 8953,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "container_name": "proofstop-599df68e-ceb7-4248-9c9d-2f0fd9b98b6b",
+        "passed": 2,
+        "reason": "2 of 4 checks passed",
+        "verdict": "failed",
+        "wall_ms": 312,
+        "worker_stdout": "[{\"result\": \"1000.0 kB\", \"input_after\": [999999, false, false, \"%.1f\"]},{\"result\": \"1024.0 KiB\", \"input_after\": [1048575, true, false, \"%.1f\"]},{\"result\": \"3.0 MB\", \"input_after\": [3000000, false, false, \"%.1f\"]},{\"result\": \"1 Byte\", \"input_after\": [1, false, false, \"%.1f\"]}]\n"
+      },
+      "evaluation": null,
+      "error": "completion did not finish normally"
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 761,
+          "http_status": 200,
+          "prompt_tokens": 2387,
+          "stage": "direct",
+          "wall_ms": 25398
+        },
+        {
+          "completion_tokens": 8192,
+          "http_status": 200,
+          "prompt_tokens": 3265,
+          "stage": "repair",
+          "wall_ms": 270468
+        }
+      ],
+      "completion_tokens": 8953,
+      "generation_requests": 2,
+      "prompt_tokens": 5652
+    }
+  },
+  {
+    "seed": 42,
+    "policy": "repair",
+    "label": "06-seed-42-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/repository/naturalsize-rollover",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "trials/06-seed-42-repair",
+      "--direct-config",
+      "configs/naturalsize/nonthinking-seed-42.json",
+      "--repair-config",
+      "configs/naturalsize/repair-seed-42.json"
+    ],
+    "started_unix": 1791828545.964637,
+    "ended_unix": 1791828841.831511,
+    "allocated_trial_seconds": 298.37374687194824,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "failed",
+      "task_id": "naturalsize-rollover",
+      "task_revision": "snapshot-7574e0c",
+      "wall_ms": 294765,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 5652,
+      "completion_tokens": 8953,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "container_name": "proofstop-024e1f25-f827-4f74-83a7-26695907db66",
+        "passed": 2,
+        "reason": "2 of 4 checks passed",
+        "verdict": "failed",
+        "wall_ms": 372,
+        "worker_stdout": "[{\"result\": \"1000.0 kB\", \"input_after\": [999999, false, false, \"%.1f\"]},{\"result\": \"1024.0 KiB\", \"input_after\": [1048575, true, false, \"%.1f\"]},{\"result\": \"3.0 MB\", \"input_after\": [3000000, false, false, \"%.1f\"]},{\"result\": \"1 Byte\", \"input_after\": [1, false, false, \"%.1f\"]}]\n"
+      },
+      "evaluation": null,
+      "error": "completion did not finish normally"
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 761,
+          "http_status": 200,
+          "prompt_tokens": 2387,
+          "stage": "direct",
+          "wall_ms": 24590
+        },
+        {
+          "completion_tokens": 8192,
+          "http_status": 200,
+          "prompt_tokens": 3265,
+          "stage": "repair",
+          "wall_ms": 268589
+        }
+      ],
+      "completion_tokens": 8953,
+      "generation_requests": 2,
+      "prompt_tokens": 5652
+    }
+  },
+  {
+    "seed": 43,
+    "policy": "repair",
+    "label": "07-seed-43-repair",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "repair",
+      "--task",
+      "tasks/repository/naturalsize-rollover",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "trials/07-seed-43-repair",
+      "--direct-config",
+      "configs/naturalsize/nonthinking-seed-43.json",
+      "--repair-config",
+      "configs/naturalsize/repair-seed-43.json"
+    ],
+    "started_unix": 1791828844.3954391,
+    "ended_unix": 1791829142.087856,
+    "allocated_trial_seconds": 300.16775608062744,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "direct_first_one_repair",
+      "evidence_class": "unclassified",
+      "outcome": "failed",
+      "task_id": "naturalsize-rollover",
+      "task_revision": "snapshot-7574e0c",
+      "wall_ms": 296916,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 5652,
+      "completion_tokens": 8953,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "container_name": "proofstop-15b4d6ab-c23c-4a80-bb6d-a9e02955bae0",
+        "passed": 2,
+        "reason": "2 of 4 checks passed",
+        "verdict": "failed",
+        "wall_ms": 299,
+        "worker_stdout": "[{\"result\": \"1000.0 kB\", \"input_after\": [999999, false, false, \"%.1f\"]},{\"result\": \"1024.0 KiB\", \"input_after\": [1048575, true, false, \"%.1f\"]},{\"result\": \"3.0 MB\", \"input_after\": [3000000, false, false, \"%.1f\"]},{\"result\": \"1 Byte\", \"input_after\": [1, false, false, \"%.1f\"]}]\n"
+      },
+      "evaluation": null,
+      "error": "completion did not finish normally"
+    },
+    "accounting": {
+      "allocated_gpu_seconds": null,
+      "attempts": [
+        {
+          "completion_tokens": 761,
+          "http_status": 200,
+          "prompt_tokens": 2387,
+          "stage": "direct",
+          "wall_ms": 25065
+        },
+        {
+          "completion_tokens": 8192,
+          "http_status": 200,
+          "prompt_tokens": 3265,
+          "stage": "repair",
+          "wall_ms": 270349
+        }
+      ],
+      "completion_tokens": 8953,
+      "generation_requests": 2,
+      "prompt_tokens": 5652
+    }
+  },
+  {
+    "seed": 42,
+    "policy": "nonthinking",
+    "label": "08-seed-42-nonthinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/repository/naturalsize-rollover",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "trials/08-seed-42-nonthinking",
+      "--config",
+      "configs/naturalsize/nonthinking-seed-42.json"
+    ],
+    "started_unix": 1791829144.46838,
+    "ended_unix": 1791829172.334244,
+    "allocated_trial_seconds": 29.966176986694336,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "nonthinking_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed_checks",
+      "task_id": "naturalsize-rollover",
+      "task_revision": "snapshot-7574e0c",
+      "wall_ms": 26908,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 2387,
+      "completion_tokens": 761,
+      "acceptance": {
+        "cases": 4,
+        "checks": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "container_name": "proofstop-23b6c092-e600-4683-bf25-d4901e4a7683",
+        "passed": 2,
+        "reason": "2 of 4 checks passed",
+        "verdict": "failed",
+        "wall_ms": 311,
+        "worker_stdout": "[{\"result\": \"1000.0 kB\", \"input_after\": [999999, false, false, \"%.1f\"]},{\"result\": \"1024.0 KiB\", \"input_after\": [1048575, true, false, \"%.1f\"]},{\"result\": \"3.0 MB\", \"input_after\": [3000000, false, false, \"%.1f\"]},{\"result\": \"1 Byte\", \"input_after\": [1, false, false, \"%.1f\"]}]\n"
+      },
+      "evaluation": {
+        "cases": 12,
+        "checks": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "container_name": "proofstop-adc1ba5d-d4fd-4800-add5-ab070378a739",
+        "passed": 6,
+        "reason": "6 of 12 checks passed",
+        "verdict": "failed",
+        "wall_ms": 302,
+        "worker_stdout": "[{\"result\": \"-1000.0 kB\", \"input_after\": [-999999, false, false, \"%.1f\"]},{\"result\": \"1024.0K\", \"input_after\": [1048575, false, true, \"%.1f\"]},{\"result\": \"1000.0 MB\", \"input_after\": [999999999, false, false, \"%.1f\"]},{\"result\": \"1024.0 MiB\", \"input_after\": [1073741823, true, false, \"%.1f\"]},{\"result\": \"999.9 kB\", \"input_after\": [999940, false, false, \"%.1f\"]},{\"result\": \"999.999 kB\", \"input_after\": [999999, false, false, \"%.3f\"]},{\"result\": \"1000 kB\", \"input_after\": [999999, false, false, \"%.0f\"]},{\"result\": \"0 Bytes\", \"input_after\": [0, false, false, \"%.1f\"]},{\"result\": \"-1 Byte\", \"input_after\": [-1, false, false, \"%.1f\"]},{\"result\": \"300B\", \"input_after\": [300, false, true, \"%.1f\"]},{\"result\": \"1000.0 kB\", \"input_after\": [\"999999\", false, false, \"%.1f\"]},{\"result\": \"30000.0 QB\", \"input_after\": [\"30000000000000000000000000000000000\", false, false, \"%.1f\"]}]\n"
+      },
+      "error": null
+    }
+  },
+  {
+    "seed": 42,
+    "policy": "thinking",
+    "label": "09-seed-42-thinking",
+    "command": [
+      "cargo",
+      "run",
+      "--locked",
+      "--",
+      "baseline",
+      "--task",
+      "tasks/repository/naturalsize-rollover",
+      "--endpoint",
+      "http://127.0.0.1:18000/v1",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--output",
+      "trials/09-seed-42-thinking",
+      "--config",
+      "configs/naturalsize/thinking-seed-42.json"
+    ],
+    "started_unix": 1791829174.386391,
+    "ended_unix": 1791829583.073065,
+    "allocated_trial_seconds": 411.2355856895447,
+    "exit_code": 1,
+    "summary": {
+      "schema_version": 1,
+      "policy": "full_reasoning_baseline",
+      "evidence_class": "unclassified",
+      "outcome": "failed",
+      "task_id": "naturalsize-rollover",
+      "task_revision": "snapshot-7574e0c",
+      "wall_ms": 407985,
+      "allocated_gpu_seconds": null,
+      "prompt_tokens": 2383,
+      "completion_tokens": 12288,
+      "acceptance": null,
+      "evaluation": null,
+      "error": "completion did not finish normally"
+    }
+  }
+]

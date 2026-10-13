@@ -48,6 +48,13 @@ class ScreenTests(unittest.TestCase):
         experiment = ROOT / 'experiments/2026-10-12-direct-first'
         self.assertEqual(module.summarize(experiment), json.loads((experiment / 'report.json').read_text()))
 
+    def test_repository_report_recomputes_from_raw_usage_and_counters(self):
+        spec = importlib.util.spec_from_file_location('repository_report', ROOT / 'scripts/summarize-repository.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        experiment = ROOT / 'experiments/2026-10-12-naturalsize'
+        self.assertEqual(module.summarize(experiment), json.loads((experiment / 'report.json').read_text()))
+
 
 if __name__ == '__main__':
     unittest.main()

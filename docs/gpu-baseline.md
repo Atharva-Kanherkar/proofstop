@@ -95,6 +95,22 @@ The runner saves failures as well as passing candidates. A truncated answer is a
 failed attempt; do not drop it or quietly expand its budget. Repeat only with
 unique output directories and explicitly record each attempt.
 
+## Keep the local controller awake
+
+A sleeping laptop leaves a remote GPU billable and can distort trial timing.
+Keep the controller awake through evidence download and verified teardown, not just through generation. A sleep inhibitor tied only to the driver ends before cleanup. Use an automatic teardown mechanism independent of the interactive session when enforcing a hard rental deadline. On macOS:
+
+```sh
+caffeinate -i
+# In another terminal, run the driver, download evidence and delete the Pod.
+# Stop caffeinate only after a fresh Pod list confirms teardown.
+```
+
+On other systems, use the platform's equivalent sleep inhibitor. Record any
+observed interruption, retain the original allocation time and every outcome,
+and flag affected timings before comparing policy cost. Do not silently remove
+the charged gap or rerun a trial.
+
 ## Evidence and cleanup
 
 Save the Pod identity, quoted rate, actual allocation interval, GPU information,

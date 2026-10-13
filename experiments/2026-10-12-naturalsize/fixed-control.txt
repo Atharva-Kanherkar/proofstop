@@ -1,0 +1,44 @@
+{
+  "suite": "acceptance",
+  "verification": {
+    "cases": 4,
+    "checks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-a5355139-f694-46b3-bb9b-dcdad9de7074",
+    "passed": 4,
+    "reason": "4 of 4 checks passed",
+    "verdict": "passed",
+    "wall_ms": 306,
+    "worker_stdout": "[{\"result\": \"1.0 MB\", \"input_after\": [999999, false, false, \"%.1f\"]},{\"result\": \"1.0 MiB\", \"input_after\": [1048575, true, false, \"%.1f\"]},{\"result\": \"3.0 MB\", \"input_after\": [3000000, false, false, \"%.1f\"]},{\"result\": \"1 Byte\", \"input_after\": [1, false, false, \"%.1f\"]}]\n"
+  }
+}
+{
+  "suite": "evaluation",
+  "verification": {
+    "cases": 12,
+    "checks": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "container_name": "proofstop-93eeb3f1-4242-44f7-9a06-30ed86456c06",
+    "passed": 12,
+    "reason": "12 of 12 checks passed",
+    "verdict": "passed",
+    "wall_ms": 319,
+    "worker_stdout": "[{\"result\": \"-1.0 MB\", \"input_after\": [-999999, false, false, \"%.1f\"]},{\"result\": \"1.0M\", \"input_after\": [1048575, false, true, \"%.1f\"]},{\"result\": \"1.0 GB\", \"input_after\": [999999999, false, false, \"%.1f\"]},{\"result\": \"1.0 GiB\", \"input_after\": [1073741823, true, false, \"%.1f\"]},{\"result\": \"999.9 kB\", \"input_after\": [999940, false, false, \"%.1f\"]},{\"result\": \"999.999 kB\", \"input_after\": [999999, false, false, \"%.3f\"]},{\"result\": \"1 MB\", \"input_after\": [999999, false, false, \"%.0f\"]},{\"result\": \"0 Bytes\", \"input_after\": [0, false, false, \"%.1f\"]},{\"result\": \"-1 Byte\", \"input_after\": [-1, false, false, \"%.1f\"]},{\"result\": \"300B\", \"input_after\": [300, false, true, \"%.1f\"]},{\"result\": \"1.0 MB\", \"input_after\": [\"999999\", false, false, \"%.1f\"]},{\"result\": \"30000.0 QB\", \"input_after\": [\"30000000000000000000000000000000000\", false, false, \"%.1f\"]}]\n"
+  }
+}

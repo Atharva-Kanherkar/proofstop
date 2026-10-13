@@ -36,6 +36,22 @@ not model-performance evidence.
 
 ## Frozen live comparison
 
+The direct-first policy uses visible tests to decide whether to spend more tokens:
+
+```mermaid
+flowchart LR
+    A[Buggy filesize module] --> B[Direct answer]
+    B --> C{Visible checks pass?}
+    C -->|Yes| E[Separate evaluation]
+    C -->|No| D[One reasoning repair]
+    D --> F[Visible checks again]
+    F --> E
+    E --> G[Record success and total cost]
+```
+
+Evaluation scores never authorize another repair. A format or infrastructure
+failure remains a recorded failure; it does not silently start another request.
+
 Three policies use seeds 42, 43 and 44, for nine attempts on one task. The order
 is shuffled once before generation, with no retries or post-result tuning:
 

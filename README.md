@@ -7,8 +7,8 @@ decides when to continue reasoning, probe a candidate answer, or stop generation
 is to reduce compute cost per successful task, including the cost of verification.
 
 **Status:** baseline prototype. A Rust CLI validates pinned tasks, runs Python
-candidates in isolated Docker containers, and records a single model request and
-its verification outcomes. An experimental Qwen3/vLLM adapter now runs exact-token
+candidates in isolated Docker containers, and records model requests and
+their verification outcomes. An experimental Qwen3/vLLM adapter now runs exact-token
 segments and separate answer probes, stopping future generation on acceptance.
 Adaptive scheduling and measured GPU-efficiency benefits remain unestablished.
 See the [online stopping loop](docs/online-probes.md) for the four controls.
@@ -28,6 +28,14 @@ no demonstrated early-exit or GPU-efficiency benefit.
 The [online comparison](experiments/2026-10-12-online-probes/README.md) now
 verifies a stop after 128 main tokens and a passing 126-token probe. Fixed probing
 was slower than direct answering and added work on the multi-bug variant.
+
+The [ordinary repository repair](docs/naturalsize-study.md) now runs the actual
+`humanize.naturalsize` API on a pinned pre-fix runtime. Its
+[live nine-attempt comparison](experiments/2026-10-12-naturalsize/README.md)
+produced no successes: direct answers preserved the defect, while thinking and
+one-repair attempts exhausted their budgets. The report retains the interrupted
+parser pilot, client sleep and delayed cleanup, with the full rental cost.
+This task establishes the next baseline challenge, not an efficiency win.
 
 ## Get started
 

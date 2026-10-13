@@ -1,0 +1,10 @@
+{
+  "classification": "observed_client_idle_sleep",
+  "affected_trial": "03-seed-44-thinking",
+  "sleep_start_utc": "2026-10-12T17:42:59Z",
+  "wake_utc": "2026-10-12T17:55:52Z",
+  "sleep_seconds": 773,
+  "evidence": "macOS pmset power log reports Idle Sleep for 773 seconds; server completed the request while client slept.",
+  "mitigation": "caffeinate -i bound to driver PID 93740 from approximately 17:57:50 UTC for remaining attempts.",
+  "treatment": "Keep all outcomes, tokens and original allocation brackets. No retry and no subtraction from rental cost. Affected trial allocation is not an unbiased estimate of policy latency."
+}

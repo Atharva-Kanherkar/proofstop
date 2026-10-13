@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "policy": "full_reasoning_baseline",
+  "evidence_class": "unclassified",
+  "outcome": "failed",
+  "task_id": "naturalsize-rollover",
+  "task_revision": "snapshot-7574e0c",
+  "wall_ms": 407985,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 2383,
+  "completion_tokens": 12288,
+  "acceptance": null,
+  "evaluation": null,
+  "error": "completion did not finish normally"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "policy": "nonthinking_baseline",
+  "evidence_class": "unclassified",
+  "outcome": "failed_checks",
+  "task_id": "naturalsize-rollover",
+  "task_revision": "snapshot-7574e0c",
+  "wall_ms": 26908,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 2387,
+  "completion_tokens": 761,
+  "acceptance": {
+    "cases": 4,
+    "checks": [
+      false,
+      false,
+      true,
+      true
+    ],
+    "container_name": "proofstop-23b6c092-e600-4683-bf25-d4901e4a7683",
+    "passed": 2,
+    "reason": "2 of 4 checks passed",
+    "verdict": "failed",
+    "wall_ms": 311,
+    "worker_stdout": "[{\"result\": \"1000.0 kB\", \"input_after\": [999999, false, false, \"%.1f\"]},{\"result\": \"1024.0 KiB\", \"input_after\": [1048575, true, false, \"%.1f\"]},{\"result\": \"3.0 MB\", \"input_after\": [3000000, false, false, \"%.1f\"]},{\"result\": \"1 Byte\", \"input_after\": [1, false, false, \"%.1f\"]}]\n"
+  },
+  "evaluation": {
+    "cases": 12,
+    "checks": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      true,
+      true,
+      true,
+      false,
+      true
+    ],
+    "container_name": "proofstop-adc1ba5d-d4fd-4800-add5-ab070378a739",
+    "passed": 6,
+    "reason": "6 of 12 checks passed",
+    "verdict": "failed",
+    "wall_ms": 302,
+    "worker_stdout": "[{\"result\": \"-1000.0 kB\", \"input_after\": [-999999, false, false, \"%.1f\"]},{\"result\": \"1024.0K\", \"input_after\": [1048575, false, true, \"%.1f\"]},{\"result\": \"1000.0 MB\", \"input_after\": [999999999, false, false, \"%.1f\"]},{\"result\": \"1024.0 MiB\", \"input_after\": [1073741823, true, false, \"%.1f\"]},{\"result\": \"999.9 kB\", \"input_after\": [999940, false, false, \"%.1f\"]},{\"result\": \"999.999 kB\", \"input_after\": [999999, false, false, \"%.3f\"]},{\"result\": \"1000 kB\", \"input_after\": [999999, false, false, \"%.0f\"]},{\"result\": \"0 Bytes\", \"input_after\": [0, false, false, \"%.1f\"]},{\"result\": \"-1 Byte\", \"input_after\": [-1, false, false, \"%.1f\"]},{\"result\": \"300B\", \"input_after\": [300, false, true, \"%.1f\"]},{\"result\": \"1000.0 kB\", \"input_after\": [\"999999\", false, false, \"%.1f\"]},{\"result\": \"30000.0 QB\", \"input_after\": [\"30000000000000000000000000000000000\", false, false, \"%.1f\"]}]\n"
+  },
+  "error": null
+}

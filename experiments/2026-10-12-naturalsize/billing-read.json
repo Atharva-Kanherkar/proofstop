@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "query": {
+      "bucketSize": "hour",
+      "endTime": "2026-10-12T20:00:00Z",
+      "podId": "v8xb1iwtuq1ki4",
+      "startTime": "2026-10-12T17:00:00Z"
+    },
+    "recordCount": 3,
+    "totals": {
+      "cpuAmount": 0,
+      "diskAmount": 0.02685185137670487,
+      "gpuAmount": 1.4062902312725782,
+      "totalAmount": 1.4331420826492831
+    },
+    "uniquePodCount": 1
+  },
+  "records": [
+    {
+      "cpuAmount": 0,
+      "diskAmount": 0.008333333185873926,
+      "endTime": "2026-10-12T18:00:00Z",
+      "gpuAmount": 0.4050302430987358,
+      "podId": "v8xb1iwtuq1ki4",
+      "startTime": "2026-10-12T17:00:00Z",
+      "totalAmount": 0.41336357628460974
+    },
+    {
+      "cpuAmount": 0,
+      "diskAmount": 0.011111110914498568,
+      "endTime": "2026-10-12T19:00:00Z",
+      "gpuAmount": 0.5896823816001415,
+      "podId": "v8xb1iwtuq1ki4",
+      "startTime": "2026-10-12T18:00:00Z",
+      "totalAmount": 0.6007934925146401
+    },
+    {
+      "cpuAmount": 0,
+      "diskAmount": 0.007407407276332378,
+      "endTime": "2026-10-12T20:00:00Z",
+      "gpuAmount": 0.4115776065737009,
+      "podId": "v8xb1iwtuq1ki4",
+      "startTime": "2026-10-12T19:00:00Z",
+      "totalAmount": 0.4189850138500333
+    }
+  ]
+}

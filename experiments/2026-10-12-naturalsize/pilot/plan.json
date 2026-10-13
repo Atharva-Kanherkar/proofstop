@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "classification": "public_historical_development",
+  "task": "tasks/repository/naturalsize-rollover",
+  "task_manifest_sha256": "89c6639dc91fa3e4c185acbeac943972d2e7fb53713b4ddba4b6faa547eae1a7",
+  "model": "Qwen/Qwen3-8B",
+  "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "engine": "vllm==0.10.2",
+  "max_model_len": 24576,
+  "prefix_caching": false,
+  "dtype": "bfloat16",
+  "shuffle_seed": 42,
+  "order": [
+    {
+      "seed": 43,
+      "policy": "nonthinking"
+    },
+    {
+      "seed": 44,
+      "policy": "nonthinking"
+    },
+    {
+      "seed": 44,
+      "policy": "thinking"
+    },
+    {
+      "seed": 43,
+      "policy": "thinking"
+    },
+    {
+      "seed": 44,
+      "policy": "repair"
+    },
+    {
+      "seed": 42,
+      "policy": "repair"
+    },
+    {
+      "seed": 43,
+      "policy": "repair"
+    },
+    {
+      "seed": 42,
+      "policy": "nonthinking"
+    },
+    {
+      "seed": 42,
+      "policy": "thinking"
+    }
+  ],
+  "configs": {
+    "nonthinking-42": {
+      "path": "configs/naturalsize/nonthinking-seed-42.json",
+      "sha256": "3fa62959efdc10d26962caa19b1215870f15ac52ce1ff7b4051f7ed616c065fe"
+    },
+    "thinking-42": {
+      "path": "configs/naturalsize/thinking-seed-42.json",
+      "sha256": "7f2148c4d7a5d92a46965991fa8de90b2b212ad1de72f73389f0ba14dfc4b3bb"
+    },
+    "repair-42": {
+      "path": "configs/naturalsize/repair-seed-42.json",
+      "sha256": "cd31954a6cff9883989c0e63cb5516ab617b0de99a70c0f4caf9122e1a5ee638"
+    },
+    "nonthinking-43": {
+      "path": "configs/naturalsize/nonthinking-seed-43.json",
+      "sha256": "05f87f5b931b22b77411ac108911aef59329a9e528c0cdfb35a92fc741145542"
+    },
+    "thinking-43": {
+      "path": "configs/naturalsize/thinking-seed-43.json",
+      "sha256": "66a6b9b1c5b765d60691c952e32c6146261c0154042517fe1fa23f3f5eb2e982"
+    },
+    "repair-43": {
+      "path": "configs/naturalsize/repair-seed-43.json",
+      "sha256": "1aa394076004082f3614737bc192f61ff3f590f38dabca0ddf76eacfa21be783"
+    },
+    "nonthinking-44": {
+      "path": "configs/naturalsize/nonthinking-seed-44.json",
+      "sha256": "b72c9c48f2e2424d0d3e9852b7209427ff4ad1090b70c5142fe68ef47fe9ec5c"
+    },
+    "thinking-44": {
+      "path": "configs/naturalsize/thinking-seed-44.json",
+      "sha256": "6a24e75a3e7320bdffba70408861b90b13379645aea822c246a5df80c72006b7"
+    },
+    "repair-44": {
+      "path": "configs/naturalsize/repair-seed-44.json",
+      "sha256": "2d0810903c0a75c0336ddc70021eea6e5361665bf90c70697f6645024ef40277"
+    }
+  },
+  "prompt_sha256": "db145c0c3b4cfd862382543e0bdb25e84b1544933dc10f9a36bde6ab552c01f3",
+  "source_commit": "c4902d14da4e898cb1021ec379e20fd615d1aa9a",
+  "direct_budget": 4096,
+  "thinking_budget": 12288,
+  "repair_budget": 8192,
+  "total_repair_ceiling": 12288
+}
