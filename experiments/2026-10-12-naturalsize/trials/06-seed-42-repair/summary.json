@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "policy": "direct_first_one_repair",
+  "evidence_class": "unclassified",
+  "outcome": "failed",
+  "task_id": "naturalsize-rollover",
+  "task_revision": "snapshot-7574e0c",
+  "wall_ms": 294765,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 5652,
+  "completion_tokens": 8953,
+  "acceptance": {
+    "cases": 4,
+    "checks": [
+      false,
+      false,
+      true,
+      true
+    ],
+    "container_name": "proofstop-024e1f25-f827-4f74-83a7-26695907db66",
+    "passed": 2,
+    "reason": "2 of 4 checks passed",
+    "verdict": "failed",
+    "wall_ms": 372,
+    "worker_stdout": "[{\"result\": \"1000.0 kB\", \"input_after\": [999999, false, false, \"%.1f\"]},{\"result\": \"1024.0 KiB\", \"input_after\": [1048575, true, false, \"%.1f\"]},{\"result\": \"3.0 MB\", \"input_after\": [3000000, false, false, \"%.1f\"]},{\"result\": \"1 Byte\", \"input_after\": [1, false, false, \"%.1f\"]}]\n"
+  },
+  "evaluation": null,
+  "error": "completion did not finish normally"
+}

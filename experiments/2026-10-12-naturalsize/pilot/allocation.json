@@ -1,0 +1,12 @@
+{
+  "pod_id": "v8xb1iwtuq1ki4",
+  "allocated_at_utc": "2026-10-12T17:18:14.295Z",
+  "deadline_utc": "2026-10-12T19:18:14.295Z",
+  "rate_usd_per_hour": 0.59,
+  "guard": "agent-enforced deadline; not automatic platform termination",
+  "cloud": "SECURE",
+  "data_center": "EU-SE-1",
+  "disk_gb": 80,
+  "mounts": {},
+  "image": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404"
+}

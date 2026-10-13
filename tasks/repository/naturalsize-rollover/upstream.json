@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/python-humanize/humanize",
+  "base_commit": "7574e0cc377d80db0d2756fc2c5e0b8799a6f8b4",
+  "control_commit": "823ad6096e1e5ba82ea876ce761fc2efebd76157",
+  "target": "repo/humanize/filesize.py",
+  "upstream_pr": "https://github.com/python-humanize/humanize/pull/329",
+  "classification": "public_historical_development",
+  "status": "fixed-upstream",
+  "runtime_scope": "All tracked Python runtime modules and py.typed are byte-identical to the pinned commit. Translation catalogs omitted: default English locale only. _version.py is generated snapshot metadata because Git omits the build-generated version module.",
+  "version_shim_sha256": "292bc8d3a9aa9998454920de4992bd89c5f2ebff28575a0275750b5feb6a50d8",
+  "checked_date_local": "2026-10-13",
+  "license": "MIT"
+}

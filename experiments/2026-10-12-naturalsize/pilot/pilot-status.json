@@ -1,0 +1,7 @@
+{
+  "classification": "incomplete_harness_fault_pilot",
+  "completed_generation_attempts": 3,
+  "reason": "Original Markdown parser rejected valid indented docstring examples. Third thinking attempt exhausted its output budget. Driver stopped before fourth trial.",
+  "third_allocated_trial_seconds": null,
+  "stopped_utc": "2026-10-12T17:36:51.788804+00:00"
+}

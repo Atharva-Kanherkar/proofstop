@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "policy": "nonthinking_baseline",
+  "evidence_class": "unclassified",
+  "outcome": "failed",
+  "task_id": "naturalsize-rollover",
+  "task_revision": "snapshot-7574e0c",
+  "wall_ms": 26173,
+  "allocated_gpu_seconds": null,
+  "prompt_tokens": 2411,
+  "completion_tokens": 761,
+  "acceptance": null,
+  "evaluation": null,
+  "error": "expected exactly one complete fenced Python block"
+}

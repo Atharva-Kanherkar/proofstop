@@ -1,0 +1,135 @@
+{
+  "classification": "public_historical_development",
+  "groups": [
+    {
+      "policy": "nonthinking",
+      "trials": 3,
+      "seeds": [
+        43,
+        44,
+        42
+      ],
+      "successful_attempts": 0,
+      "failures_by_reason": {
+        "failed_checks": 3
+      },
+      "generated_tokens": 2283,
+      "prompt_tokens": 7161,
+      "client_wall_seconds": 81.219,
+      "allocated_trial_seconds": 89.26197695732117,
+      "allocated_trial_seconds_per_success": null,
+      "engine_request_seconds": 72.89170578122139,
+      "trial_gpu_cost_usd_estimate": 0.01462904622356097,
+      "generation_requests": 3,
+      "acceptance_false_positives": 0,
+      "repair_attempts": 0
+    },
+    {
+      "policy": "thinking",
+      "trials": 3,
+      "seeds": [
+        44,
+        43,
+        42
+      ],
+      "successful_attempts": 0,
+      "failures_by_reason": {
+        "completion did not finish normally": 3
+      },
+      "generated_tokens": 36864,
+      "prompt_tokens": 7149,
+      "client_wall_seconds": 1197.748,
+      "allocated_trial_seconds": 1979.215951681137,
+      "allocated_trial_seconds_per_success": null,
+      "engine_request_seconds": 1216.1140150651336,
+      "trial_gpu_cost_usd_estimate": 0.32437150319218633,
+      "generation_requests": 3,
+      "acceptance_false_positives": 0,
+      "repair_attempts": 0
+    },
+    {
+      "policy": "repair",
+      "trials": 3,
+      "seeds": [
+        44,
+        42,
+        43
+      ],
+      "successful_attempts": 0,
+      "failures_by_reason": {
+        "completion did not finish normally": 3
+      },
+      "generated_tokens": 26859,
+      "prompt_tokens": 16956,
+      "client_wall_seconds": 889.068,
+      "allocated_trial_seconds": 899.461122751236,
+      "allocated_trial_seconds_per_success": null,
+      "engine_request_seconds": 879.8451131731272,
+      "trial_gpu_cost_usd_estimate": 0.14741168400645258,
+      "generation_requests": 6,
+      "acceptance_false_positives": 0,
+      "repair_attempts": 3
+    }
+  ],
+  "direct_stage_checks": [
+    {
+      "seed": 44,
+      "direct_text_matches": true,
+      "requests": 2,
+      "direct_passed": false,
+      "repair_passed": false
+    },
+    {
+      "seed": 42,
+      "direct_text_matches": true,
+      "requests": 2,
+      "direct_passed": false,
+      "repair_passed": false
+    },
+    {
+      "seed": 43,
+      "direct_text_matches": true,
+      "requests": 2,
+      "direct_passed": false,
+      "repair_passed": false
+    }
+  ],
+  "trial_count": 9,
+  "client_interruption": {
+    "classification": "observed_client_idle_sleep",
+    "affected_trial": "03-seed-44-thinking",
+    "sleep_start_utc": "2026-10-12T17:42:59Z",
+    "wake_utc": "2026-10-12T17:55:52Z",
+    "sleep_seconds": 773,
+    "evidence": "macOS pmset power log reports Idle Sleep for 773 seconds; server completed the request while client slept.",
+    "mitigation": "caffeinate -i bound to driver PID 93740 from approximately 17:57:50 UTC for remaining attempts.",
+    "treatment": "Keep all outcomes, tokens and original allocation brackets. No retry and no subtraction from rental cost. Affected trial allocation is not an unbiased estimate of policy latency."
+  },
+  "paired_outcomes": [
+    {
+      "seed": 42,
+      "nonthinking": "failed_checks",
+      "thinking": "failed",
+      "repair": "failed"
+    },
+    {
+      "seed": 43,
+      "nonthinking": "failed_checks",
+      "thinking": "failed",
+      "repair": "failed"
+    },
+    {
+      "seed": 44,
+      "nonthinking": "failed_checks",
+      "thinking": "failed",
+      "repair": "failed"
+    }
+  ],
+  "notes": [
+    "Three seeds on one public historical repair task. Attempts are not independent tasks or held-out quality evidence.",
+    "Engine counters measure request processing time, not CUDA kernel time.",
+    "Seed 44 thinking allocation includes 773 seconds of observed client idle sleep. Do not treat allocation totals as an unbiased policy cost comparison.",
+    "Trial allocation brackets include verifier waits, client process and metric calls; setup and inter-trial gaps are separate.",
+    "Direct ceiling is 4096 tokens; thinking and direct-plus-repair both have total ceilings of 12288. Sampling profiles differ by mode."
+  ]
+}

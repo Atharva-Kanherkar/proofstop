@@ -1,0 +1,42 @@
+[
+  {
+    "name": "decimal-rounding-carry",
+    "input": [
+      999999,
+      false,
+      false,
+      "%.1f"
+    ],
+    "expected": "1.0 MB"
+  },
+  {
+    "name": "binary-rounding-carry",
+    "input": [
+      1048575,
+      true,
+      false,
+      "%.1f"
+    ],
+    "expected": "1.0 MiB"
+  },
+  {
+    "name": "ordinary-value",
+    "input": [
+      3000000,
+      false,
+      false,
+      "%.1f"
+    ],
+    "expected": "3.0 MB"
+  },
+  {
+    "name": "single-byte",
+    "input": [
+      1,
+      false,
+      false,
+      "%.1f"
+    ],
+    "expected": "1 Byte"
+  }
+]

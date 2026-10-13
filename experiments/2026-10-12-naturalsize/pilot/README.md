@@ -1,0 +1,3 @@
+# Interrupted parser-fault pilot
+
+Not a valid model-performance comparison. The pilot requested four-backtick fences, but two answers used ordinary three-backtick fences containing indented docstring examples. The original parser rejected that standard Markdown structure. A third thinking attempt hit its output cap. The paused driver recorded two results; `attempts.json` records all three completed generation attempts. Third allocated trial timing is unavailable and null. Raw bodies and identities are preserved. The same physical rental continued into the corrected study, so its cost must not be counted twice.

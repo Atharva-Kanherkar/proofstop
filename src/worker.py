@@ -24,12 +24,23 @@ def serialize(record, value):
         return json.dumps({"error": "UnserializableResult", "input_after": None})
 
 
+def consume_humanize(value):
+    return module.humanize.naturalsize(*value)
+
+
 records = []
 with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
     module = types.ModuleType("candidate")
     try:
-        with open("/work/ranges.py", encoding="utf-8") as source:
-            exec(compile(source.read(), "ranges.py", "exec"), module.__dict__)
+        if entrypoint == "humanize":
+            sys.path.insert(0, "/work/repo")
+            import humanize
+            module.humanize = humanize
+            module.humanize_consumer = consume_humanize
+            entrypoint = "humanize_consumer"
+        else:
+            with open("/work/ranges.py", encoding="utf-8") as source:
+                exec(compile(source.read(), "ranges.py", "exec"), module.__dict__)
     except BaseException as error:  # noqa: BLE001 - a broken candidate is a failed candidate
         detail = type(error).__name__
         records = [

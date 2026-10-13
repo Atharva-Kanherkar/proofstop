@@ -1,0 +1,22 @@
+{
+  "gpu": "NVIDIA A40",
+  "vram_mib": 46068,
+  "model": "Qwen/Qwen3-8B",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "tokenizer_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "vllm": "0.10.2",
+  "torch": "2.8.0+cu128",
+  "transformers": "4.55.2",
+  "max_model_len": 24576,
+  "dtype": "bfloat16",
+  "prefix_caching": false,
+  "max_num_seqs": 1,
+  "tensor_parallel_size": 1,
+  "image": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",
+  "host_cuda_floor": "12.8",
+  "source_commit": "bb38828cc7418ad81c3fb041fc984c33cf39a995",
+  "verifier_location": "local Docker; dedicated GPU remains allocated during verification",
+  "driver": "570.195.03",
+  "python": "3.12.3",
+  "pilot_source_commit": "c4902d14da4e898cb1021ec379e20fd615d1aa9a"
+}

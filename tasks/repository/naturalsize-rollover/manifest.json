@@ -1,0 +1,20 @@
+{
+  "schema_version": 3,
+  "id": "naturalsize-rollover",
+  "revision": "snapshot-7574e0c",
+  "files": {
+    "repo/humanize/__init__.py": "d00d3181a59d96da8c1bc4fa8e15661895f06fecf66eb38dcb645e7e52702349",
+    "repo/humanize/filesize.py": "1895d6dad77e0e87089417d1a76a5d40abc0cb6bfc23be5d1ae46c865e50bd20",
+    "repo/humanize/i18n.py": "59437bd22945d6f921dbbd54afb37baff1d54d72d9f9763ceb63f80a325ed911",
+    "repo/humanize/lists.py": "def0609522ce9aec413e0a46608a7eaf8d8b08aad682469dea4aff5dd4601754",
+    "repo/humanize/number.py": "623ec8546451068b4b9357561dcc7758f7109313781638984296fdca21533e35",
+    "repo/humanize/time.py": "1ea0504758558799dba64777919db0eb1c7810d8bb9302dd8f1979a5d1476016",
+    "repo/humanize/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "repo/LICENCE": "8ba6c18112a431400ad3c743f70670079b302545d98884fc2f28a91c383a0380",
+    "repo/humanize/_version.py": "292bc8d3a9aa9998454920de4992bd89c5f2ebff28575a0275750b5feb6a50d8",
+    "acceptance.json": "5695e57ca5fed3633aa53f0a73d29680fd281e18b63bf848a17ace5638a496f1",
+    "evaluation.json": "4d8f203cf3dd99ab960981b4fe6a8ebb6a97093f6c3e9ec6be4775d5f978f465",
+    "spec.md": "1c768911dda8742bb14b4db946f53cc563ca21f45274b7c4d5c865e58904392c",
+    "upstream.json": "70c0a80aeb0b8c8c04c16762008a1838546fea02c7aac089419c97e6020777a1"
+  }
+}

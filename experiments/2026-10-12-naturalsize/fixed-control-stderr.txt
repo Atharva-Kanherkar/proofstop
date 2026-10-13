@@ -1,0 +1,2 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.09s
+     Running `/Users/atharva/Library/Application Support/dev.bridge.deck/build-caches/kairo-c142245f831e/cargo-target/debug/proofstop verify --task tasks/repository/naturalsize-rollover --candidate tests/fixtures/repository/naturalsize-fixed.py`
