@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "query": {
+      "bucketSize": "hour",
+      "endTime": "2026-10-13T06:00:00Z",
+      "startTime": "2026-10-13T04:00:00Z"
+    },
+    "recordCount": 0,
+    "totals": {
+      "totalAmount": 0
+    }
+  },
+  "records": []
+}

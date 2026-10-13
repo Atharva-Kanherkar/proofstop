@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "source": "system",
+      "line": "worker is ready",
+      "ts": "2026-10-13T04:13:21Z"
+    },
+    {
+      "source": "system",
+      "line": "create container registry.runpod.net/runpod-workers-worker-vllm-main-dockerfile:b7212acc6",
+      "ts": "2026-10-13T04:13:58Z"
+    },
+    {
+      "source": "system",
+      "line": "b7212acc6 Pulling from runpod-workers-worker-vllm-main-dockerfile",
+      "ts": "2026-10-13T04:13:59Z"
+    },
+    {
+      "source": "system",
+      "line": "Digest: sha256:a218acc3f5032d2bc1b9104b613b5ed0bf34bcd6b7c561396d17a60aa4b7962c",
+      "ts": "2026-10-13T04:13:59Z"
+    },
+    {
+      "source": "system",
+      "line": "Status: Image is up to date for registry.runpod.net/runpod-workers-worker-vllm-main-dockerfile:b7212acc6",
+      "ts": "2026-10-13T04:13:59Z"
+    },
+    {
+      "source": "system",
+      "line": "worker is ready",
+      "ts": "2026-10-13T04:13:59Z"
+    },
+    {
+      "source": "system",
+      "line": "start container for registry.runpod.net/runpod-workers-worker-vllm-main-dockerfile:b7212acc6: begin",
+      "ts": "2026-10-13T04:14:01Z"
+    },
+    {
+      "source": "system",
+      "line": "stop container d653206714428432761e3d0026fd5ffd5a225e34d592677186ecfc22d6452f44",
+      "ts": "2026-10-13T04:16:04Z"
+    },
+    {
+      "source": "system",
+      "line": "remove container",
+      "ts": "2026-10-13T04:16:16Z"
+    }
+  ],
+  "count": 9,
+  "truncated": false
+}

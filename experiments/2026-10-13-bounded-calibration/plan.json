@@ -1,0 +1,33 @@
+{
+  "classification": "public_historical_development_calibration",
+  "source_commit": "fb81547d9290905699eea681807401bbbf5e7595",
+  "task": "tasks/repository/naturalsize-rollover",
+  "task_manifest_sha256": "999859355bf8b671c9516cade0e992e8addc9f9eb39d68b37defaadf71993e0a",
+  "model": "Qwen/Qwen3-8B",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "engine": "vllm 0.31.0",
+  "worker_source": "b7212acc6d60d5ada997f453783c2e09df8e6e49",
+  "endpoint_id": "d71ttxwnln4ovc",
+  "workers_min": 0,
+  "workers_max": 1,
+  "idle_timeout_seconds": 10,
+  "active_gpu_hourly_usd": 1.22,
+  "additional_spend_limit_usd": 3,
+  "baseline_tokens": 16384,
+  "reasoning_tokens": 512,
+  "answer_tokens": 2048,
+  "calibration_seed": 43,
+  "followup_seeds_if_calibration_passes": [
+    42,
+    44
+  ],
+  "task_and_sampling_changes": "none",
+  "transport": "Authenticated MCP queue jobs through generic vLLM proxy. Raw queue envelopes retained; worker HTTP JSON reserialization is explicit.",
+  "measurement": "Report job execution time and provider billing separately. Do not call client queue waiting allocated GPU time.",
+  "hub_release_id": "cmuxgi0a3000407jv5igk1ezr",
+  "flashboot": "OFF",
+  "setup_endpoint_deleted": "f6tis8jcpldq9i",
+  "setup_correction": "First endpoint used a raw Hub image tag without the Hub deployment path; system log reported registry-auth error and worker release could not be confirmed. Deleted before performance requests. Corrected endpoint deployed from immutable Hub release.",
+  "observed_image_digest": "sha256:a218acc3f5032d2bc1b9104b613b5ed0bf34bcd6b7c561396d17a60aa4b7962c",
+  "baseline_failure_action": "Stop calibration without forced trials or larger budgets."
+}

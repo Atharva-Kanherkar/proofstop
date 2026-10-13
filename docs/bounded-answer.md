@@ -33,5 +33,9 @@ not allocated GPU time, and queue delay is not billed GPU work. Record provider
 billing separately; do not claim GPU efficiency from token counts alone.
 
 The complete test contract is [testing/feat-bounded-answer.md](../testing/feat-bounded-answer.md).
-Live model results remain pending until startup, identity, protocol and automatic
-release have been verified.
+The [live calibration](../experiments/2026-10-13-bounded-calibration/README.md)
+completed naturally after 12,891 output tokens but returned the original buggy
+file unchanged. It failed the baseline-success gate, so forced-answer performance
+and live exact-prefix validation were skipped. Both endpoints were deleted.
+The new controller has local protocol and real Docker coverage; its benefit is
+unproven.

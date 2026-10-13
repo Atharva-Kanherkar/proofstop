@@ -48,6 +48,13 @@ class ScreenTests(unittest.TestCase):
         experiment = ROOT / 'experiments/2026-10-12-direct-first'
         self.assertEqual(module.summarize(experiment), json.loads((experiment / 'report.json').read_text()))
 
+    def test_bounded_calibration_matches_captured_provider_and_verifier(self):
+        spec = importlib.util.spec_from_file_location('bounded_report', ROOT / 'scripts/summarize-bounded.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        experiment = ROOT / 'experiments/2026-10-13-bounded-calibration'
+        self.assertEqual(module.summarize(experiment), json.loads((experiment / 'report.json').read_text()))
+
     def test_queue_bridge_budgets_fail_closed(self):
         spec = importlib.util.spec_from_file_location('queue_bridge', ROOT / 'scripts/queue-bridge.py')
         module = importlib.util.module_from_spec(spec)

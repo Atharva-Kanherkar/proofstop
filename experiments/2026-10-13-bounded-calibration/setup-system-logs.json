@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "source": "system",
+      "line": "worker is ready",
+      "ts": "2026-10-13T04:06:57Z"
+    },
+    {
+      "source": "system",
+      "line": "create container registry.runpod.net/runpod-workers-worker-vllm-main-dockerfile:b7212acc6",
+      "ts": "2026-10-13T04:07:36Z"
+    },
+    {
+      "source": "system",
+      "line": "Failed to get Hub registry auth. Is this a template you have access to?",
+      "ts": "2026-10-13T04:07:36Z"
+    },
+    {
+      "source": "system",
+      "line": "start container for registry.runpod.net/runpod-workers-worker-vllm-main-dockerfile:b7212acc6: begin",
+      "ts": "2026-10-13T04:07:36Z"
+    }
+  ],
+  "count": 4,
+  "truncated": false
+}

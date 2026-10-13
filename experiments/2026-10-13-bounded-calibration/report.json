@@ -1,0 +1,29 @@
+{
+  "classification": "public_historical_development_calibration",
+  "calibration_outcome": "failed_checks",
+  "completed_model_attempts": 1,
+  "forced_model_attempts": 0,
+  "reason_followups_skipped": "The predeclared baseline-success gate failed. No forced answer, additional seed or larger budget was submitted.",
+  "completion_tokens": 12891,
+  "prompt_tokens": 2383,
+  "finish_reason": "stop",
+  "acceptance": {
+    "passed": 2,
+    "cases": 4
+  },
+  "evaluation": {
+    "passed": 6,
+    "cases": 12
+  },
+  "candidate_equals_unfixed_source": true,
+  "candidate_sha256": "1895d6dad77e0e87089417d1a76a5d40abc0cb6bfc23be5d1ae46c865e50bd20",
+  "queue_execution_ms": 369053,
+  "queue_delay_ms": 79531,
+  "client_wall_ms": 472433,
+  "active_gpu_hourly_usd": 1.22,
+  "request_execution_only_cost_usd_estimate": 0.12506796111111113,
+  "allocated_gpu_seconds": null,
+  "complete_rental_cost_usd": null,
+  "billing_status": "Provider returned no billing rows yet. This is not evidence of zero cost. Queue execution estimate excludes startup, setup attempts, idle time and any worker overlap.",
+  "cleanup": "Both experiment endpoints deleted; get returns404 and fresh endpoint list empty. Hub template lookup also returns404."
+}

@@ -1,0 +1,41 @@
+{
+  "availability": "HIGH",
+  "community": false,
+  "cudaVersions": [
+    {
+      "available": true,
+      "version": "13.0"
+    },
+    {
+      "available": true,
+      "version": "13.2"
+    }
+  ],
+  "dataCenters": [
+    {
+      "availability": "HIGH",
+      "id": "CA-MTL-1",
+      "name": "CA-MTL-1"
+    },
+    {
+      "availability": "MEDIUM",
+      "id": "EU-SE-1",
+      "name": "EU-SE-1"
+    }
+  ],
+  "id": "NVIDIA A40",
+  "manufacturer": "NVIDIA",
+  "maxCount": {
+    "community": 1,
+    "secure": 10
+  },
+  "memory": 48,
+  "name": "A40",
+  "pool": "AMPERE_48",
+  "price": {
+    "community": 0.35,
+    "secure": 0.59,
+    "serverless": 1.22
+  },
+  "secure": true
+}
