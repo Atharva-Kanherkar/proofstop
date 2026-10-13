@@ -1,0 +1,53 @@
+{
+  "args": "",
+  "createdAt": "2026-10-13T04:06:56.344Z",
+  "dataCenterIds": [
+    "CA-MTL-1"
+  ],
+  "disk": 80,
+  "env": {
+    "HF_HUB_DISABLE_TELEMETRY": "1",
+    "MODEL_NAME": "Qwen/Qwen3-8B",
+    "MODEL_REVISION": "b968826d9c46dd6066d109eabc6255188de91218",
+    "REQUEST_TIMEOUT": "600",
+    "VLLM_EXTRA_ARGS": "--tokenizer-revision b968826d9c46dd6066d109eabc6255188de91218 --dtype bfloat16 --max-model-len 24576 --max-num-seqs 1 --tensor-parallel-size 1 --gpu-memory-utilization 0.85 --generation-config vllm --no-enable-prefix-caching --enforce-eager --max-num-batched-tokens 2048",
+    "VLLM_STARTUP_TIMEOUT": "120"
+  },
+  "flashboot": "FLASHBOOT",
+  "gpu": {
+    "allowedCudaVersions": [],
+    "count": 1,
+    "excludedTypes": [
+      "NVIDIA RTX A6000"
+    ],
+    "minCudaVersion": "13.0",
+    "pools": [
+      "AMPERE_48"
+    ]
+  },
+  "id": "f6tis8jcpldq9i",
+  "image": "registry.runpod.net/runpod-workers-worker-vllm-main-dockerfile:b7212acc6",
+  "name": "proofstop-bounded-calibration",
+  "networkVolumes": [],
+  "requestUrls": {
+    "cancel": "https://api.runpod.ai/v2/f6tis8jcpldq9i/cancel/{job_id}",
+    "health": "https://api.runpod.ai/v2/f6tis8jcpldq9i/health",
+    "purgeQueue": "https://api.runpod.ai/v2/f6tis8jcpldq9i/purge-queue",
+    "retry": "https://api.runpod.ai/v2/f6tis8jcpldq9i/retry/{job_id}",
+    "run": "https://api.runpod.ai/v2/f6tis8jcpldq9i/run",
+    "runSync": "https://api.runpod.ai/v2/f6tis8jcpldq9i/runsync",
+    "status": "https://api.runpod.ai/v2/f6tis8jcpldq9i/status/{job_id}",
+    "stream": "https://api.runpod.ai/v2/f6tis8jcpldq9i/stream/{job_id}"
+  },
+  "scaling": {
+    "queueDelay": 1,
+    "type": "QUEUE_DELAY"
+  },
+  "timeout": 600000,
+  "type": "QUEUE",
+  "workers": {
+    "idleTimeout": 10,
+    "max": 1,
+    "min": 0
+  }
+}

@@ -37,6 +37,14 @@ one-repair attempts exhausted their budgets. The report retains the interrupted
 parser pilot, client sleep and delayed cleanup, with the full rental cost.
 This task establishes the next baseline challenge, not an efficiency win.
 
+A [one-shot forced-answer mode](docs/bounded-answer.md) now ends reasoning after
+one bounded segment and permits a single final-answer probe. Its
+[larger-budget calibration](experiments/2026-10-13-bounded-calibration/README.md)
+finished an answer after 12,891 tokens but returned the buggy file unchanged.
+The baseline-success gate failed, so live forced-answer comparisons were skipped.
+The controller is locally tested; this model/task/prompt pairing needs reassessment
+before further GPU experiments or efficiency claims.
+
 ## Get started
 
 Prerequisites: Rust 1.96.0 and a running Docker daemon. The toolchain,

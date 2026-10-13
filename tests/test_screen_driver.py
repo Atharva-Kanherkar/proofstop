@@ -48,6 +48,24 @@ class ScreenTests(unittest.TestCase):
         experiment = ROOT / 'experiments/2026-10-12-direct-first'
         self.assertEqual(module.summarize(experiment), json.loads((experiment / 'report.json').read_text()))
 
+    def test_bounded_calibration_matches_captured_provider_and_verifier(self):
+        spec = importlib.util.spec_from_file_location('bounded_report', ROOT / 'scripts/summarize-bounded.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        experiment = ROOT / 'experiments/2026-10-13-bounded-calibration'
+        self.assertEqual(module.summarize(experiment), json.loads((experiment / 'report.json').read_text()))
+
+    def test_queue_bridge_budgets_fail_closed(self):
+        spec = importlib.util.spec_from_file_location('queue_bridge', ROOT / 'scripts/queue-bridge.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        self.assertEqual(module.policy('/v1/completions', {'max_tokens': 512})['executionTimeout'], 60000)
+        self.assertEqual(module.policy('/v1/completions', {'max_tokens': 2048})['executionTimeout'], 180000)
+        self.assertEqual(module.policy('/v1/chat/completions', {'max_tokens': 16384})['executionTimeout'], 600000)
+        for route, body in [('/unsupported', {}), ('/v1/completions', {}), ('/v1/completions', {'max_tokens': True}), ('/v1/completions', {'max_tokens': 16385})]:
+            with self.assertRaises(ValueError):
+                module.policy(route, body)
+
     def test_repository_report_recomputes_from_raw_usage_and_counters(self):
         spec = importlib.util.spec_from_file_location('repository_report', ROOT / 'scripts/summarize-repository.py')
         module = importlib.util.module_from_spec(spec)

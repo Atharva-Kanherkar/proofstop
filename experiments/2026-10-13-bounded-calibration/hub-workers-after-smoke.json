@@ -1,0 +1,46 @@
+{
+  "endpointVersion": 1,
+  "summary": {
+    "idle": 3,
+    "initializing": 0,
+    "running": 0,
+    "throttled": 0,
+    "total": 3,
+    "unhealthy": 0
+  },
+  "workers": [
+    {
+      "dataCenterId": "CA-MTL-1",
+      "gpuCount": 1,
+      "gpuTypeId": "NVIDIA A40",
+      "id": "r2ewaokbw7es3d",
+      "image": "registry.runpod.net/runpod-workers-worker-vllm-main-dockerfile:b7212acc6",
+      "isStale": false,
+      "startedAt": "2026-10-13T04:13:57.537Z",
+      "status": "IDLE",
+      "version": 1
+    },
+    {
+      "dataCenterId": "CA-MTL-1",
+      "gpuCount": 1,
+      "gpuTypeId": "NVIDIA A40",
+      "id": "ytc1b3k44ni2qd",
+      "image": "registry.runpod.net/runpod-workers-worker-vllm-main-dockerfile:b7212acc6",
+      "isStale": false,
+      "startedAt": "2026-10-13T04:15:42.605Z",
+      "status": "IDLE",
+      "version": 1
+    },
+    {
+      "dataCenterId": "EU-SE-1",
+      "gpuCount": 1,
+      "gpuTypeId": "NVIDIA A40",
+      "id": "p1xvymb9m39ljx",
+      "image": "registry.runpod.net/runpod-workers-worker-vllm-main-dockerfile:b7212acc6",
+      "isStale": false,
+      "startedAt": "2026-10-13T04:15:43.634Z",
+      "status": "IDLE",
+      "version": 1
+    }
+  ]
+}

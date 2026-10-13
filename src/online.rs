@@ -20,7 +20,13 @@ pub struct Options {
     pub segment_tokens: u32,
     pub probe_tokens: u32,
     pub max_probes: u32,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub force_answer: bool,
 }
+fn is_false(value: &bool) -> bool {
+    !value
+}
+
 impl Options {
     pub fn validate(&self, config: &Config) -> Result<()> {
         ensure!(
@@ -32,6 +38,16 @@ impl Options {
             "probe tokens must be 1..4096"
         );
         ensure!(self.max_probes <= 16, "at most 16 probes");
+        if self.force_answer {
+            ensure!(
+                self.max_probes == 1,
+                "forced answer requires exactly one probe"
+            );
+            ensure!(
+                self.segment_tokens < config.max_tokens,
+                "forced reasoning must leave answer headroom"
+            );
+        }
         ensure!(
             config.enable_thinking == Some(true),
             "online policies require explicit thinking mode"
@@ -303,7 +319,9 @@ pub async fn run(
     };
     let mut summary = Summary {
         schema_version: 1,
-        policy: if options.max_probes == 0 {
+        policy: if options.force_answer {
+            "bounded_forced_answer"
+        } else if options.max_probes == 0 {
             "segmented_no_probe"
         } else {
             "periodic_probe"
@@ -369,13 +387,22 @@ pub async fn run(
                 let value = recorder.call("probe", "/v1/completions", generation(model, &probe_prompt, options.probe_tokens, config), true).await?;
                 let (tokens, stopped) = completion(&value, &probe_prompt, options.probe_tokens)?;
                 probe_generated += tokens.len();
-                if !stopped { recorder.event("probe_rejected", json!({"probe":probe_count,"reason":"truncated"}))?; continue; }
+                if !stopped {
+                    recorder.event("probe_rejected", json!({"probe":probe_count,"reason":"truncated"}))?;
+                    if options.force_answer { summary.error=Some("forced answer truncated".into()); break; }
+                    continue;
+                }
                 let text = recorder.text(model, &branch(&branch(&main_generated,suffix),&tokens)).await?;
                 let label = format!("probe-{probe_count:02}");
                 fs::write(output.join(format!("{label}.txt")), &text)?;
                 match candidate::extract(&format!("<think>\n{text}")) {
                     Ok(source) => { if score(&mut recorder, &mut summary, &source, task, config, &label).await? { break; } },
-                    Err(error) => { recorder.event("probe_rejected", json!({"probe":probe_count,"reason":error.to_string()}))?; },
+                    Err(error) => { recorder.event("probe_rejected", json!({"probe":probe_count,"reason":error.to_string()}))?; if options.force_answer { summary.error=Some(error.to_string()); } },
+                }
+                if options.force_answer {
+                    if summary.error.is_none() { summary.outcome="failed_checks".into(); }
+                    recorder.event("forced_answer_finished", json!({"outcome":summary.outcome,"error":summary.error}))?;
+                    break;
                 }
             }
         }
@@ -408,6 +435,26 @@ pub async fn run(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn forced_options_require_a_single_answer_and_headroom() {
+        let config =
+            Config::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("configs/gpu-thinking.json"))
+                .unwrap();
+        let mut options = Options {
+            segment_tokens: 512,
+            probe_tokens: 2048,
+            max_probes: 1,
+            force_answer: true,
+        };
+        assert!(options.validate(&config).is_ok());
+        for count in [0, 2] {
+            options.max_probes = count;
+            assert!(options.validate(&config).is_err());
+        }
+        options.max_probes = 1;
+        options.segment_tokens = config.max_tokens;
+        assert!(options.validate(&config).is_err());
+    }
     #[test]
     fn exact_branch_does_not_mutate_main() {
         let main = vec![1, 2, 3];

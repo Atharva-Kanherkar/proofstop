@@ -1,0 +1,22 @@
+{
+  "endpoint": {
+    "id": "d71ttxwnln4ovc",
+    "name": "proofstop-bounded-hub-calibration",
+    "gpuIds": "AMPERE_48,-NVIDIA RTX A6000",
+    "gpuCount": 1,
+    "workersMin": 0,
+    "workersMax": 1,
+    "idleTimeout": 10,
+    "scalerType": "QUEUE_DELAY",
+    "scalerValue": 1,
+    "flashBootType": "OFF",
+    "templateId": "rfo6csunur"
+  },
+  "deployed": {
+    "repo": "runpod-workers/worker-vllm",
+    "release": "v2.29.0",
+    "hubReleaseId": "cmuxgi0a3000407jv5igk1ezr",
+    "imageName": "registry.runpod.net/runpod-workers-worker-vllm-main-dockerfile:b7212acc6"
+  },
+  "note": "Endpoint created. Submit jobs with run-endpoint/runsync-endpoint using endpointId \"d71ttxwnln4ovc\"."
+}
