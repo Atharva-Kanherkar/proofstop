@@ -3,6 +3,7 @@
 ## Functional Behavior
 - Keep the ordinary naturalsize task, runtime, acceptance and evaluation unchanged.
 - Add an explicit one-shot forced-answer mode to the existing exact-token controller. Generate a bounded reasoning segment, close the open thinking envelope on a separate answer prefix, and issue exactly one answer request. Stop after that request, including rejected or failed candidates. Never resume reasoning or repair using evaluation.
+- Permit request timeouts up to 1200 seconds for queue cold starts plus a bounded worker job; reject values above 1200. Validate every committed calibration configuration before inference.
 - Preserve the default periodic-probe and segmented policies and their recorded identities.
 - Require one probe and a reasoning segment strictly below the configured main budget. Record reasoning, answer, replay usage and all failures; truncated answers cannot execute.
 - Freeze a 16384-token thinking calibration at seed 43 and a 512-token reasoning plus 2048-token forced answer. If calibration passes, repeat both policies at seeds 42 and 44. No outcome-driven prompt, test or budget changes.
